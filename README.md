@@ -93,9 +93,8 @@ DivineSide/
 │   └── workflows/
 ├── infrastructure/            ← VPS, middleware, Discord bot, nginx configs
 │   └── discord-middleware/
-├── shared/                    ← Shared utilities, base classes, common tools
-│   └── utils/
-└── sessions/                  ← Session progress logs (dated markdown)
+└── shared/                    ← Shared utilities, base classes, common tools
+    └── utils/
 ```
 
 ---
@@ -111,6 +110,6 @@ DivineSide/
 
 ---
 
-## Session Logs
+## Progress Tracking
 
-Progress is tracked per session in `sessions/` — dated markdown files committed after each working session so the full team stays in sync.
+All progress is tracked via git commit messages. Every commit describes what changed and what was updated — `git log` is the source of truth for what's been built and when.
