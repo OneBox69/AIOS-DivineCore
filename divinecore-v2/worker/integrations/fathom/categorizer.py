@@ -14,8 +14,8 @@ def _domain(email: str) -> str:
 
 
 def _heuristic(payload: dict) -> str | None:
-    attendees = payload.get("attendees") or []
-    emails = [a.get("email", "").lower() for a in attendees if a.get("email")]
+    invitees = payload.get("calendar_invitees") or []
+    emails = [i.get("email", "").lower() for i in invitees if i.get("email")]
     if not emails:
         return None
 
@@ -37,9 +37,9 @@ def _llm_fallback(payload: dict) -> str:
         api_key=settings.OPENROUTER_API_KEY,
         base_url=settings.OPENROUTER_BASE_URL,
     )
-    title = payload.get("title", "")
-    summary = (payload.get("summary") or "")[:500]
-    attendees = ", ".join(a.get("email", "") for a in payload.get("attendees") or [])
+    title = payload.get("meeting_title") or payload.get("title", "")
+    summary = (payload.get("default_summary") or "")[:500]
+    attendees = ", ".join(i.get("email", "") for i in payload.get("calendar_invitees") or [])
     prompt = (
         "Classify this meeting into exactly one category from: "
         f"{', '.join(CATEGORIES)}.\n\n"

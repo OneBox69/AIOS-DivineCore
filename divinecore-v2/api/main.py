@@ -2,13 +2,11 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from celery import Celery
 
-from routes.fathom import router as fathom_router
 from settings import settings
 
 celery_client = Celery("api", broker=settings.REDIS_URL, backend=settings.REDIS_URL)
 
 app = FastAPI(title="DivineCore v2")
-app.include_router(fathom_router)
 
 
 class EchoRequest(BaseModel):

@@ -35,8 +35,8 @@ def create_tasks_for_opted_in(payload: dict, meeting_record: dict) -> list[dict]
         return []
 
     table = _tasks_table()
-    title = payload.get("title", "")
-    date = payload.get("started_at", "")
+    title = payload.get("meeting_title") or payload.get("title", "")
+    date = payload.get("recording_start_time", "")
     category = (meeting_record.get("fields") or {}).get("Category", "other")
     channel = CHANNEL_BY_CATEGORY.get(category, "#pulse")
     deadline = (datetime.now(timezone.utc) + timedelta(days=DEFAULT_DEADLINE_DAYS)).isoformat()
