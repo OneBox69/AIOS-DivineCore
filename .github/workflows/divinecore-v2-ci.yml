@@ -71,7 +71,7 @@ jobs:
   notify:
     name: Notify Discord
     needs: build-and-push
-    if: always() && github.event_name == 'push'
+    if: always() && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Post status to Discord
