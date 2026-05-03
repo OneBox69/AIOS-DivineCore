@@ -256,10 +256,26 @@ Monetisation layers:
 
 Do not store passwords or API keys in this file. Reference only.
 
+**External services**
 - n8n: https://n8n.srv1445995.hstgr.cloud
 - VPS: srv1445995.hstgr.cloud | IP: 187.124.96.99
 - Airtable base: DivineCore
 - Primary email (old): mayankrawat000072@gmail.com
+
+**VPS SSH access** (`root@srv1445995.hstgr.cloud`)
+- Pang (`yhpang@oneboxagency.com`) — authorized 2026-05-03. ed25519 key, no passphrase, generated on his Windows laptop at `C:\Users\user\.ssh\id_ed25519`. Personal access; CI auto-deploy will use a separate key when wired up.
+- To grant or revoke a teammate's SSH access: edit `/root/.ssh/authorized_keys` on the VPS (one public key per line, comment field identifies the person).
+
+**GitHub repository — `OneBox69/AIOS-DivineCore`** (Pang's fork, primary working repo)
+- Upstream `DivineSide/AIOS-DivineCore` is currently stale; all active work happens on the fork.
+- GitHub Actions secrets:
+  - `GITHUB_TOKEN` — auto-provisioned, used to push images to GHCR.
+  - `DISCORD_WEBHOOK_URL` — webhook for `#deploys` channel. Configured 2026-05-03.
+
+**GitHub Container Registry (`ghcr.io/onebox69/aios-divinecore/{api,worker}`)**
+- Images are **private**. Pulling requires auth.
+- A classic PAT with `read:packages` scope only is cached on the VPS at `/root/.docker/config.json` (set up 2026-05-03 via `docker login ghcr.io -u onebox69 --password-stdin`). Rotate on PAT expiration.
+- Anyone else pulling these images on a new machine needs to either be invited as a collaborator or generate their own `read:packages` PAT.
 
 
 ## 11. REPOSITORY STRUCTURE CONVENTIONS
