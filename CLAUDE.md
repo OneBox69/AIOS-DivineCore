@@ -308,3 +308,83 @@ DivineSide/
 - **Research drives architecture.** Before building any agent, define its knowledge base source. The agent is only as good as the research fed into it.
 - **Mayank assigns tasks. System tracks everything after.** Task assignment is always manual and intentional. Automation handles reminders, tracking, and escalation.
 - **Commit workflow exports.** Every time an n8n workflow is updated, export the JSON and commit it to the relevant module folder.
+
+
+## 13. DIVINECORE V2 — CODE-FIRST RUNTIME (IN BUILD)
+
+Parallel track to the n8n-orchestrated stack. `divinecore-v2/` is the code-first runtime that will eventually replace n8n for agent execution — Python services owned end-to-end in this repo, deployable as containers.
+
+### Foundation (commit `3c03553`)
+
+Stack: **FastAPI API + Celery worker + Celery Beat scheduler + Redis broker**, all in Docker Compose.
+
+```
+divinecore-v2/
+├── api/                       ← FastAPI service
+│   ├── main.py                ← Routes + Celery client (send_task / AsyncResult)
+│   ├── requirements.txt
+│   └── Dockerfile
+├── worker/                    ← Celery worker + beat (shares same image)
+│   ├── celery_app.py          ← Celery config + beat_schedule
+│   ├── tasks.py               ← echo, heartbeat
+│   ├── requirements.txt
+│   └── Dockerfile
+├── docker-compose.yml         ← redis + api + worker + beat
+└── .dockerignore
+```
+
+Services in compose:
+- `redis` — `redis:7-alpine`, exposes 6379
+- `api` — FastAPI on `:8000`, talks to Celery via `REDIS_URL`
+- `worker` — Celery worker, processes tasks from Redis
+- `beat` — Celery Beat, runs scheduled tasks (currently `tasks.heartbeat` every 30s)
+
+Endpoints today:
+- `GET /` — health
+- `POST /tasks/echo` — submit a task, returns `task_id`
+- `GET /tasks/{task_id}` — poll status + result
+
+Run locally: `cd divinecore-v2 && docker compose up --build`
+
+### CI/CD Workflow (commit `3573662`)
+
+File: `.github/workflows/divinecore-v2-ci.yml`
+
+Triggers: push/PR to `main` (path-filtered to `divinecore-v2/**` and the workflow file itself) + `workflow_dispatch`.
+
+**Build & push job** (matrix: `api`, `worker`):
+- Runs both components in parallel via matrix strategy
+- Uses `docker/setup-buildx-action@v3` + `docker/build-push-action@v6`
+- Pushes to `ghcr.io/onebox69/aios-divinecore/{api,worker}`
+- Tags: `:latest` (main only), `:sha-<short>`, `:<branch>`
+- GHA cache scoped per component (`cache-from/to` with `scope=${name}`) — fast incremental rebuilds
+- PRs are build-only (no push to GHCR, no Discord ping) — gated on `github.event_name != 'pull_request'`
+
+**Notify job:**
+- Runs after `build-and-push`, only on `push` events
+- Uses `sarisia/actions-status-discord@v1`
+- Posts status embed (success/failure) to `#deploys` via `DISCORD_WEBHOOK_URL` secret
+- Embed includes branch + commit message
+
+Required GitHub secrets:
+- `GITHUB_TOKEN` — provided automatically, used for GHCR auth
+- `DISCORD_WEBHOOK_URL` — webhook for `#deploys` channel (must be set in repo settings)
+
+Permissions on the build job: `contents: read`, `packages: write` (needed to push to GHCR).
+
+### Phase 2 — Pending
+
+SSH-deploy from CI to the Hostinger VPS (`srv1445995.hstgr.cloud`). Blocked on VPS access. Once unblocked: pull tagged image on VPS, swap container, health-check.
+
+
+## 14. CLAUDE CODE SLASH COMMANDS
+
+Project-scoped slash commands live in `.claude/commands/` and are version-controlled. Each `.md` file becomes an invocable command (e.g. `prime.md` → `/prime`).
+
+| Command | Purpose |
+|---------|---------|
+| `/prime` | Load full DivineCore context at session start. Reads `CLAUDE.md` + `README.md`, lists `divinecore-v2/`, runs `git log --oneline -20`, and reads `.claude/session.md` if present. Ends with a briefing on active modules, v2 stack state, and recent commit activity. Use this at the top of any non-trivial session. |
+| `/resume` | Lightweight re-entry. Reads `CLAUDE.md` (and `.claude/session.md` if present) and gives a one-paragraph briefing: what was done last session, current state, single next action. |
+| `/save-context` | Writes a ≤300-word session summary to `.claude/session.md` covering what changed, current state, decisions made, and the next step to resume from. Note: per commit `13faee3` we now lean on `git log` for progress tracking, so this is optional — use it only when the in-flight state genuinely won't be obvious from commit history. |
+
+When adding new commands, keep them small and composable. One command, one job — same rule as agents.
