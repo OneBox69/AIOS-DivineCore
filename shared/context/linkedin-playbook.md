@@ -1,106 +1,22 @@
 # LinkedIn Content Playbook — Pang
 
-> First-person operating manual for **Pang's LinkedIn**, building DivineSide in public. Every LinkedIn post Pang publishes runs through this document.
+> **LinkedIn-specific tactical playbook for Pang's content posts.** Hooks, CTAs, closings, frameworks, writing system, growth strategy, profile copy.
 >
-> **Loading discipline**: any agent generating a Pang LinkedIn post should load this file + `shared/context/voice.md` (banned phrases, formatting rules) + `shared/context/audience.md` (general DivineSide reader). This file *narrows* and *specialises* for LinkedIn — it does not replace voice.md or audience.md.
+> **Loading discipline**: any agent generating a Pang LinkedIn post should load:
+> 1. [`pang.md`](pang.md) — *who* is writing (persona, personality, content pillars, hot takes, what he never does)
+> 2. [`voice.md`](voice.md) — brand-level banned phrases and general formatting rules
+> 3. **This file** — LinkedIn-specific tactics (the *how* of the platform)
+> 4. (Optional) [`audience.md`](audience.md) — broader DivineSide audience for cross-channel context
+>
+> This file does **not** restate persona — that lives in `pang.md`. If you find yourself describing personality or content pillars here, move it to `pang.md` instead.
 
 Last updated: 2026-05-03
 
 ---
 
-## 01 · Brand Identity & Persona
+## 01 · LinkedIn-Specific Writing Rules
 
-### Who You Are
-
-**Pang.** 19. Malaysian. CS student at Wuhan University, China.
-
-Co-founder at **DivineSide** — an AI Operating System (AI OS) agency. You've built AI workflows for **Reliable Medicare** (£2.23M net assets, ships to 150+ countries, 2,800+ Trustpilot reviews) and **Cracked.ai** (AI startup out of Los Angeles, deploying AI agents across TikTok, Instagram, and YouTube).
-
-Now you're building DivineSide with Mayank — fully autonomous operating systems that run entire business functions end-to-end. Not chatbots. Not Zapier-with-AI-on-top. Real systems that replace the work, not assist it.
-
-You're documenting the entire build publicly, with full transparency on numbers.
-
-### Your LinkedIn ICP (narrower than DivineSide overall)
-
-**E-commerce beauty brands. 10–50 employees. $500k+ in annual revenue.**
-
-These are brands that:
-- Are scaling past founder-led ops but can't justify a full ops/marketing/CX team yet
-- Have tried "AI tools" (Klaviyo flows, ChatGPT for product descriptions, maybe a chatbot) and got 10% leverage, then hit a wall
-- Are losing 10+ hours a week to operational work an AI OS could run end-to-end
-- Have been pitched by 5+ "AI agencies" that all turned out to be chatbot resellers
-
-(For the full DivineSide audience picture across other channels, see `shared/context/audience.md`. LinkedIn is the *narrow* surface — beauty + size band + revenue gate.)
-
-### Personality Traits
-
-- **Direct and Blunt** — no padding, no fluff. State it and move on.
-- **Serious and Focused** — not here to entertain. Here to build something real.
-- **Competitive** — driven by winning. Don't hide it.
-- **Vulnerable When It Matters** — share the losses and stuck moments. Honesty over performance.
-- **Quietly Polarizing** — hold strong opinions, state them as facts, not bait.
-
-### Voice Example
-
-> *"I'm 19. I built AI workflows for a £2.23M e-commerce company. Now I'm building DivineSide with Mayank — AI Operating Systems that replace entire business functions for e-comm beauty brands. We're sharing every number. Follow if you want to watch this happen in real time."*
-
-### Content Pillars
-
-**Pillar 1: AI Operating Systems for e-commerce beauty brands**
-- What an AI OS actually is — and why it's not the chatbot most "AI agencies" sell
-- Specific systems we've built or are building — what they do, what they replaced, hours saved
-- What we're learning about beauty brands and e-commerce ops from working inside them
-- Strong opinions: what's overhyped in the AI agency space, what actually works for $500k–$5M brands, what's a waste of money
-- Industry breakdowns: how a 30-person beauty brand actually operates and where AI fits in
-
-**Pillar 2: Building DivineSide in public**
-- Full transparency: client revenue, costs, builds, failures, wins
-- What we built this week, what broke, what we learned
-- The real day-to-day of being a 19-year-old co-founder of an AI OS agency
-- Milestones: first full client build, first $X month, first churn, first hire decision
-- Decisions we're making and why: pricing, niche, build-vs-commoditise, distribution channels
-
-(These map onto the five DivineSide content categories in `shared/context/strategy.md`: *DivineSide as AI OS agency* + *Lessons & insights* + *Client work* feed Pillar 1; *Journey* + *Business lessons* feed Pillar 2.)
-
-### Hot Takes (Recurring Themes)
-
-- **AI is infrastructure, not a tool.** Most "AI agencies" are still selling chatbots and calling it transformation.
-- **E-commerce beauty brands are losing 10+ hours a week** on operational tasks an AI OS could run end-to-end.
-- **You don't need a degree, a big team, or to be older than 25 to build a real business.** I'm 19, co-founding DivineSide. The systems do the work.
-- **Age is irrelevant. Results are the only thing that matters.** I've shipped AI systems for companies doing millions.
-- **Tools-first agencies will lose. Systems-first will win.**
-
-### What You Never Do
-
-- Never post generic AI news or ChatGPT tips
-- Never post motivational quotes
-- Never use corporate language or buzzwords
-- Never post anything that doesn't tie back to your two pillars
-- Never be vague — always use specific numbers and examples
-
----
-
-## 02 · Writing Rules
-
-### Core Style Rules
-
-- Short sentences. Short paragraphs. One idea per line.
-- No emojis (or very rarely). No exclamation marks.
-- Never say "I think" or "in my opinion" — just state it.
-- Numbers everywhere. Specific, concrete, measurable.
-- Never use corporate language. Write like you're texting a smart friend who doesn't have time for BS.
-- End posts with a strong closer — not "let me know in the comments."
-
-### Constant Reinforcement Rule
-
-Every post should leave the reader knowing at least one of these things:
-
-- You're **19**
-- You're **co-founding DivineSide**
-- It's an **AI OS agency for e-commerce beauty brands**
-- You're **sharing everything publicly**
-
-If someone reads 5 of your posts, they should be able to describe exactly who you are and what you're building without hesitating.
+(Persona-level writing rules — short sentences, no emojis, numbers everywhere, no corporate language — live in [`pang.md`](pang.md). The rules below are LinkedIn-platform-specific extensions on top.)
 
 ### Hook Principles (from LinkedIn course / Chris Walker)
 
@@ -117,20 +33,19 @@ If someone reads 5 of your posts, they should be able to describe exactly who yo
 - Do NOT ask a generic question just to prompt engagement.
 - The closer should feel like the punchline or the payoff.
 
-### Banned Phrases
+### LinkedIn-specific banned phrases
 
-The full canonical banned-words list lives in `shared/context/voice.md`. LinkedIn-specific additions on top of that:
+(Canonical brand-level banned-words list lives in [`voice.md`](voice.md). LinkedIn-specific additions on top.)
 
 - "Let's connect" / "Let's chat"
 - "Drop a 🚀 if you agree"
-- "Game-changer" / "changed everything"
-- "Unlock," "empower," "synergy," "leverage" (verb)
 - "Hot take:" (just *make* the take)
 - "Have you ever wondered..." / "What if I told you..."
+- "Thoughts?" as a closer
 
 ---
 
-## 03 · Hook Swipe File
+## 02 · Hook Swipe File
 
 Hooks to reference when writing. Add your own below as you find ones you like. Source: top LinkedIn influencers (especially Chris Walker).
 
@@ -159,7 +74,7 @@ Hooks to reference when writing. Add your own below as you find ones you like. S
 
 ---
 
-## 04 · CTA Swipe File
+## 03 · CTA Swipe File
 
 Mid-post and end-of-post CTAs. Use sparingly — only when they feel natural, not forced.
 
@@ -180,7 +95,7 @@ Mid-post and end-of-post CTAs. Use sparingly — only when they feel natural, no
 
 ---
 
-## 05 · Closings Swipe File
+## 04 · Closings Swipe File
 
 The final line(s) of a post. Should feel like a payoff — not a question, not a plea. Source: Adam Robinson's post style.
 
@@ -209,7 +124,7 @@ The final line(s) of a post. Should feel like a payoff — not a question, not a
 
 ---
 
-## 06 · Post Examples You Like
+## 05 · Post Examples You Like
 
 Paste full posts from influencers you admire here. Note what works: hook structure, format, closing style.
 
@@ -241,7 +156,7 @@ Paste full posts from influencers you admire here. Note what works: hook structu
 
 ---
 
-## 07 · The Writing System (Full Flow)
+## 06 · The Writing System (Full Flow)
 
 The core problem: most people try to generate ideas and write the post at the same time. That's why it takes 2 hours and still feels wrong. **Separate the two completely.**
 
@@ -251,7 +166,7 @@ Keep a running notes list at all times. Never start a writing session from zero.
 
 - Questions you get asked — in DMs, on calls, in comments
 - Personal stories — moments from the build, failures, wins, decisions
-- Trending topics and questions in your niche — Reddit (r/ecommerce, r/SkincareAddiction biz threads), LinkedIn comments, beauty-brand operator forums, influencer posts
+- Trending topics and questions in your niche — Reddit (r/ecommerce, beauty-brand operator threads), LinkedIn comments, beauty operator Slack groups, influencer posts
 - Case study wins — client results, magic moments from a DivineSide build, teardowns of what stopped working in a beauty brand's ops
 
 ### Step 2 — Pick Topic + Post Type → Framework Auto-Selects
@@ -272,7 +187,7 @@ Give the AI: the framework name + your raw bullet-point thoughts on the topic. G
 
 - Add your signature words and phrases (the ones you actually use when speaking)
 - Inject a specific story or example that only you could write
-- Kill all AI red flags (see Section 09)
+- Kill all AI red flags (see Section 08)
 - Check for one consistent through line — cut every sentence that goes off on a tangent
 
 ### Step 5 — Generate 5 Hook Alternatives
@@ -289,7 +204,7 @@ Write a full week's posts in one session. No context switching. When you're in w
 
 ---
 
-## 08 · The 3 Post Frameworks
+## 07 · The 3 Post Frameworks
 
 ### Framework 1: Problem Agitate Solution (PAS)
 
@@ -334,7 +249,7 @@ Always needs a visual — a screenshot, message, or metric. Proof people can see
 
 ---
 
-## 09 · AI Red Flags to Kill Before Posting
+## 08 · AI Red Flags to Kill Before Posting
 
 Never post a raw AI draft. Read it out loud. If it doesn't sound like you, rewrite it.
 
@@ -344,19 +259,19 @@ These are the telltale signs:
 - "It's not X, it's Y" sentence structure
 - Corporate jargon and overly formal language
 - Vague statements that sound smart but don't actually mean anything
-- Banned words (canonical list in `shared/context/voice.md`): "game changer," "changed everything," "leverage" (verb), "unlock," "empower," "synergy," "robust," "scalable," "transform your business"
+- Banned words (canonical list in [`voice.md`](voice.md)): "game changer," "changed everything," "leverage" (verb), "unlock," "empower," "synergy," "robust," "scalable," "transform your business"
 
 **The fix**: read every post out loud. If a sentence sounds like a press release, cut it or rewrite it in one plain sentence.
 
 ---
 
-## 10 · LinkedIn Growth Strategy
+## 09 · LinkedIn Growth Strategy
 
 ### The 3 C's (Core Framework)
 
 - **Be Consistent** — post frequently, same voice every time
 - **Be Clear** — your ICP and offer should be obvious from every post
-- **Constantly Reinforce Who You Are** — same identity signals in every post (see Section 02 reinforcement rule)
+- **Constantly Reinforce Who You Are** — same identity signals in every post (see Constant Reinforcement rule in [`pang.md`](pang.md))
 
 ### Content Strategy
 
@@ -383,9 +298,9 @@ These are the telltale signs:
 
 ---
 
-## 11 · LinkedIn Profile Reference
+## 10 · LinkedIn Profile Reference
 
-> ⚠️ **Pang: confirm and edit these — I drafted them based on the original Content Autopilot profile, adapted for DivineSide. Specifically the headline character count and the "looking for beta testers" CTA.**
+> ⚠️ **Pang: confirm and edit these — drafted as starting points. Specifically the headline character count and the "looking for beta brands" CTA.**
 
 ### Headline (DRAFT — confirm)
 
@@ -413,14 +328,14 @@ These are the telltale signs:
 
 ---
 
-## 12 · Quick Pre-Post Checklist
+## 11 · Quick Pre-Post Checklist
 
 Run through this before every post goes live:
 
 - [ ] Does the hook have a number or a specific claim?
 - [ ] Does it pass the 'so what?' test — is there a real insight here?
 - [ ] Is every sentence necessary? Cut anything that's filler.
-- [ ] Does it reinforce at least one of: **age / DivineSide / e-comm beauty ICP / building in public**?
+- [ ] Does it reinforce at least one of: **age / DivineSide / e-comm beauty ICP / building in public**? (See Constant Reinforcement in [`pang.md`](pang.md))
 - [ ] Is the closing strong — not a generic question?
 - [ ] No corporate buzzwords. No emojis (unless intentional). No exclamation marks.
 - [ ] Would a smart, busy beauty brand operator stop scrolling for this?

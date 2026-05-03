@@ -1,6 +1,8 @@
-# Personal Info — Mayank Rawat
+# Mayank — Persona & Voice
 
-> First-person identity context. Most DivineSide content is written from Mayank's POV. An agent producing first-person content (LinkedIn posts, YouTube scripts, DMs) should treat this file as the voice and worldview behind the words.
+> **First-person identity context for any agent generating content as Mayank.** Channel-agnostic. Load this for video scripts, DMs, comments, replies, posts — anywhere Mayank's voice appears.
+>
+> Pairs with [`pang.md`](pang.md), which holds Pang's persona. Two team members, two voice files, symmetric structure.
 
 ## Role
 

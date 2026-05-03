@@ -294,7 +294,7 @@ DivineSide/
 │   ├── discord-middleware/
 │   └── README.md
 └── shared/                    ← Shared resources used across modules
-    ├── context/               ← Cross-module identity context (business-info, personal-info, voice, strategy, audience). Every writing agent loads from here.
+    ├── context/               ← Cross-module identity context (business-info, mayank, pang, voice, strategy, audience, linkedin-playbook). Every writing agent loads from here.
     ├── utils/                 ← Shared utilities, base classes, common tools
     └── README.md
 ```
@@ -309,7 +309,7 @@ DivineSide/
 - **Research drives architecture.** Before building any agent, define its knowledge base source. The agent is only as good as the research fed into it.
 - **Mayank assigns tasks. System tracks everything after.** Task assignment is always manual and intentional. Automation handles reminders, tracking, and escalation.
 - **Commit workflow exports.** Every time an n8n workflow is updated, export the JSON and commit it to the relevant module folder.
-- **Writing agents load from `shared/context/`.** Any agent producing copy aimed at humans (sales emails, LinkedIn posts, YouTube scripts, DMs, follow-ups) MUST pull from `shared/context/` (business-info, personal-info, voice, strategy, audience) in addition to its domain KB. CLAUDE.md is for system architecture; `shared/context/` is for brand voice. Don't duplicate identity content into module folders — reference it.
+- **Writing agents load from `shared/context/`.** Any agent producing copy aimed at humans (sales emails, LinkedIn posts, YouTube scripts, DMs, follow-ups) MUST pull from `shared/context/` in addition to its domain KB. Brand-level files: `business-info.md`, `voice.md`, `strategy.md`, `audience.md`. Per-person persona files: `mayank.md`, `pang.md` (load whichever team member the content is voiced as). Channel-specific tactical playbooks: `linkedin-playbook.md` (more to come). CLAUDE.md is for system architecture; `shared/context/` is for brand voice. Don't duplicate identity content into module folders — reference it.
 
 
 ## 13. DIVINECORE V2 — CODE-FIRST RUNTIME (IN BUILD)
