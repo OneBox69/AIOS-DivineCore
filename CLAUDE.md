@@ -52,6 +52,7 @@ DivineCore channels:
 - #recruitment-and-networking — ID: 1495655231013519422
 - #operations — ID: 1495655877900763186
 - #pulse — private admin channel
+- #deploys — CI/CD status notifications from divinecore-v2 GitHub Actions (webhook configured in repo secrets as `DISCORD_WEBHOOK_URL`)
 
 
 ## 4. TECH STACK
@@ -370,7 +371,7 @@ Triggers: push/PR to `main` (path-filtered to `divinecore-v2/**` and the workflo
 
 Required GitHub secrets:
 - `GITHUB_TOKEN` — provided automatically, used for GHCR auth
-- `DISCORD_WEBHOOK_URL` — webhook for `#deploys` channel (must be set in repo settings)
+- `DISCORD_WEBHOOK_URL` — webhook for `#deploys` channel (configured on `OneBox69/AIOS-DivineCore` as of 2026-05-03; first end-to-end test pending)
 
 Permissions on the build job: `contents: read`, `packages: write` (needed to push to GHCR).
 
