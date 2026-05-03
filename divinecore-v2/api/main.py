@@ -1,13 +1,14 @@
-import os
 from fastapi import FastAPI
 from pydantic import BaseModel
 from celery import Celery
 
-REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+from routes.fathom import router as fathom_router
+from settings import settings
 
-celery_client = Celery("api", broker=REDIS_URL, backend=REDIS_URL)
+celery_client = Celery("api", broker=settings.REDIS_URL, backend=settings.REDIS_URL)
 
 app = FastAPI(title="DivineCore v2")
+app.include_router(fathom_router)
 
 
 class EchoRequest(BaseModel):

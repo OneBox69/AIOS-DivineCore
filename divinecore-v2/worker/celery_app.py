@@ -7,7 +7,7 @@ app = Celery(
     "divinecore",
     broker=REDIS_URL,
     backend=REDIS_URL,
-    include=["tasks"],
+    include=["tasks", "integrations.fathom.processor"],
 )
 
 app.conf.beat_schedule = {
