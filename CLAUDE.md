@@ -332,7 +332,8 @@ divinecore-v2/
 │   ├── tasks.py               ← echo, heartbeat
 │   ├── requirements.txt
 │   └── Dockerfile
-├── docker-compose.yml         ← redis + api + worker + beat
+├── docker-compose.yml         ← redis + api + worker + beat (local dev — uses build:, mounts code, hot-reload via uvicorn --reload)
+├── docker-compose.prod.yml    ← production version deployed to VPS (uses image: from GHCR, no volume mounts, restart: unless-stopped, API bound to 127.0.0.1:8000)
 └── .dockerignore
 ```
 
@@ -364,20 +365,40 @@ Triggers: push/PR to `main` (path-filtered to `divinecore-v2/**` and the workflo
 - PRs are build-only (no push to GHCR, no Discord ping) — gated on `github.event_name != 'pull_request'`
 
 **Notify job:**
-- Runs after `build-and-push`, only on `push` events
+- Runs after `build-and-push` on push + workflow_dispatch (excludes PR builds — see PR #2)
 - Uses `sarisia/actions-status-discord@v1`
 - Posts status embed (success/failure) to `#deploys` via `DISCORD_WEBHOOK_URL` secret
 - Embed includes branch + commit message
 
 Required GitHub secrets:
 - `GITHUB_TOKEN` — provided automatically, used for GHCR auth
-- `DISCORD_WEBHOOK_URL` — webhook for `#deploys` channel (configured on `OneBox69/AIOS-DivineCore` as of 2026-05-03; first end-to-end test pending)
+- `DISCORD_WEBHOOK_URL` — webhook for `#deploys` channel (configured on `OneBox69/AIOS-DivineCore`, end-to-end verified 2026-05-03)
 
 Permissions on the build job: `contents: read`, `packages: write` (needed to push to GHCR).
 
-### Phase 2 — Pending
+### Phase 2 — Deployed (manual deploy live, auto-deploy still pending)
 
-SSH-deploy from CI to the Hostinger VPS (`srv1445995.hstgr.cloud`). Blocked on VPS access. Once unblocked: pull tagged image on VPS, swap container, health-check.
+The stack is **running on the Hostinger VPS** at `/root/divinecore-v2/` as of 2026-05-03. Deployed manually over SSH; CI does not yet auto-deploy on merge.
+
+**What's running on the VPS:**
+- `divinecore-v2-redis-1` — internal compose network only, no port exposure
+- `divinecore-v2-api-1` — FastAPI, bound to `127.0.0.1:8000` (localhost only, not internet-accessible yet)
+- `divinecore-v2-worker-1` — Celery worker, connected to Redis
+- `divinecore-v2-beat-1` — Celery Beat, scheduling `tasks.heartbeat` every 30s
+- All four `restart: unless-stopped`, isolated from n8n's containers via dedicated `divinecore` bridge network
+
+**GHCR auth on VPS:** `docker login ghcr.io` configured with a GitHub PAT (`read:packages` scope only). Credentials cached in `/root/.docker/config.json` — required for pulling private images on each `docker compose pull`. Rotate the PAT on its expiration.
+
+**Manual deploy procedure** (from local laptop):
+```
+ssh root@srv1445995.hstgr.cloud "cd /root/divinecore-v2 && docker compose pull && docker compose up -d"
+```
+
+**Smoke test verified:** `POST /tasks/echo` → task queued in Redis → worker processes → `GET /tasks/{id}` returns `SUCCESS` with uppercased result. Full async pipeline working end-to-end on VPS.
+
+**Still pending:**
+- **Auto-deploy from CI.** Add a `deploy` job to `divinecore-v2-ci.yml` that SSHes into VPS after each successful `build-and-push` on main and runs the manual deploy command above. Needs a separate deploy SSH keypair + 3 GitHub secrets (`VPS_SSH_PRIVATE_KEY`, `VPS_HOST`, `VPS_USER`). Mayank's personal SSH key is already authorized on the VPS as of 2026-05-03; CI will use a different key.
+- **External access.** API is localhost-only on the VPS. To call it from outside, route through Traefik (n8n's existing reverse proxy on `:443`) with a subdomain like `api-v2.srv1445995.hstgr.cloud`, or add an nginx vhost. Not blocking; do this when there's a real consumer of the API.
 
 
 ## 14. CLAUDE CODE SLASH COMMANDS
