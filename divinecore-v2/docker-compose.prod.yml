@@ -19,14 +19,17 @@ services:
       - traefik
     command: uvicorn main:app --host 0.0.0.0 --port 8000
     labels:
+      # TLS via Traefik default cert (self-signed). LE rate-limited the *.hstgr.cloud
+      # apex (25k certs in 7d). Browser shows a one-time "Not secure" warning per
+      # device — click through, browser remembers the exception. To upgrade to a
+      # trusted cert later, add `tls.certresolver=mytlschallenge` once LE quota opens
+      # up, or migrate to a domain outside the rate-limited apex.
       - traefik.enable=true
       - traefik.docker.network=n8n_default
       - traefik.http.routers.upwork.rule=Host(`upwork.srv1445995.hstgr.cloud`)
-      - traefik.http.routers.upwork.entrypoints=web,websecure
+      - traefik.http.routers.upwork.entrypoints=websecure
       - traefik.http.routers.upwork.tls=true
-      - traefik.http.routers.upwork.tls.certresolver=mytlschallenge
-      - traefik.http.routers.upwork.middlewares=upwork-redirect@docker,upwork-auth@docker
-      - traefik.http.middlewares.upwork-redirect.headers.SSLRedirect=true
+      - traefik.http.routers.upwork.middlewares=upwork-auth@docker
       - traefik.http.middlewares.upwork-auth.basicauth.users=OneBox69:$$2y$$05$$zLYijFgcKFvjlTDw3nBiF.eLjOF8XspL.lB819UMTq8GH2rS/I55y
       - traefik.http.services.upwork.loadbalancer.server.port=8000
 
