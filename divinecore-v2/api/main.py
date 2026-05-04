@@ -2,11 +2,13 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from celery import Celery
 
+from routes.upwork import router as upwork_router
 from settings import settings
 
 celery_client = Celery("api", broker=settings.REDIS_URL, backend=settings.REDIS_URL)
 
 app = FastAPI(title="DivineCore v2")
+app.include_router(upwork_router)
 
 
 class EchoRequest(BaseModel):

@@ -340,12 +340,21 @@ Stack: **FastAPI API + Celery worker + Celery Beat scheduler + Redis broker**, a
 ```
 divinecore-v2/
 ├── api/                       ← FastAPI service
-│   ├── main.py                ← Routes + Celery client (send_task / AsyncResult)
+│   ├── main.py                ← Routes + Celery client (send_task / AsyncResult); mounts routers from routes/
+│   ├── settings.py            ← Pydantic Settings (REDIS_URL)
+│   ├── routes/
+│   │   └── upwork.py          ← GET /upwork form + POST /upwork pipeline (blocks on AsyncResult.get)
+│   ├── templates/             ← Jinja2 HTML templates (upwork_form, upwork_result)
 │   ├── requirements.txt
 │   └── Dockerfile
 ├── worker/                    ← Celery worker + beat (shares same image)
-│   ├── celery_app.py          ← Celery config + beat_schedule
+│   ├── celery_app.py          ← Celery config + beat_schedule + task includes
 │   ├── tasks.py               ← echo, heartbeat
+│   ├── settings.py            ← Pydantic Settings (Airtable, OpenRouter, Fathom, Google OAuth, Redis)
+│   ├── team.py                ← TEAM_MEMBERS dict + email/name lookup
+│   ├── integrations/
+│   │   ├── fathom/            ← Meeting recorder integration
+│   │   └── upwork/            ← Upwork proposal generator (LLM × 3 + Google Docs/Drive/Sheets)
 │   ├── requirements.txt
 │   └── Dockerfile
 ├── docker-compose.yml         ← redis + api + worker + beat (local dev — uses build:, mounts code, hot-reload via uvicorn --reload)
@@ -363,8 +372,15 @@ Endpoints today:
 - `GET /` — health
 - `POST /tasks/echo` — submit a task, returns `task_id`
 - `GET /tasks/{task_id}` — poll status + result
+- `GET /upwork` — Upwork proposal generator form (paste a job description)
+- `POST /upwork` — runs the Upwork pipeline (LLM × 3 + Google Docs/Drive/Sheets), blocks on result, renders application body + Doc URLs
 
 Run locally: `cd divinecore-v2 && docker compose up --build`
+
+### Integrations
+
+- **Fathom** — beat polls Fathom's REST API every 10 min, writes new meetings to Airtable's `Meetings` table, and creates Pulse Task rows for action items assigned to opted-in team members. No public ingress required — fully outbound. See [divinecore-v2/worker/integrations/fathom/.overview.md](divinecore-v2/worker/integrations/fathom/.overview.md).
+- **Upwork** — user-initiated via `GET /upwork` form. Migrated from a 3-workflow n8n system (orchestrator + `Generate google docs` + `Generate application copy`). Pipeline: 3 OpenRouter LLM calls (proposal fields, Mermaid diagram, application copy) + Google Docs/Drive/Sheets to copy templates, mail-merge, share, and append to a tracking sheet. About-Me content sourced from [shared/context/pang.md](shared/context/pang.md), mirrored into `worker/integrations/upwork/about_me.py` (sync manually when pang.md changes). Google auth via OAuth refresh token — one-time bootstrap with `docker compose run --rm worker python -m integrations.upwork.oauth_bootstrap`. New env vars: `GOOGLE_OAUTH_CLIENT_ID`, `GOOGLE_OAUTH_CLIENT_SECRET`, `GOOGLE_OAUTH_REFRESH_TOKEN`, plus optional `UPWORK_*` model/template-ID overrides. See [divinecore-v2/worker/integrations/upwork/.overview.md](divinecore-v2/worker/integrations/upwork/.overview.md).
 
 ### CI/CD Workflow (commit `3573662`)
 
