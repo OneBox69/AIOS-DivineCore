@@ -372,10 +372,10 @@ Endpoints today:
 - `GET /` — health
 - `POST /tasks/echo` — submit a task, returns `task_id`
 - `GET /tasks/{task_id}` — poll status + result
-- `GET /upwork` — Upwork proposal generator form (paste a job description)
+- `GET /upwork` — Upwork proposal generator form (paste a job description). **Public**: https://upwork.srv1445995.hstgr.cloud/upwork (basic auth gated)
 - `POST /upwork` — runs the Upwork pipeline (LLM × 3 + Google Docs/Drive/Sheets), blocks on result, renders application body + Doc URLs
 
-Run locally: `cd divinecore-v2 && docker compose up --build`
+Run locally: `cd divinecore-v2 && docker compose up --build`. Public access details below in *Phase 2 → Public endpoints*.
 
 ### Integrations
 
@@ -414,10 +414,10 @@ The stack is **running on the Hostinger VPS** at `/root/divinecore-v2/` as of 20
 
 **What's running on the VPS:**
 - `divinecore-v2-redis-1` — internal compose network only, no port exposure
-- `divinecore-v2-api-1` — FastAPI, bound to `127.0.0.1:8000` (localhost only, not internet-accessible yet)
+- `divinecore-v2-api-1` — FastAPI on port 8000 (no host port binding); attached to `divinecore` bridge AND `n8n_default` external network so n8n's Traefik can route to it
 - `divinecore-v2-worker-1` — Celery worker, connected to Redis
 - `divinecore-v2-beat-1` — Celery Beat, scheduling `tasks.heartbeat` every 30s
-- All four `restart: unless-stopped`, isolated from n8n's containers via dedicated `divinecore` bridge network
+- All four `restart: unless-stopped`, isolated from n8n's containers via dedicated `divinecore` bridge network (api additionally joins `n8n_default` for Traefik discovery)
 
 **GHCR auth on VPS:** `docker login ghcr.io` configured with a GitHub PAT (`read:packages` scope only). Credentials cached in `/root/.docker/config.json` — required for pulling private images on each `docker compose pull`. Rotate the PAT on its expiration.
 
@@ -428,9 +428,21 @@ ssh root@srv1445995.hstgr.cloud "cd /root/divinecore-v2 && docker compose pull &
 
 **Smoke test verified:** `POST /tasks/echo` → task queued in Redis → worker processes → `GET /tasks/{id}` returns `SUCCESS` with uppercased result. Full async pipeline working end-to-end on VPS.
 
+### Public endpoints
+
+**`/upwork` is live publicly** at `https://upwork.srv1445995.hstgr.cloud/upwork` (deployed 2026-05-04). Routed through n8n's existing Traefik (the only reverse proxy on the VPS — `n8n-traefik-1`, ports 80/443).
+
+Wiring:
+- The api service in `docker-compose.prod.yml` carries `traefik.*` labels (Host rule, `websecure` entrypoint, `tls=true`, basicauth middleware). Traefik picks them up via Docker socket events.
+- api is attached to the external `n8n_default` network (declared at compose bottom as `networks.traefik`) — that's how Traefik reaches the container.
+- **Basic auth** via `traefik.http.middlewares.upwork-auth.basicauth.users` label. Bcrypt hash inline, dollar signs escaped as `$$` per compose syntax. Username/password live in your password manager — to rotate, generate a new hash with `docker run --rm httpd:2.4-alpine htpasswd -nbB <user> <pass>`, double the `$`, replace the label, push, redeploy.
+- **TLS cert is Traefik's default self-signed.** Browser shows a one-time "Not secure" warning per device — click through, browser remembers the exception. Reason: Let's Encrypt rate-limited the `*.hstgr.cloud` apex (25k certs in 7d, shared across all Hostinger users on the domain), so `tls.certresolver=mytlschallenge` returned `429 rateLimited` and was removed. To upgrade to a real cert: migrate to a domain outside the rate-limited apex (~$1–12/yr for a `.xyz`/`.com`), or wait for LE quota to roll over, then re-add the certresolver label.
+
+n8n's `web` (HTTP) entrypoint has a global `--entrypoints.web.http.redirections.entryPoint.to=websecure` set in Traefik's command line — all HTTP traffic gets 308'd to HTTPS automatically. This is shared with n8n; don't change it without auditing n8n impact.
+
 **Still pending:**
 - **Auto-deploy from CI.** Add a `deploy` job to `divinecore-v2-ci.yml` that SSHes into VPS after each successful `build-and-push` on main and runs the manual deploy command above. Needs a separate deploy SSH keypair + 3 GitHub secrets (`VPS_SSH_PRIVATE_KEY`, `VPS_HOST`, `VPS_USER`). Mayank's personal SSH key is already authorized on the VPS as of 2026-05-03; CI will use a different key.
-- **External access.** API is localhost-only on the VPS. To call it from outside, route through Traefik (n8n's existing reverse proxy on `:443`) with a subdomain like `api-v2.srv1445995.hstgr.cloud`, or add an nginx vhost. Not blocking; do this when there's a real consumer of the API.
+- **Trusted TLS cert for upwork.* subdomain.** Currently default self-signed (browser warning). Upgrade path: switch to a domain outside `hstgr.cloud`, OR retry LE periodically.
 
 
 ## 14. CLAUDE CODE SLASH COMMANDS
