@@ -52,6 +52,7 @@ DivineCore channels:
 - #recruitment-and-networking — ID: 1495655231013519422
 - #operations — ID: 1495655877900763186
 - #pulse — private admin channel
+- #deploys — CI/CD status notifications from divinecore-v2 GitHub Actions (webhook configured in repo secrets as `DISCORD_WEBHOOK_URL`)
 
 
 ## 4. TECH STACK
@@ -255,10 +256,26 @@ Monetisation layers:
 
 Do not store passwords or API keys in this file. Reference only.
 
+**External services**
 - n8n: https://n8n.srv1445995.hstgr.cloud
 - VPS: srv1445995.hstgr.cloud | IP: 187.124.96.99
 - Airtable base: DivineCore
 - Primary email (old): mayankrawat000072@gmail.com
+
+**VPS SSH access** (`root@srv1445995.hstgr.cloud`)
+- Pang (`yhpang@oneboxagency.com`) — authorized 2026-05-03. ed25519 key, no passphrase, generated on his Windows laptop at `C:\Users\user\.ssh\id_ed25519`. Personal access; CI auto-deploy will use a separate key when wired up.
+- To grant or revoke a teammate's SSH access: edit `/root/.ssh/authorized_keys` on the VPS (one public key per line, comment field identifies the person).
+
+**GitHub repository — `OneBox69/AIOS-DivineCore`** (Pang's fork, primary working repo)
+- Upstream `DivineSide/AIOS-DivineCore` is currently stale; all active work happens on the fork.
+- GitHub Actions secrets:
+  - `GITHUB_TOKEN` — auto-provisioned, used to push images to GHCR.
+  - `DISCORD_WEBHOOK_URL` — webhook for `#deploys` channel. Configured 2026-05-03.
+
+**GitHub Container Registry (`ghcr.io/onebox69/aios-divinecore/{api,worker}`)**
+- Images are **private**. Pulling requires auth.
+- A classic PAT with `read:packages` scope only is cached on the VPS at `/root/.docker/config.json` (set up 2026-05-03 via `docker login ghcr.io -u onebox69 --password-stdin`). Rotate on PAT expiration.
+- Anyone else pulling these images on a new machine needs to either be invited as a collaborator or generate their own `read:packages` PAT.
 
 
 ## 11. REPOSITORY STRUCTURE CONVENTIONS
@@ -293,8 +310,9 @@ DivineSide/
 ├── infrastructure/            ← VPS, middleware, Discord bot, nginx configs
 │   ├── discord-middleware/
 │   └── README.md
-└── shared/                    ← Shared utilities, base classes, common tools
-    ├── utils/
+└── shared/                    ← Shared resources used across modules
+    ├── context/               ← Cross-module identity context (business-info, mayank, pang, voice, strategy, audience, linkedin-playbook). Every writing agent loads from here.
+    ├── utils/                 ← Shared utilities, base classes, common tools
     └── README.md
 ```
 
@@ -308,3 +326,175 @@ DivineSide/
 - **Research drives architecture.** Before building any agent, define its knowledge base source. The agent is only as good as the research fed into it.
 - **Mayank assigns tasks. System tracks everything after.** Task assignment is always manual and intentional. Automation handles reminders, tracking, and escalation.
 - **Commit workflow exports.** Every time an n8n workflow is updated, export the JSON and commit it to the relevant module folder.
+- **Writing agents load from `shared/context/`.** Any agent producing copy aimed at humans (sales emails, LinkedIn posts, YouTube scripts, DMs, follow-ups) MUST pull from `shared/context/` in addition to its domain KB. Brand-level files: `business-info.md`, `voice.md`, `strategy.md`, `audience.md`. Per-person persona files: `mayank.md`, `pang.md` (load whichever team member the content is voiced as). Channel-specific tactical playbooks: `linkedin-playbook.md` (more to come). CLAUDE.md is for system architecture; `shared/context/` is for brand voice. Don't duplicate identity content into module folders — reference it.
+
+
+## 13. DIVINECORE V2 — CODE-FIRST RUNTIME (IN BUILD)
+
+Parallel track to the n8n-orchestrated stack. `divinecore-v2/` is the code-first runtime that will eventually replace n8n for agent execution — Python services owned end-to-end in this repo, deployable as containers.
+
+### Foundation (commit `3c03553`)
+
+Stack: **FastAPI API + Celery worker + Celery Beat scheduler + Redis broker**, all in Docker Compose.
+
+```
+divinecore-v2/
+├── api/                       ← FastAPI service
+│   ├── main.py                ← Routes + Celery client (send_task / AsyncResult); mounts routers from routes/
+│   ├── settings.py            ← Pydantic Settings (REDIS_URL)
+│   ├── routes/
+│   │   └── upwork.py          ← GET /upwork form + POST /upwork pipeline (blocks on AsyncResult.get)
+│   ├── templates/             ← Jinja2 HTML templates (upwork_form, upwork_result)
+│   ├── requirements.txt
+│   └── Dockerfile
+├── worker/                    ← Celery worker + beat (shares same image)
+│   ├── celery_app.py          ← Celery config + beat_schedule + task includes
+│   ├── tasks.py               ← echo, heartbeat
+│   ├── settings.py            ← Pydantic Settings (Airtable, OpenRouter, Fathom, Google OAuth, Redis)
+│   ├── team.py                ← TEAM_MEMBERS dict + email/name lookup
+│   ├── integrations/
+│   │   ├── fathom/            ← Meeting recorder integration
+│   │   └── upwork/            ← Upwork proposal generator (LLM × 3 + Google Docs/Drive/Sheets)
+│   ├── requirements.txt
+│   └── Dockerfile
+├── docker-compose.yml         ← redis + api + worker + beat (local dev — uses build:, mounts code, hot-reload via uvicorn --reload)
+├── docker-compose.prod.yml    ← production version deployed to VPS (uses image: from GHCR, no volume mounts, restart: unless-stopped, API bound to 127.0.0.1:8000)
+└── .dockerignore
+```
+
+Services in compose:
+- `redis` — `redis:7-alpine`, exposes 6379
+- `api` — FastAPI on `:8000`, talks to Celery via `REDIS_URL`
+- `worker` — Celery worker, processes tasks from Redis
+- `beat` — Celery Beat, runs scheduled tasks (currently `tasks.heartbeat` every 30s)
+
+Endpoints today:
+- `GET /` — health
+- `POST /tasks/echo` — submit a task, returns `task_id`
+- `GET /tasks/{task_id}` — poll status + result
+- `GET /upwork` — Upwork proposal generator form (paste a job description). **Public**: https://upwork.srv1445995.hstgr.cloud/upwork (basic auth gated)
+- `POST /upwork` — runs the Upwork pipeline (LLM × 3 + Google Docs/Drive/Sheets), blocks on result, renders application body + Doc URLs
+
+Run locally: `cd divinecore-v2 && docker compose up --build`. Public access details below in *Phase 2 → Public endpoints*.
+
+### Integrations
+
+- **Fathom** — beat polls Fathom's REST API every 10 min, writes new meetings to Airtable's `Meetings` table, and creates Pulse Task rows for action items assigned to opted-in team members. No public ingress required — fully outbound. See [divinecore-v2/worker/integrations/fathom/.overview.md](divinecore-v2/worker/integrations/fathom/.overview.md).
+- **Upwork** — user-initiated via `GET /upwork` form. Migrated from a 3-workflow n8n system (orchestrator + `Generate google docs` + `Generate application copy`). Pipeline: 3 OpenRouter LLM calls (proposal fields, Mermaid diagram, application copy) + Google Docs/Drive/Sheets to copy templates, mail-merge, share, and append to a tracking sheet. About-Me content sourced from [shared/context/pang.md](shared/context/pang.md), mirrored into `worker/integrations/upwork/about_me.py` (sync manually when pang.md changes). Google auth via OAuth refresh token — one-time bootstrap with `docker compose run --rm worker python -m integrations.upwork.oauth_bootstrap`. New env vars: `GOOGLE_OAUTH_CLIENT_ID`, `GOOGLE_OAUTH_CLIENT_SECRET`, `GOOGLE_OAUTH_REFRESH_TOKEN`, plus optional `UPWORK_*` model/template-ID overrides. See [divinecore-v2/worker/integrations/upwork/.overview.md](divinecore-v2/worker/integrations/upwork/.overview.md).
+
+### CI/CD Workflow (commit `3573662`)
+
+File: `.github/workflows/divinecore-v2-ci.yml`
+
+Triggers: push/PR to `main` (path-filtered to `divinecore-v2/**` and the workflow file itself) + `workflow_dispatch`.
+
+**Build & push job** (matrix: `api`, `worker`):
+- Runs both components in parallel via matrix strategy
+- Uses `docker/setup-buildx-action@v3` + `docker/build-push-action@v6`
+- Pushes to `ghcr.io/onebox69/aios-divinecore/{api,worker}`
+- Tags: `:latest` (main only), `:sha-<short>`, `:<branch>`
+- GHA cache scoped per component (`cache-from/to` with `scope=${name}`) — fast incremental rebuilds
+- PRs are build-only (no push to GHCR, no Discord ping) — gated on `github.event_name != 'pull_request'`
+
+**Notify job:**
+- Runs after `build-and-push` on push + workflow_dispatch (excludes PR builds — see PR #2)
+- Uses `sarisia/actions-status-discord@v1`
+- Posts status embed (success/failure) to `#deploys` via `DISCORD_WEBHOOK_URL` secret
+- Embed includes branch + commit message
+
+Required GitHub secrets:
+- `GITHUB_TOKEN` — provided automatically, used for GHCR auth
+- `DISCORD_WEBHOOK_URL` — webhook for `#deploys` channel (configured on `OneBox69/AIOS-DivineCore`, end-to-end verified 2026-05-03)
+
+Permissions on the build job: `contents: read`, `packages: write` (needed to push to GHCR).
+
+### Phase 2 — Deployed (manual deploy live, auto-deploy still pending)
+
+The stack is **running on the Hostinger VPS** at `/root/divinecore-v2/` as of 2026-05-03. Deployed manually over SSH; CI does not yet auto-deploy on merge.
+
+**What's running on the VPS:**
+- `divinecore-v2-redis-1` — internal compose network only, no port exposure
+- `divinecore-v2-api-1` — FastAPI on port 8000 (no host port binding); attached to `divinecore` bridge AND `n8n_default` external network so n8n's Traefik can route to it
+- `divinecore-v2-worker-1` — Celery worker, connected to Redis
+- `divinecore-v2-beat-1` — Celery Beat, scheduling `tasks.heartbeat` every 30s
+- All four `restart: unless-stopped`, isolated from n8n's containers via dedicated `divinecore` bridge network (api additionally joins `n8n_default` for Traefik discovery)
+
+**GHCR auth on VPS:** `docker login ghcr.io` configured with a GitHub PAT (`read:packages` scope only). Credentials cached in `/root/.docker/config.json` — required for pulling private images on each `docker compose pull`. Rotate the PAT on its expiration.
+
+**Manual deploy procedure** (from local laptop):
+```
+ssh root@srv1445995.hstgr.cloud "cd /root/divinecore-v2 && docker compose pull && docker compose up -d"
+```
+
+**Smoke test verified:** `POST /tasks/echo` → task queued in Redis → worker processes → `GET /tasks/{id}` returns `SUCCESS` with uppercased result. Full async pipeline working end-to-end on VPS.
+
+### Public endpoints
+
+**`/upwork` is live publicly** at `https://upwork.srv1445995.hstgr.cloud/upwork` (deployed 2026-05-04). Routed through n8n's existing Traefik (the only reverse proxy on the VPS — `n8n-traefik-1`, ports 80/443).
+
+Wiring:
+- The api service in `docker-compose.prod.yml` carries `traefik.*` labels (Host rule, `websecure` entrypoint, `tls=true`, basicauth middleware). Traefik picks them up via Docker socket events.
+- api is attached to the external `n8n_default` network (declared at compose bottom as `networks.traefik`) — that's how Traefik reaches the container.
+- **Basic auth** via `traefik.http.middlewares.upwork-auth.basicauth.users` label. Bcrypt hash inline, dollar signs escaped as `$$` per compose syntax. Username/password live in your password manager — to rotate, generate a new hash with `docker run --rm httpd:2.4-alpine htpasswd -nbB <user> <pass>`, double the `$`, replace the label, push, redeploy.
+- **TLS cert is Traefik's default self-signed.** Browser shows a one-time "Not secure" warning per device — click through, browser remembers the exception. Reason: Let's Encrypt rate-limited the `*.hstgr.cloud` apex (25k certs in 7d, shared across all Hostinger users on the domain), so `tls.certresolver=mytlschallenge` returned `429 rateLimited` and was removed. To upgrade to a real cert: migrate to a domain outside the rate-limited apex (~$1–12/yr for a `.xyz`/`.com`), or wait for LE quota to roll over, then re-add the certresolver label.
+
+n8n's `web` (HTTP) entrypoint has a global `--entrypoints.web.http.redirections.entryPoint.to=websecure` set in Traefik's command line — all HTTP traffic gets 308'd to HTTPS automatically. This is shared with n8n; don't change it without auditing n8n impact.
+
+**Still pending:**
+- **Auto-deploy from CI.** Add a `deploy` job to `divinecore-v2-ci.yml` that SSHes into VPS after each successful `build-and-push` on main and runs the manual deploy command above. Needs a separate deploy SSH keypair + 3 GitHub secrets (`VPS_SSH_PRIVATE_KEY`, `VPS_HOST`, `VPS_USER`). Mayank's personal SSH key is already authorized on the VPS as of 2026-05-03; CI will use a different key.
+- **Trusted TLS cert for upwork.* subdomain.** Currently default self-signed (browser warning). Upgrade path: switch to a domain outside `hstgr.cloud`, OR retry LE periodically.
+
+
+## 14. CLAUDE CODE SLASH COMMANDS
+
+Project-scoped slash commands live in `.claude/commands/` and are version-controlled. Each `.md` file becomes an invocable command (e.g. `prime.md` → `/prime`).
+
+| Command | Purpose |
+|---------|---------|
+| `/prime` | Load full DivineCore context at session start. Reads `CLAUDE.md` + `README.md`, lists `divinecore-v2/`, runs `git log --oneline -20`, and reads `.claude/session.md` if present. Ends with a briefing on active modules, v2 stack state, and recent commit activity. Use this at the top of any non-trivial session. |
+| `/resume` | Lightweight re-entry. Reads `CLAUDE.md` (and `.claude/session.md` if present) and gives a one-paragraph briefing: what was done last session, current state, single next action. |
+| `/save-context` | Writes a ≤300-word session summary to `.claude/session.md` covering what changed, current state, decisions made, and the next step to resume from. Note: per commit `13faee3` we now lean on `git log` for progress tracking, so this is optional — use it only when the in-flight state genuinely won't be obvious from commit history. |
+
+When adding new commands, keep them small and composable. One command, one job — same rule as agents.
+
+
+## 15. TIERED CONTEXT CONVENTION (L0/L1/L2)
+
+Inspired by ByteDance's OpenViking pattern. Every folder in this repo carries cheap, tiered context so an agent can scan the whole tree without paying full-file token costs.
+
+| Tier | File | Size | When to load |
+|------|------|------|--------------|
+| **L0** | `.abstract.md` | ~1 line (max ~150 chars) | Always — reading every `.abstract.md` in the repo should fit in ~2k tokens. Answers "what is this folder for?" |
+| **L1** | `.overview.md` | ~50–200 lines | When the L0 abstract suggests this folder is relevant. Covers structure, status, key files, conventions, what NOT to put here |
+| **L2** | actual files | full content | Only when actively working in the folder |
+
+### Rules
+
+- **Every folder gets `.abstract.md`.** No exceptions, except:
+  - Anything gitignored or tooling-internal (`.git/`, `__pycache__/`, `node_modules/`, `.venv/`).
+  - `.claude/commands/` — Claude Code registers every `.md` file in that folder as a slash command, so `.abstract.md` would become a phantom `/.abstract` command. The folder itself is small enough to scan directly.
+- **L1 `.overview.md` is selective.** Only for folders with real content, strategic importance, or non-obvious structure. Empty leaf scaffolds (`branding-os/agents/` while it's just a `.gitkeep`) get the abstract only — an overview would be noise.
+- **Promote to L1 when the folder has 3+ files OR when the structure isn't self-explanatory.**
+- **Update on change.** When you add/remove/rename meaningful content in a folder, update its `.abstract.md` and `.overview.md` in the same commit. Stale L0/L1 is worse than missing L0/L1.
+- **Don't duplicate CLAUDE.md.** L0/L1 should describe local file structure, not repeat company-wide architecture. Architecture lives here in CLAUDE.md.
+
+### AGENT BEHAVIOUR — MUST FOLLOW
+
+These are not suggestions. Any agent (Claude Code, subagent, future tooling) working in this repo MUST follow them.
+
+**On WRITE — when creating or modifying folder structure:**
+
+1. **Creating a new folder?** In the same operation, create its `.abstract.md` (one line, max ~150 chars, "what is this folder for"). Do not commit a folder without its abstract — that breaks the L0 scan invariant.
+2. **Adding 3+ real files to a folder, or making its structure non-obvious?** Add a `.overview.md` (50–200 lines: status, key files, conventions, what NOT to put here).
+3. **Renaming or repurposing a folder?** Update its `.abstract.md` and any `.overview.md` in the same commit. Stale L0/L1 is worse than missing.
+4. **Deleting a folder?** The `.abstract.md` and `.overview.md` go with it — never leave orphaned dotfiles.
+5. **Skip only**: gitignored / tooling-internal folders (`.git/`, `__pycache__/`, `node_modules/`, `.venv/`) and `.claude/commands/` (would register as a slash command).
+
+**On READ — when searching, exploring, or answering questions about the repo:**
+
+1. **Start with `.abstract.md` files.** Glob `**/.abstract.md` and read them all. This costs ~2k tokens and gives you a complete repo map. Do this BEFORE any broad grep, file read, or directory listing.
+2. **Drill into `.overview.md`** for any folder the abstracts flagged as relevant. Do not jump straight to L2 file contents.
+3. **Open actual files (L2) only** in the folders the overviews confirmed are relevant.
+4. **For known-path lookups** (you already know the file you need), skip L0/L1 and read the file directly — the tiered scan is for *open-ended* search, not targeted reads.
+
+This keeps `/prime`-style context loads cheap and lets subagents do narrow lookups without ingesting the whole repo. Violating the L0-first rule on open-ended search wastes tokens — treat it as a bug.

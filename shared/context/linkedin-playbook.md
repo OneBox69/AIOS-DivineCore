@@ -1,0 +1,347 @@
+# LinkedIn Content Playbook — Pang
+
+> **LinkedIn-specific tactical playbook for Pang's content posts.** Hooks, CTAs, closings, frameworks, writing system, growth strategy, profile copy.
+>
+> **Loading discipline**: any agent generating a Pang LinkedIn post should load:
+> 1. [`pang.md`](pang.md) — *who* is writing (persona, personality, content pillars, hot takes, what he never does)
+> 2. [`voice.md`](voice.md) — brand-level banned phrases and general formatting rules
+> 3. **This file** — LinkedIn-specific tactics (the *how* of the platform)
+> 4. (Optional) [`audience.md`](audience.md) — broader DivineSide audience for cross-channel context
+>
+> This file does **not** restate persona — that lives in `pang.md`. If you find yourself describing personality or content pillars here, move it to `pang.md` instead.
+
+Last updated: 2026-05-03
+
+---
+
+## 01 · LinkedIn-Specific Writing Rules
+
+(Persona-level writing rules — short sentences, no emojis, numbers everywhere, no corporate language — live in [`pang.md`](pang.md). The rules below are LinkedIn-platform-specific extensions on top.)
+
+### Hook Principles (from LinkedIn course / Chris Walker)
+
+- The hook is the most important part. Its job: get them to click "show more."
+- Show credibility + say something bold enough they have to keep reading.
+- Always write as if no one has heard of you before — build maximum credibility fast.
+- Use as many numbers as possible in hooks. LinkedIn loves numbers.
+- Polarizing enough to stand out, but not so extreme it alienates.
+
+### Closing Principles
+
+- End with a coy close that gives people a dopamine hit.
+- Do NOT say "Let's continue the conversation in the comments" — that's 2012.
+- Do NOT ask a generic question just to prompt engagement.
+- The closer should feel like the punchline or the payoff.
+
+### LinkedIn-specific banned phrases
+
+(Canonical brand-level banned-words list lives in [`voice.md`](voice.md). LinkedIn-specific additions on top.)
+
+- "Let's connect" / "Let's chat"
+- "Drop a 🚀 if you agree"
+- "Hot take:" (just *make* the take)
+- "Have you ever wondered..." / "What if I told you..."
+- "Thoughts?" as a closer
+
+---
+
+## 02 · Hook Swipe File
+
+Hooks to reference when writing. Add your own below as you find ones you like. Source: top LinkedIn influencers (especially Chris Walker).
+
+| # | Hook Templates & Examples |
+|---|--------------------------|
+| 1 | I'm [age]. I [specific achievement]. Here's what I learned. |
+| 2 | [Number] months ago I had [X]. Today I have [Y]. Here's exactly what changed. |
+| 3 | Most [target audience] are wasting [time/money] on [thing]. Here's proof. |
+| 4 | I built [thing] for a company doing [revenue]. This is what I found. |
+| 5 | Nobody talks about this. But [contrarian truth about your niche]. |
+| 6 | [Specific result] in [timeframe]. No [common excuse]. Just [simple action]. |
+| 7 | I made a mistake that cost me [X]. Here's what I'd do differently. |
+| 8 | The [industry] advice everyone gives is wrong. Here's what actually works. |
+| 9 | [Number] things I wish I knew before building [product/system]. |
+| 10 | I went from [starting point] to [end point]. The gap is smaller than you think. |
+| 11 | [Credibility claim]. Now I'm doing [contrasting humble thing]. Here's why. |
+| 12 | Stop [common behavior]. Start [alternative]. Here's the difference. |
+| 13 | [Number] e-commerce beauty brands I talked to this month. Every single one had [problem]. |
+| 14 | This week at DivineSide: [specific update with numbers]. What we built, what broke, what's next. |
+| 15 | "AI agencies" charge $5k/month for what's basically a Zapier workflow. Here's what an actual AI OS looks like. |
+| 16 | Add your own hook here — |
+| 17 | Add your own hook here — |
+| 18 | Add your own hook here — |
+| 19 | Add your own hook here — |
+| 20 | Add your own hook here — |
+
+---
+
+## 03 · CTA Swipe File
+
+Mid-post and end-of-post CTAs. Use sparingly — only when they feel natural, not forced.
+
+| # | CTA Templates |
+|---|--------------|
+| 1 | If you want [outcome], DM me [specific word]. |
+| 2 | Looking for 5 e-commerce beauty brands (10–50 employees, $500k+ revenue) for our next AI OS builds. DM me "OS" if that's you. |
+| 3 | Follow to watch this happen in real time. |
+| 4 | Full breakdown in the comments. Drop "AIOS" if you want it. |
+| 5 | I share every number publicly. Follow if you want to see how this plays out. |
+| 6 | Building DivineSide in public. Follow along. |
+| 7 | If this saved you time, share it. Someone you know needs this. |
+| 8 | Trying to get to [milestone] by [date]. Follow to watch. |
+| 9 | Want an AI OS running [specific function] for your beauty brand? DM me. |
+| 10 | I send a teardown of one e-commerce build every Friday. DM "teardown" to get on the list. |
+| 11 | Add your own CTA here — |
+| 12 | Add your own CTA here — |
+
+---
+
+## 04 · Closings Swipe File
+
+The final line(s) of a post. Should feel like a payoff — not a question, not a plea. Source: Adam Robinson's post style.
+
+| # | Closing Templates & Examples |
+|---|------------------------------|
+| 1 | That's the game. Play it or don't. |
+| 2 | I'm 19. I don't have time to wait. |
+| 3 | Numbers don't lie. The work does. |
+| 4 | This is day [X]. Check back in 30. |
+| 5 | It's not complicated. Most people just don't do it. |
+| 6 | The market will tell me if I'm wrong. |
+| 7 | We're sharing everything. The results will speak. |
+| 8 | If it works, you'll know. If it doesn't, you'll also know. |
+| 9 | Most people overthink this. We just shipped it. |
+| 10 | Zero clients on this niche today. Not for long. |
+| 11 | The only way to know is to build it. |
+| 12 | I've been wrong before. I'll find out. |
+| 13 | This is what building in public looks like. Raw. |
+| 14 | [Specific honest reflection on the week/decision]. That's it. |
+| 15 | Add your own closing here — |
+| 16 | Add your own closing here — |
+| 17 | Add your own closing here — |
+| 18 | Add your own closing here — |
+| 19 | Add your own closing here — |
+| 20 | Add your own closing here — |
+
+---
+
+## 05 · Post Examples You Like
+
+Paste full posts from influencers you admire here. Note what works: hook structure, format, closing style.
+
+### Post Example 1
+
+> **Source / Author:**
+>
+> *Paste post text here.*
+>
+> **What works:** *Note the hook/format/close that you liked.*
+
+### Post Example 2
+
+> **Source / Author:**
+>
+> *Paste post text here.*
+>
+> **What works:** *Note the hook/format/close that you liked.*
+
+### Post Example 3
+
+> **Source / Author:**
+>
+> *Paste post text here.*
+>
+> **What works:** *Note the hook/format/close that you liked.*
+
+(Add more examples below as you find them — paste the full post and note what specifically you liked.)
+
+---
+
+## 06 · The Writing System (Full Flow)
+
+The core problem: most people try to generate ideas and write the post at the same time. That's why it takes 2 hours and still feels wrong. **Separate the two completely.**
+
+### Step 1 — Build an Idea Bank (ongoing)
+
+Keep a running notes list at all times. Never start a writing session from zero. Sources to pull from:
+
+- Questions you get asked — in DMs, on calls, in comments
+- Personal stories — moments from the build, failures, wins, decisions
+- Trending topics and questions in your niche — Reddit (r/ecommerce, beauty-brand operator threads), LinkedIn comments, beauty operator Slack groups, influencer posts
+- Case study wins — client results, magic moments from a DivineSide build, teardowns of what stopped working in a beauty brand's ops
+
+### Step 2 — Pick Topic + Post Type → Framework Auto-Selects
+
+Before writing anything, decide what type of post this is. The framework follows automatically:
+
+| Post Type | Funnel Stage | Use Framework |
+|-----------|--------------|---------------|
+| Educational / awareness | Top of funnel | **Problem Agitate Solution (PAS)** |
+| Personal story / lesson | Middle of funnel | **Story Lesson Application (SLA)** |
+| Proof / conversion | Bottom of funnel | **Case Study Framework** |
+
+### Step 3 — First Draft with AI
+
+Give the AI: the framework name + your raw bullet-point thoughts on the topic. Get a draft. **Never post the raw output.**
+
+### Step 4 — Edit for Your Voice
+
+- Add your signature words and phrases (the ones you actually use when speaking)
+- Inject a specific story or example that only you could write
+- Kill all AI red flags (see Section 08)
+- Check for one consistent through line — cut every sentence that goes off on a tangent
+
+### Step 5 — Generate 5 Hook Alternatives
+
+After the draft is done, ask for 5 pattern-interrupting hook alternatives. Pick the one that makes you feel something. Mix and match the best parts of different hooks.
+
+### Step 6 — Batch on Sundays (2–3 hours)
+
+Write a full week's posts in one session. No context switching. When you're in writing mode, keep going.
+
+- **Friday** = personal story post (SLA framework)
+- **Rest of week** = educational posts (PAS framework)
+- **One case study per week** when you have the material
+
+---
+
+## 07 · The 3 Post Frameworks
+
+### Framework 1: Problem Agitate Solution (PAS)
+
+**Use for**: educational posts, awareness content, top-of-funnel.
+
+The agitation is the engine — if they don't feel the pain, they don't care.
+
+| Part | What it does | Example (DivineSide-flavoured) |
+|------|-------------|-------------------------------|
+| **Problem** | State the problem plainly. One sentence. | *"Your beauty brand is doing $1.2M but your ops manager is still copy-pasting tracking numbers into Klaviyo at midnight."* |
+| **Agitate** | Make them feel the pain. Show the consequence. Must be relatable. | *"Every hour she spends on this is an hour she's not building the post-purchase flow that actually retains customers. You're paying $80k/year for someone to do data entry."* |
+| **Solution** | Clear, specific steps. Numbered list works well. End with a CTA. | *"Three things an AI OS can replace in your ops stack this month: 1) order-to-tracking pipeline, 2) review-request triggers, 3) low-stock vendor alerts. DM me 'OS' for the teardown."* |
+
+**Biggest mistake**: the agitation isn't relatable. People skim past it. Make them wince.
+
+### Framework 2: Story Lesson Application (SLA)
+
+**Use for**: trust building, relationship content, middle-of-funnel. Your Friday post format.
+
+The application part is optional — sometimes the lesson lands harder alone. But always have the story and the lesson.
+
+| Part | What it does |
+|------|-------------|
+| **Story** | A real moment from your life — the failure, the win, the realization, the stuck point. Not a parable. A specific thing that happened. |
+| **Lesson** | The single takeaway. One idea only. What do you want someone to remember from this post? |
+| **Application** | 2–3 concrete actions the reader can take now so they don't make the same mistake. Optional — use only when it adds something. |
+
+### Framework 3: Case Study (Bottom of Funnel)
+
+**Use for**: proof, conversion, getting people to DM or sign up.
+
+Always needs a visual — a screenshot, message, or metric. Proof people can see beats any caption.
+
+| Part | What it does |
+|------|-------------|
+| **Hook** | Show the transformation immediately — before vs after numbers in the first line. The hook must carry the proof. |
+| **Before** | What was this brand struggling with before they worked with DivineSide? Be specific — hours, dollars, manual steps, errors. |
+| **After** | What results did they get? Numbers, revenue, time saved — concrete. |
+| **What changed** | The steps you took together. What specifically caused the transformation? The actual AI OS modules deployed. |
+| **CTA** | Clear single ask. Add some urgency — limited spots, deadline, specific number. People are busy. Give them a reason to act now. |
+| **Visual** | Screenshot of a DM, message, dashboard, or metric. Non-negotiable. Proof people can see beats any caption. |
+
+---
+
+## 08 · AI Red Flags to Kill Before Posting
+
+Never post a raw AI draft. Read it out loud. If it doesn't sound like you, rewrite it.
+
+These are the telltale signs:
+
+- Rhetorical questions — "Have you ever wondered..." / "What if I told you..."
+- "It's not X, it's Y" sentence structure
+- Corporate jargon and overly formal language
+- Vague statements that sound smart but don't actually mean anything
+- Banned words (canonical list in [`voice.md`](voice.md)): "game changer," "changed everything," "leverage" (verb), "unlock," "empower," "synergy," "robust," "scalable," "transform your business"
+
+**The fix**: read every post out loud. If a sentence sounds like a press release, cut it or rewrite it in one plain sentence.
+
+---
+
+## 09 · LinkedIn Growth Strategy
+
+### The 3 C's (Core Framework)
+
+- **Be Consistent** — post frequently, same voice every time
+- **Be Clear** — your ICP and offer should be obvious from every post
+- **Constantly Reinforce Who You Are** — same identity signals in every post (see Constant Reinforcement rule in [`pang.md`](pang.md))
+
+### Content Strategy
+
+- Build a swipe file of top influencers in your niche. Read their last 90 days of posts. Don't copy — take reference and form your own opinion.
+- Use AI to surface the top questions e-commerce beauty brand operators ask inside their niche. Cross-reference with Reddit, beauty operator Slack groups, and LinkedIn comment sections.
+- Stick to one post approach for a period. Evaluate if it works. Then iterate.
+- Post polarizing enough content to stand out. Not so extreme you push people away.
+
+### Outbound Strategy
+
+- Send **20 connection requests/day** to ICP prospects only (e-comm beauty founders, COOs, ops managers at 10–50 employee brands).
+- Only accept connection requests from people in your ICP.
+- After 60 days, message with: *"Hey [name], how are things going at [company]?"* — not a pitch.
+- When someone engages with a post: *"Hey [name], thanks for the like/comment. How are things going at [company]?"*
+- Reply to every single comment.
+- Comment on top influencers' posts within your ICP. Use your own voice — no AI.
+
+### Influencers to Study
+
+- **Chris Walker** — hooks and video format
+- **Nigel Thomas** — post templates
+- **Adam Robinson** — closers
+- *[Add e-commerce / beauty / AI agency operators as you find them — anyone whose post style you'd want to absorb. Note specifically what works in their style.]*
+
+---
+
+## 10 · LinkedIn Profile Reference
+
+> ⚠️ **Pang: confirm and edit these — drafted as starting points. Specifically the headline character count and the "looking for beta brands" CTA.**
+
+### Headline (DRAFT — confirm)
+
+> Co-founder @ DivineSide · AI Operating Systems for e-comm beauty brands · 10–50 employee brands doing $500k+ · Building in public · 19
+
+### About Section (DRAFT — confirm + edit)
+
+> I'm 19. I've built AI automation systems for companies doing millions in revenue.
+>
+> **Reliable Medicare** — £2.23M net assets, ships to 150+ countries, 2,800+ Trustpilot reviews. I consulted on how AI could streamline their operations and built the systems myself.
+>
+> **Cracked.ai** — an AI startup out of Los Angeles deploying AI agents across TikTok, Instagram, and YouTube. I built their organic marketing automation system.
+>
+> Now I'm co-founding **DivineSide** with Mayank — an AI Operating System agency.
+>
+> Most "AI agencies" sell chatbots and call it AI. We build fully autonomous operating systems that run entire business functions end-to-end. The machine executes. Humans supervise.
+>
+> Our focus: **e-commerce beauty brands. 10–50 employees. $500k+ in revenue.** You're past founder-led ops, but not yet ready to hire a full ops/marketing team. We replace the work — not assist it.
+>
+> We're looking for **5 beauty brands** to be the next DivineSide AI OS builds. If that's you, DM me "OS."
+>
+> ====
+>
+> 19 years old. CS student at Wuhan University. Malaysian. Building DivineSide in public. Follow me to watch us build this.
+
+---
+
+## 11 · Quick Pre-Post Checklist
+
+Run through this before every post goes live:
+
+- [ ] Does the hook have a number or a specific claim?
+- [ ] Does it pass the 'so what?' test — is there a real insight here?
+- [ ] Is every sentence necessary? Cut anything that's filler.
+- [ ] Does it reinforce at least one of: **age / DivineSide / e-comm beauty ICP / building in public**? (See Constant Reinforcement in [`pang.md`](pang.md))
+- [ ] Is the closing strong — not a generic question?
+- [ ] No corporate buzzwords. No emojis (unless intentional). No exclamation marks.
+- [ ] Would a smart, busy beauty brand operator stop scrolling for this?
+
+If yes to all 7 — post it.
+
+---
+
+*Pang · DivineSide LinkedIn Content Playbook · 2026-05-03*
