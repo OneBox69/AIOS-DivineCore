@@ -6,10 +6,8 @@ class WorkerSettings(BaseSettings):
 
     REDIS_URL: str = "redis://localhost:6379/0"
 
-    AIRTABLE_API_KEY: str = ""
-    AIRTABLE_BASE_ID: str = ""
-    AIRTABLE_MEETINGS_TABLE: str = "Meetings"
-    AIRTABLE_TASKS_TABLE: str = "Task"
+    SUPABASE_URL: str = ""
+    SUPABASE_SECRET_KEY: str = ""
 
     OPENROUTER_API_KEY: str = ""
     OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"

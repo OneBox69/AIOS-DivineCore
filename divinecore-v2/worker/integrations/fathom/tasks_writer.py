@@ -1,24 +1,15 @@
 from datetime import datetime, timedelta, timezone
 
-from pyairtable import Api
+from supabase import create_client
 
 from settings import settings
 from team import resolve_by_email, resolve_by_name
 
 DEFAULT_DEADLINE_DAYS = 3
 
-CHANNEL_BY_CATEGORY = {
-    "client": "#sales-and-outreach",
-    "sales": "#sales-and-outreach",
-    "cofounder": "#pulse",
-    "strategy": "#pulse",
-    "other": "#pulse",
-}
 
-
-def _tasks_table():
-    api = Api(settings.AIRTABLE_API_KEY)
-    return api.table(settings.AIRTABLE_BASE_ID, settings.AIRTABLE_TASKS_TABLE)
+def _client():
+    return create_client(settings.SUPABASE_URL, settings.SUPABASE_SECRET_KEY)
 
 
 def _resolve_assignee(raw) -> dict | None:
@@ -40,27 +31,35 @@ def create_tasks_for_opted_in(payload: dict, meeting_record: dict) -> list[dict]
     if not items:
         return []
 
-    table = _tasks_table()
     title = payload.get("meeting_title") or payload.get("title", "")
     date = payload.get("recording_start_time", "")
-    category = (meeting_record.get("fields") or {}).get("Category", "other")
-    channel = CHANNEL_BY_CATEGORY.get(category, "#pulse")
+    category = (meeting_record or {}).get("category", "other")
     deadline = (datetime.now(timezone.utc) + timedelta(days=DEFAULT_DEADLINE_DAYS)).isoformat()
+    meeting_id = str(payload.get("recording_id"))
 
-    created = []
+    rows = []
     for item in items:
         assignee = _resolve_assignee(item.get("assignee"))
         if not assignee or not assignee.get("auto_pulse_tasks"):
             continue
-        row = table.create({
-            "Task": item.get("description", "").strip(),
-            "Assignee": assignee["name"],
-            "Channel": channel,
-            "Status": "in-progress",
-            "Priority": "medium",
-            "Deadline": deadline,
-            "Created By": "fathom",
-            "Notes": f"From meeting: {title} ({date})",
+        timestamp = item.get("recording_timestamp")
+        playback = item.get("recording_playback_url")
+        notes = f"From meeting: {title} ({date})"
+        if timestamp and playback:
+            notes += f"\nAt {timestamp}: {playback}"
+        rows.append({
+            "description": (item.get("description") or "").strip(),
+            "assignee": assignee["name"],
+            "meeting_id": meeting_id,
+            "category": category,
+            "status": "in-progress",
+            "priority": "medium",
+            "deadline": deadline,
+            "created_by": "fathom",
+            "notes": notes,
         })
-        created.append(row)
-    return created
+
+    if not rows:
+        return []
+    response = _client().table("tasks").insert(rows).execute()
+    return response.data or []

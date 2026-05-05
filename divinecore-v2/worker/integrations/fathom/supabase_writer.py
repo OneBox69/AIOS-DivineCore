@@ -1,7 +1,6 @@
 from datetime import datetime, timezone
 
-from pyairtable import Api
-from pyairtable.formulas import match
+from supabase import create_client
 
 from settings import settings
 from team import is_team_email, resolve_by_email
@@ -10,8 +9,7 @@ TRANSCRIPT_LIMIT = 90_000
 
 
 def _client():
-    api = Api(settings.AIRTABLE_API_KEY)
-    return api.table(settings.AIRTABLE_BASE_ID, settings.AIRTABLE_MEETINGS_TABLE)
+    return create_client(settings.SUPABASE_URL, settings.SUPABASE_SECRET_KEY)
 
 
 def _resolve_owner(payload: dict) -> str:
@@ -64,7 +62,7 @@ def _truncate(text: str | None) -> str:
         return ""
     if len(text) <= TRANSCRIPT_LIMIT:
         return text
-    return text[:TRANSCRIPT_LIMIT] + "\n\n[truncated — see Transcript URL for full version]"
+    return text[:TRANSCRIPT_LIMIT] + "\n\n[truncated — see transcript_url for full]"
 
 
 def _duration_minutes(payload: dict) -> int:
@@ -83,27 +81,23 @@ def _duration_minutes(payload: dict) -> int:
 def _row(payload: dict, category: str) -> dict:
     attendees, external = _split_attendees(payload)
     return {
-        "Meeting ID": payload.get("recording_id"),
-        "Title": payload.get("meeting_title") or payload.get("title", ""),
-        "Date": payload.get("recording_start_time") or payload.get("scheduled_start_time"),
-        "Duration (min)": _duration_minutes(payload),
-        "Owner": _resolve_owner(payload),
-        "Attendees": attendees,
-        "External Attendees": external,
-        "Category": category,
-        "Summary": _summary_text(payload),
-        "Transcript": _truncate(_transcript_text(payload)),
-        "Transcript URL": payload.get("share_url") or payload.get("url", ""),
-        "Recording URL": payload.get("url", ""),
-        "Processed At": datetime.now(timezone.utc).isoformat(),
+        "meeting_id": str(payload.get("recording_id")),
+        "title": payload.get("meeting_title") or payload.get("title", ""),
+        "date": payload.get("recording_start_time") or payload.get("scheduled_start_time"),
+        "duration_min": _duration_minutes(payload),
+        "owner": _resolve_owner(payload),
+        "attendees": attendees,
+        "external_attendees": external,
+        "category": category,
+        "summary": _summary_text(payload),
+        "transcript": _truncate(_transcript_text(payload)),
+        "transcript_url": payload.get("share_url") or payload.get("url", ""),
+        "recording_url": payload.get("url", ""),
+        "processed_at": datetime.now(timezone.utc).isoformat(),
     }
 
 
 def upsert(payload: dict, category: str) -> dict:
-    table = _client()
-    meeting_id = payload.get("recording_id")
-    fields = _row(payload, category)
-    existing = table.first(formula=match({"Meeting ID": meeting_id}))
-    if existing:
-        return table.update(existing["id"], fields)
-    return table.create(fields)
+    row = _row(payload, category)
+    response = _client().table("meetings").upsert(row, on_conflict="meeting_id").execute()
+    return (response.data or [row])[0]
