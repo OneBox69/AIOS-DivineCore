@@ -33,6 +33,32 @@ def _split_attendees(payload: dict) -> tuple[str, str]:
     return ", ".join(internal + external), ", ".join(external)
 
 
+def _summary_text(payload: dict) -> str:
+    raw = payload.get("default_summary")
+    if isinstance(raw, dict):
+        return raw.get("markdown_formatted", "") or ""
+    return raw or ""
+
+
+def _transcript_text(payload: dict) -> str:
+    raw = payload.get("transcript")
+    if isinstance(raw, str):
+        return raw
+    if not isinstance(raw, list):
+        return ""
+    lines = []
+    for seg in raw:
+        if not isinstance(seg, dict):
+            lines.append(str(seg))
+            continue
+        speaker = seg.get("speaker") or {}
+        name = speaker.get("display_name", "") if isinstance(speaker, dict) else str(speaker)
+        ts = seg.get("timestamp", "")
+        text = seg.get("text", "")
+        lines.append(f"[{ts}] {name}: {text}".strip())
+    return "\n".join(lines)
+
+
 def _truncate(text: str | None) -> str:
     if not text:
         return ""
@@ -65,8 +91,8 @@ def _row(payload: dict, category: str) -> dict:
         "Attendees": attendees,
         "External Attendees": external,
         "Category": category,
-        "Summary": payload.get("default_summary", ""),
-        "Transcript": _truncate(payload.get("transcript", "")),
+        "Summary": _summary_text(payload),
+        "Transcript": _truncate(_transcript_text(payload)),
         "Transcript URL": payload.get("share_url") or payload.get("url", ""),
         "Recording URL": payload.get("url", ""),
         "Processed At": datetime.now(timezone.utc).isoformat(),

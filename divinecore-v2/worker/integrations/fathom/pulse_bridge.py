@@ -21,12 +21,18 @@ def _tasks_table():
     return api.table(settings.AIRTABLE_BASE_ID, settings.AIRTABLE_TASKS_TABLE)
 
 
-def _resolve_assignee(raw: str) -> dict | None:
+def _resolve_assignee(raw) -> dict | None:
     if not raw:
         return None
-    if "@" in raw:
-        return resolve_by_email(raw)
-    return resolve_by_name(raw)
+    if isinstance(raw, dict):
+        email = raw.get("email")
+        if email:
+            return resolve_by_email(email)
+        name = raw.get("name")
+        return resolve_by_name(name) if name else None
+    if isinstance(raw, str):
+        return resolve_by_email(raw) if "@" in raw else resolve_by_name(raw)
+    return None
 
 
 def create_tasks_for_opted_in(payload: dict, meeting_record: dict) -> list[dict]:
@@ -43,7 +49,7 @@ def create_tasks_for_opted_in(payload: dict, meeting_record: dict) -> list[dict]
 
     created = []
     for item in items:
-        assignee = _resolve_assignee(item.get("assignee", ""))
+        assignee = _resolve_assignee(item.get("assignee"))
         if not assignee or not assignee.get("auto_pulse_tasks"):
             continue
         row = table.create({

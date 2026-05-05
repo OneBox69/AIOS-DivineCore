@@ -1,4 +1,5 @@
 TEAM_MEMBERS = {
+    "yhpang@oneboxagency.com": {"name": "yhpunk", "auto_pulse_tasks": True},
     "yhpunk@oneboxagency.com": {"name": "yhpunk", "auto_pulse_tasks": True},
 }
 

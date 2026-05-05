@@ -38,7 +38,9 @@ def _llm_fallback(payload: dict) -> str:
         base_url=settings.OPENROUTER_BASE_URL,
     )
     title = payload.get("meeting_title") or payload.get("title", "")
-    summary = (payload.get("default_summary") or "")[:500]
+    raw_summary = payload.get("default_summary") or {}
+    summary_text = raw_summary.get("markdown_formatted", "") if isinstance(raw_summary, dict) else str(raw_summary)
+    summary = (summary_text or "")[:500]
     attendees = ", ".join(i.get("email", "") for i in payload.get("calendar_invitees") or [])
     prompt = (
         "Classify this meeting into exactly one category from: "
