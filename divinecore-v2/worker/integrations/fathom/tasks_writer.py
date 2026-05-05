@@ -1,15 +1,21 @@
 from datetime import datetime, timedelta, timezone
 
-from supabase import create_client
+import httpx
 
 from settings import settings
 from team import resolve_by_email, resolve_by_name
 
 DEFAULT_DEADLINE_DAYS = 3
+TABLE = "tasks"
 
 
-def _client():
-    return create_client(settings.SUPABASE_URL, settings.SUPABASE_SECRET_KEY)
+def _headers() -> dict:
+    return {
+        "apikey": settings.SUPABASE_SECRET_KEY,
+        "Authorization": f"Bearer {settings.SUPABASE_SECRET_KEY}",
+        "Content-Type": "application/json",
+        "Prefer": "return=representation",
+    }
 
 
 def _resolve_assignee(raw) -> dict | None:
@@ -61,5 +67,7 @@ def create_tasks_for_opted_in(payload: dict, meeting_record: dict) -> list[dict]
 
     if not rows:
         return []
-    response = _client().table("tasks").insert(rows).execute()
-    return response.data or []
+    url = f"{settings.SUPABASE_URL.rstrip('/')}/rest/v1/{TABLE}"
+    response = httpx.post(url, headers=_headers(), json=rows, timeout=30.0)
+    response.raise_for_status()
+    return response.json() or []

@@ -1,15 +1,21 @@
 from datetime import datetime, timezone
 
-from supabase import create_client
+import httpx
 
 from settings import settings
 from team import is_team_email, resolve_by_email
 
 TRANSCRIPT_LIMIT = 90_000
+TABLE = "meetings"
 
 
-def _client():
-    return create_client(settings.SUPABASE_URL, settings.SUPABASE_SECRET_KEY)
+def _headers(prefer: str) -> dict:
+    return {
+        "apikey": settings.SUPABASE_SECRET_KEY,
+        "Authorization": f"Bearer {settings.SUPABASE_SECRET_KEY}",
+        "Content-Type": "application/json",
+        "Prefer": prefer,
+    }
 
 
 def _resolve_owner(payload: dict) -> str:
@@ -99,5 +105,13 @@ def _row(payload: dict, category: str) -> dict:
 
 def upsert(payload: dict, category: str) -> dict:
     row = _row(payload, category)
-    response = _client().table("meetings").upsert(row, on_conflict="meeting_id").execute()
-    return (response.data or [row])[0]
+    url = f"{settings.SUPABASE_URL.rstrip('/')}/rest/v1/{TABLE}?on_conflict=meeting_id"
+    response = httpx.post(
+        url,
+        headers=_headers("resolution=merge-duplicates,return=representation"),
+        json=[row],
+        timeout=30.0,
+    )
+    response.raise_for_status()
+    data = response.json()
+    return (data or [row])[0]
