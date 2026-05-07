@@ -68,13 +68,39 @@ def fill_doc(document_id: str, replacements: dict[str, str]) -> None:
     _docs().documents().batchUpdate(documentId=document_id, body={"requests": requests}).execute()
 
 
-def append_row(spreadsheet_id: str, range_a1: str, row: list) -> None:
-    """Append a single row to a sheet."""
-    _sheets().spreadsheets().values().append(
+def append_row(spreadsheet_id: str, range_a1: str, row: list) -> int:
+    """Append a single row to a sheet. Returns the 1-based index of the new row."""
+    response = (
+        _sheets()
+        .spreadsheets()
+        .values()
+        .append(
+            spreadsheetId=spreadsheet_id,
+            range=range_a1,
+            valueInputOption="USER_ENTERED",
+            body={"values": [row]},
+        )
+        .execute()
+    )
+    updated_range = response.get("updates", {}).get("updatedRange", "")
+    if "!" in updated_range:
+        cell_part = updated_range.split("!", 1)[1].split(":")[0]
+        digits = "".join(c for c in cell_part if c.isdigit())
+        if digits:
+            return int(digits)
+    return -1
+
+
+def update_cells(spreadsheet_id: str, updates: dict[str, str]) -> None:
+    """Batch-update specific cells. Keys are A1 ranges (e.g. 'Sheet1!E42')."""
+    if not updates:
+        return
+    _sheets().spreadsheets().values().batchUpdate(
         spreadsheetId=spreadsheet_id,
-        range=range_a1,
-        valueInputOption="USER_ENTERED",
-        body={"values": [row]},
+        body={
+            "valueInputOption": "USER_ENTERED",
+            "data": [{"range": rng, "values": [[value]]} for rng, value in updates.items()],
+        },
     ).execute()
 
 

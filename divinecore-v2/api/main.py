@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from celery import Celery
 
-from routes.upwork import router as upwork_router
+from sales_os.web import upwork_router
 from settings import settings
 
 celery_client = Celery("api", broker=settings.REDIS_URL, backend=settings.REDIS_URL)

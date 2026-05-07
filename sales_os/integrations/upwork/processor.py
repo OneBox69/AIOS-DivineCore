@@ -16,9 +16,6 @@ def upwork_generate_proposal(job_description: str) -> dict:
     fields = llm.proposal_fields(job_description)
     title = fields.get("titleOfSystem") or "Untitled proposal"
 
-    logger.info("upwork: generating mermaid diagram")
-    diagram = llm.mermaid(job_description)
-
     logger.info("upwork: generating application copy")
     application_body = llm.application_copy(job_description)
 
@@ -37,21 +34,8 @@ def upwork_generate_proposal(job_description: str) -> dict:
     )
     proposal_url = google_client.doc_url(proposal_id)
 
-    logger.info("upwork: copying script doc from template %s", config.SCRIPT_TEMPLATE_ID)
-    script_id = google_client.copy_doc(config.SCRIPT_TEMPLATE_ID, f"[Automation] Upwork sales script for {title}")
-    google_client.share_doc(script_id, role="writer")
-    google_client.fill_doc(
-        script_id,
-        {
-            "shortSummary": fields.get("briefExplanationOfSystem", ""),
-            "stepByStepBuilding": fields.get("stepByStepBulletPoints", ""),
-            "mermaidCode": diagram,
-        },
-    )
-    script_url = google_client.doc_url(script_id)
-
     logger.info("upwork: appending tracking row to sheet %s", config.TRACKING_SHEET_ID)
-    google_client.append_row(
+    row_index = google_client.append_row(
         config.TRACKING_SHEET_ID,
         config.TRACKING_SHEET_RANGE,
         [
@@ -62,7 +46,7 @@ def upwork_generate_proposal(job_description: str) -> dict:
             "",
             "",
             proposal_url,
-            script_url,
+            "",
             "",
         ],
     )
@@ -71,5 +55,39 @@ def upwork_generate_proposal(job_description: str) -> dict:
     return {
         "application_body": final_body,
         "proposal_url": proposal_url,
-        "script_url": script_url,
+        "row_index": row_index,
     }
+
+
+@app.task(name="tasks.upwork_finalize_proposal")
+def upwork_finalize_proposal(
+    row_index: int,
+    base_connects: str = "",
+    boosted_connects: str = "",
+    loom_url: str = "",
+) -> dict:
+    if not isinstance(row_index, int) or row_index <= 0:
+        raise ValueError(f"upwork_finalize_proposal: invalid row_index {row_index!r}")
+
+    base = (base_connects or "").strip()
+    boosted = (boosted_connects or "").strip()
+    if base and boosted:
+        connects_text = f"{base} + {boosted}"
+    else:
+        connects_text = base or boosted
+
+    loom = (loom_url or "").strip()
+
+    updates: dict[str, str] = {}
+    if connects_text:
+        updates[f"{config.TRACKING_SHEET_NAME}!{config.TRACKING_SHEET_CONNECTS_COLUMN}{row_index}"] = connects_text
+    if loom:
+        updates[f"{config.TRACKING_SHEET_NAME}!{config.TRACKING_SHEET_LOOM_COLUMN}{row_index}"] = loom
+
+    if updates:
+        logger.info("upwork: finalizing row %s with %s", row_index, list(updates.keys()))
+        google_client.update_cells(config.TRACKING_SHEET_ID, updates)
+    else:
+        logger.info("upwork: finalize called for row %s with no values; skipping", row_index)
+
+    return {"row_index": row_index, "updated_columns": list(updates.keys())}

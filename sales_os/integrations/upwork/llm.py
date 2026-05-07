@@ -30,23 +30,6 @@ def proposal_fields(job_description: str) -> dict:
     return json.loads(response.choices[0].message.content or "{}")
 
 
-def mermaid(job_description: str) -> str:
-    """Return raw Mermaid flowchart code (starts with `graph TD;`)."""
-    response = _client().chat.completions.create(
-        model=settings.UPWORK_MERMAID_MODEL,
-        temperature=0.4,
-        messages=[
-            {"role": "system", "content": prompts.MERMAID_SYSTEM},
-            {"role": "user", "content": prompts.MERMAID_PROMPT + "\n\n---\n\nJob description:\n" + job_description},
-        ],
-    )
-    raw = (response.choices[0].message.content or "").strip()
-    # Defensive: strip accidental ``` fences if the model added them despite the rule.
-    if raw.startswith("```"):
-        raw = raw.strip("`").lstrip("mermaid").strip()
-    return raw
-
-
 def application_copy(job_description: str) -> str:
     """Return the application body string with $$$ placeholder still inside."""
     response = _client().chat.completions.create(

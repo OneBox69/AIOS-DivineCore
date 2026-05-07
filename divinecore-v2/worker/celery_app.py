@@ -9,9 +9,9 @@ app = Celery(
     backend=REDIS_URL,
     include=[
         "tasks",
-        "integrations.fathom.processor",
-        "integrations.fathom.poller",
-        "integrations.upwork.processor",
+        "ops_os.integrations.fathom.processor",
+        "ops_os.integrations.fathom.poller",
+        "sales_os.integrations.upwork.processor",
     ],
 )
 

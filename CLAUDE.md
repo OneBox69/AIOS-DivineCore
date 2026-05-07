@@ -209,13 +209,13 @@ Expansion targets: LinkedIn, Reddit, Skool communities, Discord servers, YouTube
 
 ## 7. THE TEAM
 
-| Name | Role | Status | Notes |
-|------|------|--------|-------|
-| Mayank Rawat | CEO, Engineering, Video Content | Active | Owns product vision, system architecture, all video content. Discord: mayank082527 |
-| Shubham | Co-Founder, Research & Ops | Active | Owns Kallaway knowledge base build and operational support |
-| Pang (彭毅和) | Developer + Marketing | New — evaluating as co-founder | CS at Wuhan University, China. Strong technical + marketing background. |
-| William | Sales, Written Content | Team (being tested) | LinkedIn outreach, DMs, written content formats |
-| Anish | Lead Developer | Team (being tested) | Development execution |
+DivineSide is run by **3 co-founders**. Detailed ownership and KPIs are being formalized in the May 2026 alignment meeting — this section will be updated post-meeting to reflect locked decisions.
+
+| Name | Role | Notes |
+|------|------|-------|
+| Mayank Rawat | Co-founder · CEO, Engineering, Video Content | Owns product vision, system architecture, founder-led sales, all video content. Discord: mayank082527 |
+| Shubham | Co-founder · Research & Ops | Owns Kallaway/Hormozi knowledge bases, pre-call audits, operational support |
+| Pang (彭毅和) | Co-founder · Developer + Marketing | CS at Wuhan University, China. Owns pilot delivery, outbound engine, divinecore-v2 stack |
 
 
 ## 8. DISTRIBUTION — CURRENT STATE
@@ -285,28 +285,35 @@ DivineSide/
 ├── CLAUDE.md                  ← This file. Always keep updated.
 ├── README.md                  ← Public-facing repo overview
 ├── .env.example               ← Environment variable template (no real values)
-├── branding-os/               ← Module 1: Creative Intelligence
+├── branding_os/               ← Module 1: Creative Intelligence
 │   ├── agents/                ← Agent definitions and system prompts
 │   ├── knowledge-base/        ← KB management scripts
 │   ├── workflows/             ← n8n workflow exports (JSON)
 │   └── README.md
-├── sales-os/                  ← Module 2: Revenue System
+├── sales_os/                  ← Module 2: Revenue System
 │   ├── agents/
 │   ├── workflows/
-│   └── README.md
-├── ops-os/                    ← Module 3: Execution System
+│   ├── integrations/          ← Domain integrations (Upwork live)
+│   │   └── upwork/            ← Celery tasks (proposal generation + sheet finalize)
+│   └── web/                   ← FastAPI routers + Jinja templates mounted by divinecore-v2/api
+│       └── upwork_routes.py + templates/
+├── ops_os/                    ← Module 3: Execution System
 │   ├── agents/
 │   ├── workflows/
-│   └── README.md
+│   └── integrations/          ← Domain integrations (Fathom live)
+│       └── fathom/            ← Celery poller + processor + tasks_writer
 ├── pulse/                     ← Module 4: Alert + Awareness
 │   ├── agents/
 │   ├── workflows/
 │   └── README.md
-├── networking-os/             ← Module 5: Networking & Recruitment
+├── networking_os/             ← Module 5: Networking & Recruitment
 │   ├── agents/
 │   ├── bots/
 │   ├── workflows/
 │   └── README.md
+├── divinecore-v2/             ← Code-first runtime (FastAPI + Celery + Redis + compose)
+│   ├── api/                   ← Generic FastAPI app; mounts routers from <module>/web/
+│   └── worker/                ← Celery wiring + scheduled jobs; loads tasks from <module>/integrations/
 ├── infrastructure/            ← VPS, middleware, Discord bot, nginx configs
 │   ├── discord-middleware/
 │   └── README.md
@@ -315,6 +322,10 @@ DivineSide/
     ├── utils/                 ← Shared utilities, base classes, common tools
     └── README.md
 ```
+
+**Folder naming**: module folders use Python-import-safe underscores (`sales_os/`, `branding_os/`, `ops_os/`, `networking_os/`, `pulse/`) so the divinecore-v2 runtime can import code from them as packages. Hyphens are reserved for non-Python directories (`divinecore-v2/`, `knowledge-base/`).
+
+**Code vs n8n split**: each module folder mixes Python code (`integrations/`, `web/`, `agents/`), n8n workflow JSONs (`workflows/`), and KB sync scripts (`knowledge-base/`). The runtime that *executes* the Python lives in `divinecore-v2/`; the modules host their own logic and get imported.
 
 
 ## 12. WORKING CONVENTIONS
@@ -331,7 +342,7 @@ DivineSide/
 
 ## 13. DIVINECORE V2 — CODE-FIRST RUNTIME (IN BUILD)
 
-Parallel track to the n8n-orchestrated stack. `divinecore-v2/` is the code-first runtime that will eventually replace n8n for agent execution — Python services owned end-to-end in this repo, deployable as containers.
+Parallel track to the n8n-orchestrated stack. `divinecore-v2/` is the **runtime only** — FastAPI app, Celery worker, Beat scheduler, Redis broker, Docker compose. Domain code (Upwork, Fathom, future module integrations) lives in the module folders (`sales_os/`, `ops_os/`, etc.) and is imported by the runtime at build time. Both Dockerfiles set context = repo root and selectively `COPY` the module folders they need.
 
 ### Foundation (commit `3c03553`)
 
@@ -339,28 +350,28 @@ Stack: **FastAPI API + Celery worker + Celery Beat scheduler + Redis broker**, a
 
 ```
 divinecore-v2/
-├── api/                       ← FastAPI service
-│   ├── main.py                ← Routes + Celery client (send_task / AsyncResult); mounts routers from routes/
+├── api/                       ← FastAPI service (runtime only)
+│   ├── main.py                ← Inline / + /tasks routes; imports + mounts routers from <module>/web/
 │   ├── settings.py            ← Pydantic Settings (REDIS_URL)
-│   ├── routes/
-│   │   └── upwork.py          ← GET /upwork form + POST /upwork pipeline (blocks on AsyncResult.get)
-│   ├── templates/             ← Jinja2 HTML templates (upwork_form, upwork_result)
 │   ├── requirements.txt
-│   └── Dockerfile
-├── worker/                    ← Celery worker + beat (shares same image)
-│   ├── celery_app.py          ← Celery config + beat_schedule + task includes
-│   ├── tasks.py               ← echo, heartbeat
-│   ├── settings.py            ← Pydantic Settings (Airtable, OpenRouter, Fathom, Google OAuth, Redis)
+│   └── Dockerfile             ← context = repo root; copies api/ + sales_os/
+├── worker/                    ← Celery worker + beat (shares same image, runtime only)
+│   ├── celery_app.py          ← Celery config + beat_schedule + include=[...] paths into modules
+│   ├── tasks.py               ← echo, heartbeat (generic infra tasks)
+│   ├── settings.py            ← Pydantic Settings (Supabase, OpenRouter, Fathom, Google OAuth, Redis)
 │   ├── team.py                ← TEAM_MEMBERS dict + email/name lookup
-│   ├── integrations/
-│   │   ├── fathom/            ← Meeting recorder integration
-│   │   └── upwork/            ← Upwork proposal generator (LLM × 3 + Google Docs/Drive/Sheets)
 │   ├── requirements.txt
-│   └── Dockerfile
-├── docker-compose.yml         ← redis + api + worker + beat (local dev — uses build:, mounts code, hot-reload via uvicorn --reload)
-├── docker-compose.prod.yml    ← production version deployed to VPS (uses image: from GHCR, no volume mounts, restart: unless-stopped, API bound to 127.0.0.1:8000)
-└── .dockerignore
+│   └── Dockerfile             ← context = repo root; copies worker/ + sales_os/ + ops_os/
+├── docker-compose.yml         ← local dev — context: .., volume mounts of api/, worker/, sales_os/, ops_os/, hot-reload
+└── docker-compose.prod.yml    ← VPS deploy (image: from GHCR, no volume mounts, restart: unless-stopped, API behind Traefik basicauth)
 ```
+
+Domain code mounted into the containers (lives outside `divinecore-v2/`):
+- `sales_os/integrations/upwork/` — Upwork pipeline (Celery tasks)
+- `sales_os/web/upwork_routes.py` + templates — `/upwork` UI mounted into FastAPI
+- `ops_os/integrations/fathom/` — Fathom poller + processor (Celery tasks)
+
+A repo-root `.dockerignore` trims build context size since context is now the whole repo.
 
 Services in compose:
 - `redis` — `redis:7-alpine`, exposes 6379
@@ -373,23 +384,25 @@ Endpoints today:
 - `POST /tasks/echo` — submit a task, returns `task_id`
 - `GET /tasks/{task_id}` — poll status + result
 - `GET /upwork` — Upwork proposal generator form (paste a job description). **Public**: https://upwork.srv1445995.hstgr.cloud/upwork (basic auth gated)
-- `POST /upwork` — runs the Upwork pipeline (LLM × 3 + Google Docs/Drive/Sheets), blocks on result, renders application body + Doc URLs
+- `POST /upwork` — runs the Upwork pipeline (2 OpenRouter LLM calls + Google Docs/Drive/Sheets), blocks on result, renders application body + proposal Doc URL + a finalize form for connects/Loom
+- `POST /upwork/finalize` — patches base+boosted connects ("15 + 5") and Loom URL into the existing tracking-sheet row
 
 Run locally: `cd divinecore-v2 && docker compose up --build`. Public access details below in *Phase 2 → Public endpoints*.
 
 ### Integrations
 
-- **Fathom** — beat polls Fathom's REST API every 10 min, writes new meetings to Airtable's `Meetings` table, and creates Pulse Task rows for action items assigned to opted-in team members. No public ingress required — fully outbound. See [divinecore-v2/worker/integrations/fathom/.overview.md](divinecore-v2/worker/integrations/fathom/.overview.md).
-- **Upwork** — user-initiated via `GET /upwork` form. Migrated from a 3-workflow n8n system (orchestrator + `Generate google docs` + `Generate application copy`). Pipeline: 3 OpenRouter LLM calls (proposal fields, Mermaid diagram, application copy) + Google Docs/Drive/Sheets to copy templates, mail-merge, share, and append to a tracking sheet. About-Me content sourced from [shared/context/pang.md](shared/context/pang.md), mirrored into `worker/integrations/upwork/about_me.py` (sync manually when pang.md changes). Google auth via OAuth refresh token — one-time bootstrap with `docker compose run --rm worker python -m integrations.upwork.oauth_bootstrap`. New env vars: `GOOGLE_OAUTH_CLIENT_ID`, `GOOGLE_OAUTH_CLIENT_SECRET`, `GOOGLE_OAUTH_REFRESH_TOKEN`, plus optional `UPWORK_*` model/template-ID overrides. See [divinecore-v2/worker/integrations/upwork/.overview.md](divinecore-v2/worker/integrations/upwork/.overview.md).
+- **Fathom** — beat polls Fathom's REST API every 10 min, writes new meetings to Supabase's `meetings` table, and creates Pulse task rows for action items assigned to opted-in team members. No public ingress required — fully outbound. **Lives in `ops_os/integrations/fathom/`** (Celery tasks `tasks.poll_fathom_recordings` etc., loaded by `divinecore-v2/worker/celery_app.py` `include=[...]`). See [ops_os/integrations/fathom/.overview.md](ops_os/integrations/fathom/.overview.md).
+- **Upwork** — user-initiated via `GET /upwork` form. Originally migrated from a 3-workflow n8n system; the per-job sales-script Doc + Mermaid diagram step was dropped (Pang uses one standardised sales script across all calls; the Loom carries the AIOS framing). Today's pipeline: 2 OpenRouter LLM calls (proposal fields, application copy) + Google Docs/Drive/Sheets to copy the proposal template, mail-merge, share, and append to a tracking sheet. **Lives in `sales_os/integrations/upwork/`** (Celery tasks) + `sales_os/web/upwork_routes.py` (FastAPI router). About-Me content lives in `sales_os/integrations/upwork/about_me.py` — Upwork-specific, intentionally stripped of "co-founder" / "agency" framing (some buyers are agency-averse); loosely derived from [shared/context/pang.md](shared/context/pang.md) but **not** an auto-mirror — edit directly when needed. Application body prompt enforces the AIOS framing (verbatim sentence: *"I don't build commoditized automations. I build AI Operating Systems — your business, running on AI."*) — this deliberately diverges from sales-playbook.md line 173 ("never lead with AIOS externally") because on Upwork specifically AIOS is the differentiator that justifies the price floor. Google auth via OAuth refresh token — one-time bootstrap with `docker compose run --rm worker python -m sales_os.integrations.upwork.oauth_bootstrap`. Env vars: `GOOGLE_OAUTH_CLIENT_ID`, `GOOGLE_OAUTH_CLIENT_SECRET`, `GOOGLE_OAUTH_REFRESH_TOKEN`, plus optional `UPWORK_*` model/template-ID overrides. See [sales_os/integrations/upwork/.overview.md](sales_os/integrations/upwork/.overview.md).
 
 ### CI/CD Workflow (commit `3573662`)
 
 File: `.github/workflows/divinecore-v2-ci.yml`
 
-Triggers: push/PR to `main` (path-filtered to `divinecore-v2/**` and the workflow file itself) + `workflow_dispatch`.
+Triggers: push/PR to `main` (path-filtered to `divinecore-v2/**`, `sales_os/**`, `ops_os/**`, and the workflow file itself) + `workflow_dispatch`.
 
 **Build & push job** (matrix: `api`, `worker`):
 - Runs both components in parallel via matrix strategy
+- Build context is the repo root; `dockerfile:` matrix entry points at `divinecore-v2/{api,worker}/Dockerfile`
 - Uses `docker/setup-buildx-action@v3` + `docker/build-push-action@v6`
 - Pushes to `ghcr.io/onebox69/aios-divinecore/{api,worker}`
 - Tags: `:latest` (main only), `:sha-<short>`, `:<branch>`
@@ -473,7 +486,7 @@ Inspired by ByteDance's OpenViking pattern. Every folder in this repo carries ch
 - **Every folder gets `.abstract.md`.** No exceptions, except:
   - Anything gitignored or tooling-internal (`.git/`, `__pycache__/`, `node_modules/`, `.venv/`).
   - `.claude/commands/` — Claude Code registers every `.md` file in that folder as a slash command, so `.abstract.md` would become a phantom `/.abstract` command. The folder itself is small enough to scan directly.
-- **L1 `.overview.md` is selective.** Only for folders with real content, strategic importance, or non-obvious structure. Empty leaf scaffolds (`branding-os/agents/` while it's just a `.gitkeep`) get the abstract only — an overview would be noise.
+- **L1 `.overview.md` is selective.** Only for folders with real content, strategic importance, or non-obvious structure. Empty leaf scaffolds (`branding_os/agents/` while it's just a `.gitkeep`) get the abstract only — an overview would be noise.
 - **Promote to L1 when the folder has 3+ files OR when the structure isn't self-explanatory.**
 - **Update on change.** When you add/remove/rename meaningful content in a folder, update its `.abstract.md` and `.overview.md` in the same commit. Stale L0/L1 is worse than missing L0/L1.
 - **Don't duplicate CLAUDE.md.** L0/L1 should describe local file structure, not repeat company-wide architecture. Architecture lives here in CLAUDE.md.

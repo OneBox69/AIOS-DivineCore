@@ -22,10 +22,8 @@ class WorkerSettings(BaseSettings):
     GOOGLE_OAUTH_CLIENT_SECRET: str = ""
     GOOGLE_OAUTH_REFRESH_TOKEN: str = ""
     UPWORK_PROPOSAL_TEMPLATE_ID: str = "1BnxRE-zYcri2VuUD5g8M9dzs0sRfNgP2JGU3ek6ztlY"
-    UPWORK_SCRIPT_TEMPLATE_ID: str = "1pHZWkjufcmc5JWYS-ide3xxuRsC6UFp5jnKtuJ2khgI"
     UPWORK_TRACKING_SHEET_ID: str = "1yW6xojrzpgj9fBVz3BD_d6PScVqp5XjlbxrD38iZtxU"
     UPWORK_PROPOSAL_FIELDS_MODEL: str = "openai/gpt-4o-mini"
-    UPWORK_MERMAID_MODEL: str = "openai/gpt-4o-mini"
     UPWORK_APPLICATION_MODEL: str = "openai/gpt-5.1"
 
 
