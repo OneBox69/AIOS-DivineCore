@@ -26,5 +26,11 @@ class WorkerSettings(BaseSettings):
     UPWORK_PROPOSAL_FIELDS_MODEL: str = "openai/gpt-4o-mini"
     UPWORK_APPLICATION_MODEL: str = "openai/gpt-5.1"
 
+    # Instantly integration
+    INSTANTLY_API_KEY: str = ""
+    INSTANTLY_API_BASE_URL: str = "https://api.instantly.ai"
+    DISCORD_OUTREACH_WEBHOOK_URL: str = ""
+    DISCORD_OUTREACH_THREAD_ID: str = ""
+
 
 settings = WorkerSettings()
