@@ -176,10 +176,11 @@ def process_instantly_reply(payload: dict) -> dict:
 # Verified against live payloads stored in raw_snapshot. We prefer the unique_*
 # variants where they exist (e.g. unique_replies dedupes multi-replies from the
 # same lead — that's the count users care about for reply-rate metrics).
+# Open and bounce fields are intentionally not extracted — Instantly returns
+# 0 for opens on these campaigns (no pixel tracking) and the operator has
+# decided neither metric is worth surfacing.
 _SENT_KEYS = ("sent", "emails_sent_count", "total_sent", "email_sent_count")
-_OPENED_KEYS = ("unique_opened", "opened", "emails_opened_count", "total_opens", "open_count")
 _REPLIED_KEYS = ("unique_replies", "replies", "emails_replied_count", "replied", "total_replies", "reply_count")
-_BOUNCED_KEYS = ("unique_bounced", "bounced", "bounces", "emails_bounced_count", "total_bounces", "bounce_count")
 _UNSUB_KEYS = ("unsubscribes", "unsubscribed", "unsubscribe_count", "total_unsubscribes")
 
 
@@ -241,9 +242,7 @@ def _snapshot_one_campaign(campaign: dict, snapshot_date: date) -> dict:
                 step_index=step_index,
                 metrics_date=snapshot_date,
                 emails_sent=_sum_int(s, _SENT_KEYS),
-                emails_opened=_sum_int(s, _OPENED_KEYS),
                 replies=_sum_int(s, _REPLIED_KEYS),
-                bounces=_sum_int(s, _BOUNCED_KEYS),
                 unsubscribes=_sum_int(s, _UNSUB_KEYS),
                 raw_snapshot=s,
             )
@@ -256,9 +255,7 @@ def _snapshot_one_campaign(campaign: dict, snapshot_date: date) -> dict:
             step_index=0,
             metrics_date=snapshot_date,
             emails_sent=_sum_int(overall, _SENT_KEYS),
-            emails_opened=_sum_int(overall, _OPENED_KEYS),
             replies=_sum_int(overall, _REPLIED_KEYS),
-            bounces=_sum_int(overall, _BOUNCED_KEYS),
             unsubscribes=_sum_int(overall, _UNSUB_KEYS),
             raw_snapshot=overall,
         )

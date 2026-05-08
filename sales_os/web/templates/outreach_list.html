@@ -43,8 +43,7 @@
           <th class="num">Sent</th>
           <th class="num">Replies</th>
           <th class="num">Reply rate</th>
-          <th class="num">Open rate</th>
-          <th class="num">Bounces</th>
+          <th class="num">Unsubs</th>
         </tr>
       </thead>
       <tbody>
@@ -68,14 +67,7 @@
                 <span class="pct zero">0%</span>
               {% endif %}
             </td>
-            <td class="num">
-              {% if c.open_rate > 0 %}
-                <span class="pct">{{ '%.1f%%' % (c.open_rate * 100) }}</span>
-              {% else %}
-                <span class="pct zero">0%</span>
-              {% endif %}
-            </td>
-            <td class="num">{{ '{:,}'.format(c.bounces) }}</td>
+            <td class="num">{{ '{:,}'.format(c.unsubscribes) }}</td>
           </tr>
         {% endfor %}
       </tbody>

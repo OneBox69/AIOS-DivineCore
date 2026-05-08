@@ -68,10 +68,6 @@
         <div class="v">{{ '{:,}'.format(lifetime.emails_sent) }}</div>
       </div>
       <div class="card">
-        <div class="k">Opens</div>
-        <div class="v">{{ '{:,}'.format(lifetime.emails_opened) }}</div>
-      </div>
-      <div class="card">
         <div class="k">Replies</div>
         <div class="v">{{ '{:,}'.format(lifetime.replies) }}</div>
       </div>
@@ -86,14 +82,6 @@
       <div class="card">
         <div class="k">Positive rate</div>
         <div class="v green">{{ '%.2f%%' % (lifetime_positive_rate * 100) }}</div>
-      </div>
-      <div class="card">
-        <div class="k">Open rate</div>
-        <div class="v">{{ '%.2f%%' % (lifetime_open_rate * 100) }}</div>
-      </div>
-      <div class="card">
-        <div class="k">Bounces</div>
-        <div class="v">{{ '{:,}'.format(lifetime.bounces) }}</div>
       </div>
       <div class="card">
         <div class="k">Unsubscribes</div>
@@ -121,11 +109,8 @@
             <th>Step</th>
             <th>Subject</th>
             <th class="num">Sent</th>
-            <th class="num">Opens</th>
             <th class="num">Replies</th>
             <th class="num">Reply rate</th>
-            <th class="num">Open rate</th>
-            <th class="num">Bounces</th>
             <th class="num">Unsubs</th>
           </tr>
         </thead>
@@ -135,15 +120,10 @@
               <td><strong>{% if s.step_index == 1 %}Initial{% else %}Follow-up #{{ s.step_index - 1 }}{% endif %}</strong></td>
               <td>{{ s.subject or '—' }}</td>
               <td class="num">{{ '{:,}'.format(s.emails_sent) }}</td>
-              <td class="num">{{ '{:,}'.format(s.emails_opened) }}</td>
               <td class="num">{{ '{:,}'.format(s.replies) }}</td>
               <td class="num">
                 {% if s.reply_rate > 0 %}<span class="pct">{{ '%.1f%%' % (s.reply_rate * 100) }}</span>{% else %}<span class="pct zero">0%</span>{% endif %}
               </td>
-              <td class="num">
-                {% if s.open_rate > 0 %}<span class="pct">{{ '%.1f%%' % (s.open_rate * 100) }}</span>{% else %}<span class="pct zero">0%</span>{% endif %}
-              </td>
-              <td class="num">{{ '{:,}'.format(s.bounces) }}</td>
               <td class="num">{{ '{:,}'.format(s.unsubscribes) }}</td>
             </tr>
           {% endfor %}
@@ -160,9 +140,7 @@
           <tr>
             <th>Date</th>
             <th class="num">Sent</th>
-            <th class="num">Opens</th>
             <th class="num">Replies</th>
-            <th class="num">Bounces</th>
             <th class="num">Unsubs</th>
           </tr>
         </thead>
@@ -171,9 +149,7 @@
             <tr>
               <td>{{ d.date }}</td>
               <td class="num">{{ '{:,}'.format(d.emails_sent) }}</td>
-              <td class="num">{{ '{:,}'.format(d.emails_opened) }}</td>
               <td class="num">{{ '{:,}'.format(d.replies) }}</td>
-              <td class="num">{{ '{:,}'.format(d.bounces) }}</td>
               <td class="num">{{ '{:,}'.format(d.unsubscribes) }}</td>
             </tr>
           {% endfor %}

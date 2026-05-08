@@ -96,9 +96,7 @@ def upsert_daily_metrics(
     metrics_date: date,
     *,
     emails_sent: int = 0,
-    emails_opened: int = 0,
     replies: int = 0,
-    bounces: int = 0,
     unsubscribes: int = 0,
     raw_snapshot: dict | None = None,
 ) -> dict:
@@ -107,9 +105,7 @@ def upsert_daily_metrics(
         "step_index": step_index,
         "date": metrics_date.isoformat(),
         "emails_sent": emails_sent,
-        "emails_opened": emails_opened,
         "replies": replies,
-        "bounces": bounces,
         "unsubscribes": unsubscribes,
         "raw_snapshot": raw_snapshot or {},
     }

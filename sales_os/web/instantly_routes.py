@@ -69,9 +69,7 @@ def _safe_div(num: float, denom: float) -> float:
 def _aggregate_lifetime(metrics_rows: list[dict]) -> dict[str, int]:
     totals: dict[str, int] = {
         "emails_sent": 0,
-        "emails_opened": 0,
         "replies": 0,
-        "bounces": 0,
         "unsubscribes": 0,
     }
     for r in metrics_rows or []:
@@ -105,12 +103,9 @@ def outreach_list(request: Request):
             "status": c.get("status") or "",
             "started_at": c.get("started_at"),
             "emails_sent": sent,
-            "emails_opened": totals["emails_opened"],
             "replies": replies,
-            "bounces": totals["bounces"],
             "unsubscribes": totals["unsubscribes"],
             "reply_rate": _safe_div(replies, sent),
-            "open_rate": _safe_div(totals["emails_opened"], sent),
         })
 
     return _templates.TemplateResponse(
@@ -142,8 +137,7 @@ def outreach_detail(request: Request, campaign_id: str):
 
     # Per-step lifetime totals (sum across all dates).
     per_step: dict[int, dict[str, Any]] = defaultdict(lambda: {
-        "emails_sent": 0, "emails_opened": 0, "replies": 0,
-        "bounces": 0, "unsubscribes": 0,
+        "emails_sent": 0, "replies": 0, "unsubscribes": 0,
     })
     for r in metrics_rows:
         s = int(r.get("step_index") or 0)
@@ -170,15 +164,13 @@ def outreach_detail(request: Request, campaign_id: str):
             "subject": next((s.get("subject") for s in steps if int(s.get("step_index") or 0) == step), ""),
             **m,
             "reply_rate": _safe_div(replies_count, sent),
-            "open_rate": _safe_div(m["emails_opened"], sent),
         })
 
     lifetime = _aggregate_lifetime(metrics_rows)
 
     # Daily totals for last 30 days, summing across steps for the date column.
     daily: dict[str, dict[str, int]] = defaultdict(lambda: {
-        "emails_sent": 0, "emails_opened": 0, "replies": 0,
-        "bounces": 0, "unsubscribes": 0,
+        "emails_sent": 0, "replies": 0, "unsubscribes": 0,
     })
     for r in metrics_rows:
         d = r.get("date") or ""
@@ -193,7 +185,6 @@ def outreach_detail(request: Request, campaign_id: str):
             "campaign": campaign,
             "lifetime": lifetime,
             "lifetime_reply_rate": _safe_div(lifetime["replies"], lifetime["emails_sent"]),
-            "lifetime_open_rate": _safe_div(lifetime["emails_opened"], lifetime["emails_sent"]),
             "lifetime_positive_rate": _safe_div(positive_replies, lifetime["emails_sent"]),
             "positive_replies": positive_replies,
             "category_totals": dict(category_totals),
