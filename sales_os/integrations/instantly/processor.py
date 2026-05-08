@@ -172,13 +172,15 @@ def process_instantly_reply(payload: dict) -> dict:
 
 # ---------- daily snapshot ----------
 
-# Common metric field names returned by Instantly. We try each in order and
-# fall back to 0 — never crash on a shape change.
-_SENT_KEYS = ("emails_sent_count", "sent", "total_sent", "email_sent_count")
-_OPENED_KEYS = ("emails_opened_count", "opened", "total_opens", "open_count")
-_REPLIED_KEYS = ("emails_replied_count", "replied", "total_replies", "reply_count")
-_BOUNCED_KEYS = ("emails_bounced_count", "bounced", "total_bounces", "bounce_count")
-_UNSUB_KEYS = ("unsubscribes", "unsubscribe_count", "total_unsubscribes")
+# Field names returned by Instantly's /campaigns/analytics{,/steps} endpoints.
+# Verified against live payloads stored in raw_snapshot. We prefer the unique_*
+# variants where they exist (e.g. unique_replies dedupes multi-replies from the
+# same lead — that's the count users care about for reply-rate metrics).
+_SENT_KEYS = ("sent", "emails_sent_count", "total_sent", "email_sent_count")
+_OPENED_KEYS = ("unique_opened", "opened", "emails_opened_count", "total_opens", "open_count")
+_REPLIED_KEYS = ("unique_replies", "replies", "emails_replied_count", "replied", "total_replies", "reply_count")
+_BOUNCED_KEYS = ("unique_bounced", "bounced", "bounces", "emails_bounced_count", "total_bounces", "bounce_count")
+_UNSUB_KEYS = ("unsubscribes", "unsubscribed", "unsubscribe_count", "total_unsubscribes")
 
 
 def _sum_int(blob: dict, keys: tuple[str, ...]) -> int:
