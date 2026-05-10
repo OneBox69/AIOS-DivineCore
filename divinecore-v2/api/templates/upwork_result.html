@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Upwork Proposal — Result</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; max-width: 760px; margin: 40px auto; padding: 0 20px; color: #111; }
+    h1 { font-size: 22px; margin-bottom: 16px; }
+    h2 { font-size: 16px; margin-top: 28px; margin-bottom: 8px; }
+    .body { white-space: pre-wrap; background: #f7f7f8; padding: 16px; border-radius: 6px; border: 1px solid #e2e2e6; font: 14px/1.55 ui-monospace, monospace; }
+    .links { background: #fafafa; padding: 12px 16px; border-radius: 6px; border: 1px solid #eee; }
+    .links a { display: block; margin: 4px 0; }
+    .error { background: #fff1f1; border: 1px solid #f5b5b5; color: #7a1f1f; padding: 14px 16px; border-radius: 6px; }
+    .back { display: inline-block; margin-top: 24px; color: #555; text-decoration: none; }
+    .back:hover { color: #111; }
+    button.copy { float: right; padding: 4px 10px; font-size: 12px; background: #111; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  {% if error %}
+    <h1>Something went wrong</h1>
+    <div class="error">{{ error }}</div>
+  {% else %}
+    <h1>Done.</h1>
+
+    <h2>Application body
+      <button class="copy" onclick="navigator.clipboard.writeText(document.getElementById('body').innerText)">copy</button>
+    </h2>
+    <div id="body" class="body">{{ application_body }}</div>
+
+    <h2>Documents</h2>
+    <div class="links">
+      <a href="{{ proposal_url }}" target="_blank" rel="noopener">Proposal Doc &rarr; {{ proposal_url }}</a>
+      <a href="{{ script_url }}" target="_blank" rel="noopener">Sales script Doc &rarr; {{ script_url }}</a>
+    </div>
+  {% endif %}
+
+  <a class="back" href="/upwork">&larr; New proposal</a>
+</body>
+</html>

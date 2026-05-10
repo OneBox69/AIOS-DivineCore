@@ -1,0 +1,40 @@
+name: OAC E-Commerce Fulfillment Qualification
+description: Qualify criteria for 3PL fulfillment operators — Norwegian market
+
+qualify_indicators:
+  min_required: 2
+  checks:
+    - serves_multiple_retail_clients  # Not own-account like COOP
+    - minimum_150_employees_or_intl_group  # 150+ in Norway OR international parent with Nordic ambitions
+    - needs_15000_sqm_plus  # Facility requirement 15,000–40,000 sqm
+    - automated_warehouse_capability  # Modern automated fulfillment, not manual pick-and-pack
+    - norwegian_market_active_or_planned  # Currently in Norway or announced expansion
+
+kaufsignale_oac:
+  - signal: serving_norway_from_sweden
+    relevance: "Operating Norwegian fulfillment from Swedish facility — ripe for local hub"
+  - signal: norwegian_ecommerce_growth
+    relevance: "Growing Norwegian e-commerce volume justifies dedicated facility"
+  - signal: new_retail_client_wins
+    relevance: "Won major Norwegian online retailer — needs local capacity"
+  - signal: facility_at_capacity_south_oslo
+    relevance: "Current Oslo-area facility is full, southern plots unavailable"
+  - signal: nordic_market_entry_announced
+    relevance: "International operator entering Nordic market — needs greenfield site"
+
+disqualify:
+  - Own-account warehouse (single retailer, not 3PL)
+  - Pure software/WMS provider without physical operations
+  - Dropshipping platform
+  - Marketplace operator (not physical fulfillment)
+  - Company serving only B2B distribution (not e-commerce B2C fulfillment)
+  - Already located at Gardermoen/OAC
+
+research_depth:
+  required_signals:
+    - recent_projects: "New fulfillment centers, automation investments, facility expansions"
+    - key_hires: "Nordic/Norwegian leadership appointments, Head of Expansion hires"
+    - financial_signals: "Volume growth, new client announcements, investment in Nordic ops"
+    - trigger_events: "Norwegian market entry, capacity constraints, lease expiries"
+    - facility_status: "Current Norwegian/Nordic facility locations, size, automation level"
+    - oac_fit_reason: "Why single-building national coverage from E6/Gardermoen beats alternatives"

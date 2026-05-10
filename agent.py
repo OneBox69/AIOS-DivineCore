@@ -1,14 +1,8 @@
-from openai import OpenAI
+from fastapi import FastAPI
 from dotenv import load_dotenv
+from branding_os.agents.imagyn import router as imagyn_router
 
 load_dotenv()
 
-client = OpenAI()
-
-
-def main():
-    print("DivineSide Client Discovery Agent — ready.")
-
-
-if __name__ == "__main__":
-    main()
+app = FastAPI()
+app.include_router(imagyn_router)
