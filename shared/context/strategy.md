@@ -17,6 +17,27 @@ The frame: AI Operating Systems are what enterprise software was in 2010 — mos
 | **Sales OS (autonomous outbound)** | In build | Will execute volume once mature. Team sets strategy, system runs the operation. |
 | **Brand (long-term engine)** | In build | Building in public on YouTube + Instagram. The compounding engine. |
 
+## The 3-week niche-test cycle (operating rule)
+
+For any outbound campaign — cold email, LinkedIn, ads, anything that targets a niche — we commit to **3 weeks** before evaluating.
+
+```
+Week 0       →  Pick the niche + positioning
+Weeks 1–3    →  Run the campaign. Track:
+                  · Reply rate
+                  · Discovery calls booked
+                  · Calls that qualified
+Week 3 review →  KEEP if metrics trending up
+                 PIVOT if they're flat
+                 KILL if they're zero
+```
+
+**Why 3 weeks:** long enough to see signal, short enough to avoid sunk-cost commitment. If a niche doesn't work in 3 weeks, it probably won't work in 6 — pivot.
+
+This applies to every outbound surface, not just cold email. LinkedIn outreach, Upwork strategy, future ad campaigns — same cycle.
+
+**Current test:** UK skincare/beauty via cold email. Review at week 3 of the campaign.
+
 ## Content — cadence and platforms
 
 | Platform | Tier | Notes |

@@ -74,20 +74,23 @@ Expanding to: LinkedIn, Reddit, Skool, WhatsApp
 DivineSide/
 ├── CLAUDE.md                  ← Full AI context file (for Claude Code)
 ├── README.md                  ← This file
-├── branding-os/               ← Module 1: Creative Intelligence
+├── branding_os/               ← Module 1: Creative Intelligence
 │   ├── agents/                ← Agent definitions and system prompts
 │   ├── knowledge-base/        ← KB management scripts
 │   └── workflows/             ← n8n workflow exports (JSON)
-├── sales-os/                  ← Module 2: Revenue System
+├── sales_os/                  ← Module 2: Revenue System (Upwork integration live)
 │   ├── agents/
-│   └── workflows/
-├── ops-os/                    ← Module 3: Execution System
+│   ├── workflows/
+│   ├── integrations/upwork/   ← Celery tasks for proposal generation
+│   └── web/                   ← FastAPI router + templates for /upwork
+├── ops_os/                    ← Module 3: Execution System (Fathom integration live)
 │   ├── agents/
-│   └── workflows/
+│   ├── workflows/
+│   └── integrations/fathom/   ← Celery poller + processor
 ├── pulse/                     ← Module 4: Alert + Awareness
 │   ├── agents/
 │   └── workflows/
-├── networking-os/             ← Module 5: Networking & Recruitment
+├── networking_os/             ← Module 5: Networking & Recruitment
 │   ├── agents/
 │   ├── bots/
 │   └── workflows/

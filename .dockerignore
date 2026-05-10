@@ -1,0 +1,33 @@
+# Default ignore — applies to all builds with context=repo root.
+# Dockerfiles use explicit COPY paths, so this mainly trims the context sent to the daemon.
+
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+.git
+.gitignore
+.gitattributes
+
+.env
+.env.*
+!.env.example
+
+.venv
+venv
+
+.claude
+.vscode
+.idea
+
+# Knowledge base + workflow assets — not used at runtime by the API/worker.
+**/knowledge-base/
+**/workflows/
+shared/
+infrastructure/
+
+# Build artefacts
+**/celerybeat-schedule
+**/*.log
+node_modules
