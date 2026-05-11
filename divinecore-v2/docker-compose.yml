@@ -20,6 +20,7 @@ services:
       # hot-reload mounts — mirror what the Dockerfile copies in
       - ./api:/app
       - ../sales_os:/app/sales_os
+      - ../branding_os:/app/branding_os
 
   worker:
     build:
@@ -35,6 +36,7 @@ services:
       - ./worker:/app
       - ../sales_os:/app/sales_os
       - ../ops_os:/app/ops_os
+      - ../branding_os:/app/branding_os
 
   beat:
     build:
@@ -51,3 +53,4 @@ services:
       - ./worker:/app
       - ../sales_os:/app/sales_os
       - ../ops_os:/app/ops_os
+      - ../branding_os:/app/branding_os

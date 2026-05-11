@@ -12,5 +12,6 @@ COPY divinecore-v2/worker/ ./
 # domain modules live at /app/<module>/, importable via `sales_os.integrations.upwork.processor` etc.
 COPY sales_os/ ./sales_os/
 COPY ops_os/ ./ops_os/
+COPY branding_os/ ./branding_os/
 
 CMD ["celery", "-A", "celery_app", "worker", "--loglevel=info"]

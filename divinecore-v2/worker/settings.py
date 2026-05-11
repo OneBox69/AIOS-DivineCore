@@ -6,8 +6,12 @@ class WorkerSettings(BaseSettings):
 
     REDIS_URL: str = "redis://localhost:6379/0"
 
+    OPENAI_API_KEY: str = ""
+    ANTHROPIC_API_KEY: str = ""
+
     SUPABASE_URL: str = ""
     SUPABASE_SECRET_KEY: str = ""
+    SUPABASE_DB_URL: str = ""
 
     OPENROUTER_API_KEY: str = ""
     OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"
@@ -31,6 +35,9 @@ class WorkerSettings(BaseSettings):
     INSTANTLY_API_BASE_URL: str = "https://api.instantly.ai"
     DISCORD_OUTREACH_WEBHOOK_URL: str = ""
     DISCORD_OUTREACH_THREAD_ID: str = ""
+
+    # IMAGYN agent
+    IMAGYN_BOT_TOKEN: str = ""
 
 
 settings = WorkerSettings()

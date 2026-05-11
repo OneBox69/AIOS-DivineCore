@@ -11,5 +11,6 @@ COPY divinecore-v2/api/ ./
 
 # domain modules live at /app/<module>/, importable via `from sales_os.web import ...`
 COPY sales_os/ ./sales_os/
+COPY branding_os/ ./branding_os/
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

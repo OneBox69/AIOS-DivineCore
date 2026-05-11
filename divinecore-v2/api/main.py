@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from celery import Celery
 
 from sales_os.web import instantly_router, upwork_router
+from branding_os.web import imagyn_router
 from settings import settings
 
 celery_client = Celery("api", broker=settings.REDIS_URL, backend=settings.REDIS_URL)
@@ -10,6 +11,7 @@ celery_client = Celery("api", broker=settings.REDIS_URL, backend=settings.REDIS_
 app = FastAPI(title="DivineCore v2")
 app.include_router(upwork_router)
 app.include_router(instantly_router)
+app.include_router(imagyn_router)
 
 
 class EchoRequest(BaseModel):

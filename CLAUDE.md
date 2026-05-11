@@ -100,7 +100,7 @@ Current knowledge bases:
 | Module | Source | Format |
 |--------|--------|--------|
 | Branding OS | Kallaway (YouTube creator — best research on content creation) | Airtable (exact retrieval) + Supabase (semantic search) |
-| Sales OS | Alex Hormozi — $100M Offers + $100M Leads books | Airtable (structured frameworks) |
+| Sales OS | Alex Hormozi — $100M Offers + $100M Leads books | Supabase (structured frameworks) |
 
 Research workflow: watch source material → Tactiq transcription → Glasp highlights → paste into Claude Research project → extract structured lessons → enter into Airtable.
 
@@ -122,7 +122,7 @@ Full content pipeline from idea to publish-ready output. Five named agents:
 | VIGIL | Performance feedback loop — Instagram Graph API + YouTube Analytics |
 
 Knowledge base architecture:
-- **Airtable (Core Knowledge Base):** Kallaway's lessons. Fields: Title, Category, Core Lesson, Full Explanation, Content Attributes, Content Types, Source URL, Notes. 51+ entries. Exact retrieval.
+- **Supabase (Core Knowledge Base):** Kallaway's lessons. Fields: Title, Category, Core Lesson, Full Explanation, Content Attributes, Content Types, Source URL, Notes. 61+ entries. Exact retrieval by category filter.
 - **Supabase (Working Examples):** Real high-performing content pieces. Embedded via OpenAI text-embedding-3-small. pgvector semantic search. Finds examples by meaning, not keyword.
 
 Content Attributes (Kallaway framework): TAM Resonance, Idea Explosivity, Emotional Magnitude, Novelty, Speed to Value, Curiosity Amplitude, Absorption Rate, Rehook Rate, Stickiness
@@ -149,6 +149,12 @@ Capabilities:
 - Outbound: DMs, LinkedIn, WhatsApp, calls (when budget allows)
 
 Agents: Lead Agent, Follow-up Agent, Deal Agent
+
+| Agent | Role |
+|-------|------|
+| Scout | Sales outreach agent — initiates and manages outbound contact across platforms |
+
+Discord bot: Scout (APP)
 
 
 ### Module 3 — Ops OS (Execution System)
