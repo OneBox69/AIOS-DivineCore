@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Upwork Jobs Queue — DivineCore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; max-width: 1100px; margin: 40px auto; padding: 0 20px; color: #111; }
+    h1 { font-size: 22px; margin-bottom: 4px; }
+    p.lede { color: #555; margin-top: 0; margin-bottom: 24px; }
+    .tabs { display: flex; gap: 4px; border-bottom: 1px solid #eee; margin-bottom: 16px; }
+    .tabs a { padding: 10px 16px; text-decoration: none; color: #555; font-size: 14px; border-bottom: 2px solid transparent; }
+    .tabs a:hover { color: #111; }
+    .tabs a.active { color: #111; font-weight: 600; border-bottom-color: #111; }
+    .tabs .count { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 10px; background: #f3f4f6; color: #4b5563; font-size: 12px; font-weight: 600; }
+    .tabs a.active .count { background: #111; color: #fff; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; vertical-align: top; }
+    th { font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 0.04em; }
+    td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    a.row-link { color: #111; text-decoration: none; font-weight: 600; }
+    a.row-link:hover { text-decoration: underline; }
+    .meta { font-size: 12px; color: #666; margin-top: 4px; }
+    .meta .sep { margin: 0 6px; color: #ccc; }
+    .skill-chips { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px; }
+    .chip { background: #f3f4f6; color: #4b5563; padding: 2px 8px; border-radius: 10px; font-size: 11px; }
+    .chip.country-warn { background: #fff4e5; color: #b45309; }
+    .chip.country-open { background: #ecfdf5; color: #047857; }
+    .budget { font-variant-numeric: tabular-nums; font-weight: 600; }
+    .empty { color: #888; padding: 60px 0; text-align: center; }
+    .error { background: #fff1f1; border: 1px solid #f5b5b5; color: #7a1f1f; padding: 14px 16px; border-radius: 6px; margin: 20px 0; }
+    .schedule-note { font-size: 12px; color: #888; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Upwork Jobs Queue</h1>
+  <p class="lede">Daily Apify scrape of the saved-search URL — review one by one, click Generate to draft a proposal.</p>
+
+  <div class="tabs">
+    <a class="{% if tab == 'new' %}active{% endif %}" href="/upwork-jobs?tab=new">
+      New <span class="count">{{ counts.new }}</span>
+    </a>
+    <a class="{% if tab == 'skipped' %}active{% endif %}" href="/upwork-jobs?tab=skipped">
+      Skipped <span class="count">{{ counts.skipped }}</span>
+    </a>
+    <a class="{% if tab == 'applied' %}active{% endif %}" href="/upwork-jobs?tab=applied">
+      Applied <span class="count">{{ counts.applied }}</span>
+    </a>
+  </div>
+
+  {% if error %}
+    <div class="error">Failed to load queue: {{ error }}</div>
+  {% endif %}
+
+  {% if not jobs %}
+    {% if tab == 'new' %}
+      <div class="empty">
+        Queue is empty. The daily poller (05:40 MYT) populates this view.<br>
+        If it should already have jobs, check that <code>UPWORK_SEARCH_URL</code> and <code>APIFY_API_TOKEN</code> are set on the worker.
+      </div>
+    {% elif tab == 'skipped' %}
+      <div class="empty">No skipped jobs.</div>
+    {% else %}
+      <div class="empty">No jobs marked applied yet.</div>
+    {% endif %}
+  {% else %}
+    <table>
+      <thead>
+        <tr>
+          <th>Job</th>
+          <th>Client</th>
+          <th>Budget</th>
+          <th>Posted</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for j in jobs %}
+          <tr>
+            <td>
+              <a class="row-link" href="/upwork-jobs/{{ j.job_id }}">{{ j.title or '(untitled)' }}</a>
+              <div class="meta">
+                {% if j.experience_level %}{{ j.experience_level }}<span class="sep">·</span>{% endif %}
+                {% if j.contract_type %}{{ j.contract_type }}{% endif %}
+                {% if j.engagement %}<span class="sep">·</span>{{ j.engagement }}{% endif %}
+              </div>
+              <div class="skill-chips">
+                {% if j.country_restrictions is none %}
+                  <span class="chip country-open">open to all countries</span>
+                {% elif j.country_restrictions %}
+                  <span class="chip country-warn">restricted: {{ j.country_restrictions[:3] | join(', ') }}{% if j.country_restrictions|length > 3 %} +{{ j.country_restrictions|length - 3 }}{% endif %}</span>
+                {% endif %}
+                {% for s in (j.skills or [])[:5] %}
+                  <span class="chip">{{ s }}</span>
+                {% endfor %}
+                {% if j.skills and j.skills|length > 5 %}
+                  <span class="chip">+{{ j.skills|length - 5 }}</span>
+                {% endif %}
+              </div>
+            </td>
+            <td>
+              {% set cs = j.client_stats or {} %}
+              {% if cs.totalSpent is defined %}
+                <div><strong>${{ '{:,.0f}'.format(cs.totalSpent | float) }}</strong> spent</div>
+              {% elif cs.total_spent is defined %}
+                <div><strong>${{ '{:,.0f}'.format(cs.total_spent | float) }}</strong> spent</div>
+              {% endif %}
+              {% if cs.hires is defined %}
+                <div class="meta">{{ cs.hires }} hires</div>
+              {% endif %}
+              {% if cs.feedback is defined and cs.feedback %}
+                <div class="meta">★ {{ '%.2f' % (cs.feedback | float) }}</div>
+              {% endif %}
+              {% if cs.country %}
+                <div class="meta">{{ cs.country }}</div>
+              {% endif %}
+            </td>
+            <td>
+              {% set b = j.budget or {} %}
+              {% if b.amount is defined %}
+                <span class="budget">${{ '{:,.0f}'.format(b.amount | float) }}</span>
+                <div class="meta">fixed</div>
+              {% elif b.min is defined and b.max is defined %}
+                <span class="budget">${{ b.min }}–${{ b.max }}/hr</span>
+              {% elif b.hourlyMin is defined and b.hourlyMax is defined %}
+                <span class="budget">${{ b.hourlyMin }}–${{ b.hourlyMax }}/hr</span>
+              {% else %}
+                <span class="meta">—</span>
+              {% endif %}
+            </td>
+            <td class="meta">{{ j.posted_at or '—' }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+
+  <p class="schedule-note">Daily scrape runs at 05:40 MYT (21:40 UTC). Last fetch shows on each job's detail page.</p>
+</body>
+</html>

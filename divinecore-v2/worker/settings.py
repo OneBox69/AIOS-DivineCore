@@ -39,5 +39,18 @@ class WorkerSettings(BaseSettings):
     # IMAGYN agent
     IMAGYN_BOT_TOKEN: str = ""
 
+    # Upwork jobs feed (Apify-based scraper)
+    APIFY_API_TOKEN: str = ""
+    APIFY_UPWORK_ACTOR_ID: str = "neatrat/upwork-job-scraper"
+    UPWORK_SEARCH_URL: str = ""
+
+    # Social performance tracker (LinkedIn + X via Apify, hook/closing annotation via OpenRouter)
+    # Comma-separated lists so multiple authors can be tracked without a config table.
+    SOCIAL_PERF_LINKEDIN_PROFILES: str = ""  # e.g. "https://www.linkedin.com/in/foo,https://www.linkedin.com/in/bar"
+    SOCIAL_PERF_X_HANDLES: str = ""          # e.g. "foo,bar" (no leading @)
+    APIFY_LINKEDIN_ACTOR_ID: str = "apimaestro/linkedin-profile-posts"
+    APIFY_X_ACTOR_ID: str = "apidojo/tweet-scraper"
+    SOCIAL_PERF_ANNOTATOR_MODEL: str = "openai/gpt-4o-mini"
+
 
 settings = WorkerSettings()

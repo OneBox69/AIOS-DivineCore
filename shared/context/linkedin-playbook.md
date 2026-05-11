@@ -126,33 +126,9 @@ The final line(s) of a post. Should feel like a payoff — not a question, not a
 
 ## 05 · Post Examples You Like
 
-Paste full posts from influencers you admire here. Note what works: hook structure, format, closing style.
+Raw post examples now live in the cross-channel [`swipe-file.md`](swipe-file.md) §01 — log LinkedIn examples there alongside X / YouTube ones so cross-channel moves are easier to spot.
 
-### Post Example 1
-
-> **Source / Author:**
->
-> *Paste post text here.*
->
-> **What works:** *Note the hook/format/close that you liked.*
-
-### Post Example 2
-
-> **Source / Author:**
->
-> *Paste post text here.*
->
-> **What works:** *Note the hook/format/close that you liked.*
-
-### Post Example 3
-
-> **Source / Author:**
->
-> *Paste post text here.*
->
-> **What works:** *Note the hook/format/close that you liked.*
-
-(Add more examples below as you find them — paste the full post and note what specifically you liked.)
+This section keeps **templates** (hook patterns, CTA patterns, closing patterns — §02–04 above), since those are LinkedIn-mechanics-bound. Raw examples go to the swipe file.
 
 ---
 
@@ -300,31 +276,55 @@ These are the telltale signs:
 
 ## 10 · LinkedIn Profile Reference
 
-> ⚠️ **Pang: confirm and edit these — drafted as starting points. Specifically the headline character count and the "looking for beta brands" CTA.**
+Locked 2026-05-10. Update here if profile copy changes on LinkedIn — this stays the source of truth.
 
-### Headline (DRAFT — confirm)
+### Display name
 
-> Co-founder @ DivineSide · AI Operating Systems for e-comm beauty brands · 10–50 employee brands doing $500k+ · Building in public · 19
+> Yick Ho (YH) Pang
 
-### About Section (DRAFT — confirm + edit)
+### Headline
+
+> Co-founder @ DivineSide | AI Operating Systems for e-commerce brands | 10+ hrs back every week | 19yr old building in public.
+
+Magnet-broad on the niche (*e-commerce brands*, not *beauty brands*). The About below narrows back to the actual ICP — bio is the magnet, About is the buyer signal. LinkedIn outbound strategy in §09 still filters to e-commerce beauty specifically.
+
+### About
 
 > I'm 19. I've built AI automation systems for companies doing millions in revenue.
 >
-> **Reliable Medicare** — £2.23M net assets, ships to 150+ countries, 2,800+ Trustpilot reviews. I consulted on how AI could streamline their operations and built the systems myself.
+> Reliable Medicare — £2.23M net assets, ships to 150+ countries, 2,800+ Trustpilot reviews. Consulted on how AI could streamline their operations and built the systems myself.
 >
-> **Cracked.ai** — an AI startup out of Los Angeles deploying AI agents across TikTok, Instagram, and YouTube. I built their organic marketing automation system.
+> Cracked.ai — an AI startup out of Los Angeles deploying AI agents across TikTok, Instagram, and YouTube. Built their organic marketing automation system.
 >
-> Now I'm co-founding **DivineSide** with Mayank — an AI Operating System agency.
+> Now I'm co-founding DivineSide — an AI Operating System agency.
 >
 > Most "AI agencies" sell chatbots and call it AI. We build fully autonomous operating systems that run entire business functions end-to-end. The machine executes. Humans supervise.
 >
-> Our focus: **e-commerce beauty brands. 10–50 employees. $500k+ in revenue.** You're past founder-led ops, but not yet ready to hire a full ops/marketing team. We replace the work — not assist it.
+> Our focus: e-commerce beauty brands. 10–50 employees. $500k+ in revenue.
 >
-> We're looking for **5 beauty brands** to be the next DivineSide AI OS builds. If that's you, DM me "OS."
+> The promise: at least 8 hours a week back by week 4. If we don't deliver, you don't pay.
 >
 > ====
 >
-> 19 years old. CS student at Wuhan University. Malaysian. Building DivineSide in public. Follow me to watch us build this.
+> 19. CS student at Wuhan University. Malaysian. Building DivineSide in public — every system, every number, every week. Follow along.
+
+> ⚠️ **Guarantee wording divergence — pending decision (2026-05-10):** the line *"If we don't deliver, you don't pay"* reads as a full refund. The locked offer in [`offer.md`](offer.md) §04 says only the second half is at risk (£1.25k for founding pilots, £2.5k for standard) — the first 50% is non-refundable. Either tighten this About line to *"you don't pay the second half"*, OR strengthen offer.md to match this stronger promise. Resolve before any prospect compares the two.
+
+### Banner
+
+Gold-accent version, 1584 × 396 px (LinkedIn 4:1). Recomposed from the X version via Nano Banana. See [`x-playbook.md`](x-playbook.md) §10 for the original design specs.
+
+### Profile picture
+
+Portrait on yellow circle background — same image used on X for cross-channel consistency.
+
+### Location
+
+> Johor Bahru, Johore, Malaysia
+
+### Education shown
+
+> Wuhan University
 
 ---
 
