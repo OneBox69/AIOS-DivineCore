@@ -6,11 +6,17 @@ class WorkerSettings(BaseSettings):
 
     REDIS_URL: str = "redis://localhost:6379/0"
 
+    OPENAI_API_KEY: str = ""
+    ANTHROPIC_API_KEY: str = ""
+
     SUPABASE_URL: str = ""
     SUPABASE_SECRET_KEY: str = ""
+    SUPABASE_DB_URL: str = ""
 
     OPENROUTER_API_KEY: str = ""
     OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"
+
+    IMAGYN_BOT_TOKEN: str = ""
     CATEGORIZER_MODEL: str = "openai/gpt-4o-mini"
 
     FATHOM_API_KEY: str = ""

@@ -1,0 +1,173 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# EMAIL TEMPLATE — Fill in for any ICP
+# Used by: scripts/generate-copy-us.py and scripts/generate-copy-dach.py
+# ─────────────────────────────────────────────────────────────────────────────
+# HOW THE COPY ENGINE WORKS
+#   1. It reads column U (signal_type) and column V (phrase/observation) per lead
+#   2. It finds the matching signal_type block below
+#   3. It inserts {{opener_line}} which is built from the phrase in column V
+#   4. It writes the finished email back to the Google Sheet (columns W–Z)
+#
+# AVAILABLE PLACEHOLDERS
+#   {{first_name}}     — lead's first name (US) or salutation (DACH e.g. "Herr Müller")
+#   {{opener_line}}    — auto-built from signal type + phrase. Do NOT write manually.
+#   {{company_name}}   — lead's company name
+#   {{founded_year}}   — year the company was founded (from scrape data)
+#
+# SIGNAL TYPES — use exactly these names (script matches on them):
+#   pain_fwd_reception    — they're missing after-hours / instant response
+#   pain_fwd_reactivation — they have old customers going cold
+#   pain_fwd_speed        — they're running ads but slow to respond
+#   pain_fwd_upsell       — they have a broad offering but no cross-sell system
+#   fallback              — no specific signal found, generic approach
+#
+# WORD LIMIT: under 150 words per email (first_touch body)
+# FORMAT: each signal_type is a separate YAML document separated by ---
+# ─────────────────────────────────────────────────────────────────────────────
+
+---
+
+signal_type: pain_fwd_reception
+
+first_touch:
+  subject: "<FILL_IN>"
+  # SUBJECT TIP: short, curiosity-driving, first-name or question format.
+  # e.g. "Quick question, {{first_name}}" or "{{company_name}} — quick thought"
+  body: |
+    <SALUTATION> {{first_name}},
+
+    {{opener_line}}
+
+    <FILL_IN: one sentence describing what you do for this pain point>
+    <FILL_IN: one sentence of social proof — "already doing this for X type of businesses">
+    <FILL_IN: one sentence of exclusivity/urgency — "no one in your market is doing this yet">
+
+    <FILL_IN: CTA — e.g. "Worth a quick 15-min call this week?">
+
+    <YOUR_NAME>
+    <YOUR_COMPANY>
+
+second_touch:
+  subject: "Re: <SAME AS first_touch subject>"
+  body: |
+    <SALUTATION> {{first_name}},
+
+    <FILL_IN: 1-line gentle follow-up, e.g. "just following up — did my last email reach you?">
+
+    <YOUR_NAME>
+
+---
+
+signal_type: pain_fwd_reactivation
+
+first_touch:
+  subject: "<FILL_IN>"
+  body: |
+    <SALUTATION> {{first_name}},
+
+    {{opener_line}}
+
+    <FILL_IN: one sentence on what you do for reactivation pain>
+    <FILL_IN: social proof>
+    <FILL_IN: exclusivity/urgency>
+
+    <FILL_IN: CTA>
+
+    <YOUR_NAME>
+    <YOUR_COMPANY>
+
+second_touch:
+  subject: "Re: <SAME AS first_touch subject>"
+  body: |
+    <SALUTATION> {{first_name}},
+
+    <FILL_IN: 1-line follow-up>
+
+    <YOUR_NAME>
+
+---
+
+signal_type: pain_fwd_speed
+
+first_touch:
+  subject: "<FILL_IN>"
+  body: |
+    <SALUTATION> {{first_name}},
+
+    {{opener_line}}
+
+    <FILL_IN: one sentence on what you do for speed pain>
+    <FILL_IN: social proof>
+    <FILL_IN: exclusivity/urgency>
+
+    <FILL_IN: CTA>
+
+    <YOUR_NAME>
+    <YOUR_COMPANY>
+
+second_touch:
+  subject: "Re: <SAME AS first_touch subject>"
+  body: |
+    <SALUTATION> {{first_name}},
+
+    <FILL_IN: 1-line follow-up>
+
+    <YOUR_NAME>
+
+---
+
+signal_type: pain_fwd_upsell
+
+first_touch:
+  subject: "<FILL_IN>"
+  body: |
+    <SALUTATION> {{first_name}},
+
+    {{opener_line}}
+
+    <FILL_IN: one sentence on what you do for upsell pain>
+    <FILL_IN: social proof>
+    <FILL_IN: exclusivity/urgency>
+
+    <FILL_IN: CTA>
+
+    <YOUR_NAME>
+    <YOUR_COMPANY>
+
+second_touch:
+  subject: "Re: <SAME AS first_touch subject>"
+  body: |
+    <SALUTATION> {{first_name}},
+
+    <FILL_IN: 1-line follow-up>
+
+    <YOUR_NAME>
+
+---
+
+signal_type: fallback
+
+first_touch:
+  subject: "<FILL_IN>"
+  body: |
+    <SALUTATION> {{first_name}},
+
+    came across {{company_name}} — <FILL_IN: one relevant observation about the company>.
+
+    Quick question: <FILL_IN: a diagnostic question that surfaces which pain they have>.
+
+    <FILL_IN: social proof + exclusivity line>
+
+    <FILL_IN: CTA>
+
+    <YOUR_NAME>
+    <YOUR_COMPANY>
+
+second_touch:
+  subject: "Re: <SAME AS first_touch subject>"
+  body: |
+    <SALUTATION> {{first_name}},
+
+    <FILL_IN: 1-line follow-up>
+
+    <YOUR_NAME>

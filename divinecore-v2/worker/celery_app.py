@@ -12,6 +12,7 @@ app = Celery(
         "integrations.fathom.processor",
         "integrations.fathom.poller",
         "integrations.upwork.processor",
+        "branding_os.agents.imagyn",
     ],
 )
 
