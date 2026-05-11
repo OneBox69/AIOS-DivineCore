@@ -33,7 +33,7 @@ services:
       - traefik.http.routers.upwork.entrypoints=websecure
       - traefik.http.routers.upwork.tls=true
       - traefik.http.routers.upwork.middlewares=upwork-auth@docker
-      - traefik.http.middlewares.upwork-auth.basicauth.users=OneBox69:$$2y$$05$$zLYijFgcKFvjlTDw3nBiF.eLjOF8XspL.lB819UMTq8GH2rS/I55y
+      - traefik.http.middlewares.upwork-auth.basicauth.users=OneBox69:$$2a$$05$$ukbdfGGC/.r9/L2q.10KpuRrzSM6u.0RI.eAqs4UGu9M6AfBqRM4e
       - traefik.http.services.upwork.loadbalancer.server.port=8000
       # Router B — public Instantly webhook. No basicauth — Instantly can't auth.
       # Auth happens inside the FastAPI handler via the X-Webhook-Secret header.
