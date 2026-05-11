@@ -5,7 +5,9 @@ services:
       - "6379:6379"
 
   api:
-    build: ./api
+    build:
+      context: ..
+      dockerfile: divinecore-v2/api/Dockerfile
     ports:
       - "8000:8000"
     env_file:
@@ -15,10 +17,15 @@ services:
     depends_on:
       - redis
     volumes:
+      # hot-reload mounts — mirror what the Dockerfile copies in
       - ./api:/app
+      - ../sales_os:/app/sales_os
+      - ../branding_os:/app/branding_os
 
   worker:
-    build: ./worker
+    build:
+      context: ..
+      dockerfile: divinecore-v2/worker/Dockerfile
     env_file:
       - .env
     environment:
@@ -27,9 +34,14 @@ services:
       - redis
     volumes:
       - ./worker:/app
+      - ../sales_os:/app/sales_os
+      - ../ops_os:/app/ops_os
+      - ../branding_os:/app/branding_os
 
   beat:
-    build: ./worker
+    build:
+      context: ..
+      dockerfile: divinecore-v2/worker/Dockerfile
     command: celery -A celery_app beat --loglevel=info
     env_file:
       - .env
@@ -39,3 +51,6 @@ services:
       - redis
     volumes:
       - ./worker:/app
+      - ../sales_os:/app/sales_os
+      - ../ops_os:/app/ops_os
+      - ../branding_os:/app/branding_os

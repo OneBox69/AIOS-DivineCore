@@ -60,8 +60,8 @@ Same shape regardless of where it lives:
 ## 04 · Where things commit
 
 - **Workflow spec + handoff docs** → client's brain repo (`<brand>-ai-brain` on GitHub)
-- **n8n workflow JSON exports** → relevant module folder (`branding-os/workflows/`, `sales-os/workflows/`, etc.) per CLAUDE.md §11
-- **divinecore-v2 Python code** → `divinecore-v2/worker/integrations/<feature>/` per the existing pattern
+- **n8n workflow JSON exports** → relevant module folder (`branding_os/workflows/`, `sales_os/workflows/`, etc.) per CLAUDE.md §11
+- **divinecore-v2 Python code** → `<module>/integrations/<feature>/` (e.g. `sales_os/integrations/upwork/`, `ops_os/integrations/fathom/`); divinecore-v2/ stays runtime-only
 - **Credentials** → Bitwarden vault. Never in code, never in git.
 - **Run logs / metrics** → TBD; flag if you build a monitoring layer
 

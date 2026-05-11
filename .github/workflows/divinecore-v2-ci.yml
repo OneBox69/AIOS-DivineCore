@@ -5,11 +5,15 @@ on:
     branches: [main]
     paths:
       - 'divinecore-v2/**'
+      - 'sales_os/**'
+      - 'ops_os/**'
       - '.github/workflows/divinecore-v2-ci.yml'
   pull_request:
     branches: [main]
     paths:
       - 'divinecore-v2/**'
+      - 'sales_os/**'
+      - 'ops_os/**'
       - '.github/workflows/divinecore-v2-ci.yml'
   workflow_dispatch:
 
@@ -29,9 +33,9 @@ jobs:
       matrix:
         component:
           - name: api
-            context: divinecore-v2/api
+            dockerfile: divinecore-v2/api/Dockerfile
           - name: worker
-            context: divinecore-v2/worker
+            dockerfile: divinecore-v2/worker/Dockerfile
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -60,8 +64,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: ${{ matrix.component.context }}
-          file: ${{ matrix.component.context }}/Dockerfile
+          context: .
+          file: ${{ matrix.component.dockerfile }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

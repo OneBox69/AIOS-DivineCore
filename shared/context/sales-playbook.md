@@ -28,7 +28,7 @@ Last updated: 2026-05-04
 
 - UK-based e-commerce beauty or skincare brand
 - Annual revenue between £500k and £5M
-- 5-10 full-time team members
+- 5-50 full-time team members
 - At least one operational function visibly under-resourced (CS slow, returns manual, influencer ops eating hours, content cadence inconsistent)
 
 **If a reply doesn't fit:**
@@ -36,6 +36,18 @@ Last updated: 2026-05-04
 - Clearly too big → polite decline, add to a future-pipeline list, revisit when we have case studies at scale
 
 The qualifier line in the cold email and booking form does most of this filtering pre-call. We don't want to be on a call with a brand we can't help.
+
+### Filtering posture by channel
+
+The strict ICP above applies to **cold outbound only**. Other channels run on a different filter:
+
+| Channel | Filter | Rationale |
+|---|---|---|
+| Cold email | Strict — UK skincare/beauty only | The niche IS the wedge — drop it and the email is generic |
+| LinkedIn / Upwork / inbound | Open — qualify on budget + fit | Lead source already filtered for intent |
+| Warm intro / network | Open — say yes if budget exists | Trust pre-qualifies |
+
+**The rule: niche is for who we hunt, not for who we accept.** A non-UK lead with budget walking in through LinkedIn or Upwork = still a yes.
 
 ---
 
