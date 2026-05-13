@@ -6,7 +6,7 @@ services:
       - divinecore
 
   api:
-    image: ghcr.io/onebox69/aios-divinecore/api:latest
+    image: ghcr.io/divineside/aios-divinecore/api:latest
     restart: unless-stopped
     env_file:
       - .env
@@ -45,7 +45,7 @@ services:
       - traefik.http.routers.instantly-webhook.service=upwork
 
   worker:
-    image: ghcr.io/onebox69/aios-divinecore/worker:latest
+    image: ghcr.io/divineside/aios-divinecore/worker:latest
     restart: unless-stopped
     env_file:
       - .env
@@ -57,7 +57,7 @@ services:
       - divinecore
 
   beat:
-    image: ghcr.io/onebox69/aios-divinecore/worker:latest
+    image: ghcr.io/divineside/aios-divinecore/worker:latest
     restart: unless-stopped
     command: celery -A celery_app beat --loglevel=info
     env_file:

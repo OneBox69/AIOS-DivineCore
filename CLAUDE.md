@@ -272,16 +272,17 @@ Do not store passwords or API keys in this file. Reference only.
 - Pang (`yhpang@oneboxagency.com`) — authorized 2026-05-03. ed25519 key, no passphrase, generated on his Windows laptop at `C:\Users\user\.ssh\id_ed25519`. Personal access; CI auto-deploy will use a separate key when wired up.
 - To grant or revoke a teammate's SSH access: edit `/root/.ssh/authorized_keys` on the VPS (one public key per line, comment field identifies the person).
 
-**GitHub repository — `OneBox69/AIOS-DivineCore`** (Pang's fork, primary working repo)
-- Upstream `DivineSide/AIOS-DivineCore` is currently stale; all active work happens on the fork.
-- GitHub Actions secrets:
-  - `GITHUB_TOKEN` — auto-provisioned, used to push images to GHCR.
+**GitHub repositories**
+- **Upstream `DivineSide/AIOS-DivineCore`** is the source of truth as of 2026-05. Mayank pushes direct, and its CI builds the prod images the VPS runs. Pang has admin access — can push directly without a PR.
+- **Fork `OneBox69/AIOS-DivineCore`** remains Pang's dev sandbox. Fork's CI still builds images to `ghcr.io/onebox69/...` but those images are unused; prod pulls from the upstream-org namespace.
+- GitHub Actions secrets (on the fork):
+  - `GITHUB_TOKEN` — auto-provisioned.
   - `DISCORD_WEBHOOK_URL` — webhook for `#deploys` channel. Configured 2026-05-03.
 
-**GitHub Container Registry (`ghcr.io/onebox69/aios-divinecore/{api,worker}`)**
-- Images are **private**. Pulling requires auth.
-- A classic PAT with `read:packages` scope only is cached on the VPS at `/root/.docker/config.json` (set up 2026-05-03 via `docker login ghcr.io -u onebox69 --password-stdin`). Rotate on PAT expiration.
-- Anyone else pulling these images on a new machine needs to either be invited as a collaborator or generate their own `read:packages` PAT.
+**GitHub Container Registry (`ghcr.io/divineside/aios-divinecore/{api,worker}`)**
+- Images are **private** and published by upstream's CI.
+- VPS auth: PAT with `read:packages` scope cached at `/root/.docker/config.json`. Anyone pulling these on a new machine needs DivineSide-org package access + their own `read:packages` PAT.
+- Migration note: the VPS previously pulled from `ghcr.io/onebox69/...` (set up 2026-05-03); switched to `divineside` on 2026-05-13 when upstream took over builds.
 
 
 ## 11. REPOSITORY STRUCTURE CONVENTIONS
