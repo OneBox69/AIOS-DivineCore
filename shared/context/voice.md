@@ -33,6 +33,7 @@ The shape we're aiming for:
 - Don't use emoji as decoration. Use them as punctuation, sparingly, or not at all.
 - Don't humble-brag. State results plainly.
 - Don't write the word "leverage" as a verb. Ever.
+- **Don't use em-dashes (—).** Period, comma, parens, or colon instead. Em-dashes are the #1 AI tell in 2026, and Pang has flagged this as a repeat issue. Replace with: period (break into two sentences) for the most natural read; comma for inline asides; parens for parentheticals; colon for definitions or list intros. Hyphens in compound words (nice-to-have, build-in-public, AI-first) are fine. Only the long em-dash is banned.
 
 ## Banned phrases
 

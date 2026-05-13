@@ -8,7 +8,7 @@
 >
 > **Update discipline**: when you screenshot, save, or scroll past something that hits — paste it in here within 24 hours. It rots otherwise.
 
-Last updated: 2026-05-10
+Last updated: 2026-05-13
 
 ---
 
@@ -29,15 +29,50 @@ Any writing agent (LinkedIn / X / YouTube / sales email) can load this file as o
 
 ## 01 · LinkedIn
 
-### Example 1
+### Example 1 — Auditing autonomous AI agents
 
-> **Source / author:** *(handle + name)*
-> **Posted:** *(date)*
+> **Source / author:** *(unattributed; fill in when re-encountered)*
+> **Posted / logged:** 2026-05-13
+> **Topic intent:** Pang wants to write his own version of this topic. Highly relevant to DivineSide because we ship autonomous agents for clients. Angles: permissions audits, decision logs, the human-in-loop tradeoff (our "humans supervise" framing per [`../../CLAUDE.md`](../../CLAUDE.md) §1), and how client trust scales with audit-ability as AI OS deployments expand.
 >
-> *(paste full post text)*
+> ---
 >
-> **What works:** *(1–3 bullets on the specific mechanic)*
-> **Transfers to:** *(LinkedIn / X / YouTube — pick the ones it adapts to)*
+> 𝗗𝗶𝗱 𝗮𝗻𝘆𝗼𝗻𝗲 𝗳𝗶𝗴𝘂𝗿𝗲 𝗼𝘂𝘁 𝗵𝗼𝘄 𝘁𝗼 𝗮𝘂𝗱𝗶𝘁 𝘁𝗵𝗲𝘀𝗲 𝗔𝗜 𝗮𝗴𝗲𝗻𝘁𝘀 𝘆𝗲𝘁?
+>
+> If you keep a human in the loop, your AI agent moves at human speed...
+>
+> ➜ 𝗬𝗼𝘂 𝗸𝗶𝗹𝗹𝗲𝗱 𝘁𝗵𝗲 𝗽𝗼𝗶𝗻𝘁 𝗼𝗳 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗼𝗻.
+> If you remove the human, agents make decisions nobody reviewed.
+>
+> ➜ 𝗧𝗵𝗮𝘁 𝗶𝘀 𝘄𝗵𝗲𝗿𝗲 𝘂𝗻𝗲𝘅𝗽𝗲𝗰𝘁𝗲𝗱 𝗼𝘂𝘁𝗰𝗼𝗺𝗲𝘀 𝗹𝗶𝘃𝗲.
+> There is no clean middle ground yet.
+>
+> 𝗦𝗼 𝘄𝗵𝗮𝘁 𝗮𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝗵𝗲𝗹𝗽𝘀 𝗿𝗶𝗴𝗵𝘁 𝗻𝗼𝘄?
+>
+> 1️⃣ 𝗦𝘁𝗮𝗿𝘁 𝘄𝗶𝘁𝗵 𝗽𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻𝘀. Before anything else, audit what your AI agents have access to. Permissions are static. They are the one thing you can check today without needing a new framework. If an agent has access it should not have, that is your first finding.
+>
+> 2️⃣ 𝗧𝗵𝗲𝗻 𝗰𝗮𝗽𝘁𝘂𝗿𝗲 𝗱𝗲𝗰𝗶𝘀𝗶𝗼𝗻𝘀 𝗶𝗻 𝗮𝘂𝗱𝗶𝘁 𝗹𝗼𝗴𝘀. Not every micro-step. High-level decision logs that let you reconstruct what happened and why after the fact. Retrospective visibility is not perfect but it is what we have right now.
+>
+> ➜ I think this is what is coming in the next six months.
+>
+> Autonomous agents will make mistakes. Because we as humans did not think through every permutation, limitation and edge case when we designed what they were supposed to do.
+>
+> Those mistakes will trigger retrospective loops. Lessons learned. Process refinement. Agent retraining. Not even a failure of AI. It is the actual implementation reality nobody is talking about, honestly.
+>
+> ➜ 𝗚𝗼𝗼𝗴𝗹𝗲 𝘁𝗵𝗲 𝘁𝗲𝗿𝗺 𝗔𝗖𝗘 (𝗔𝗴𝗲𝗻𝘁 𝗖𝗼𝗻𝘁𝗲𝘅𝘁 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴). Great AI approach currently imo.
+>
+> For anyone starting out in GRC or AI security, this is your entry point.
+>
+> Audit permissions first. Build logging second. And get comfortable with the fact that the audit frameworks for autonomous AI are still being written in real time.
+>
+> ---
+>
+> **What works:**
+> - **Paradox-as-hook.** Opens with a question, then sets up a forced dichotomy (human-in-loop kills automation vs. no-human creates unreviewed decisions). The reader keeps scrolling to find where the third option is.
+> - **Specific terminology drop.** Names *"ACE (Agent Context Engineering)"* with an instruction to Google it. Signals insider knowledge, gives the reader a follow-up action that builds trust without selling anything.
+> - **Actionable today vs. waiting for the field to mature.** Closes with *"audit permissions first, build logging second."* Concrete first steps that work even though the broader frameworks aren't written yet. Turns abstract anxiety into a Monday-morning task list.
+>
+> **Transfers to:** LinkedIn (native fit), X (would adapt as a 6–8 tweet thread with the paradox in T1 and the ACE term as the surprise mid-thread payoff), YouTube short (the *"there's no clean middle ground yet"* line is a strong cold-open hook).
 
 ### Example 2
 
@@ -112,4 +147,4 @@ For *moves* that aren't tied to one platform — abstract patterns you can name.
 
 ---
 
-*DivineSide Cross-Channel Swipe File · 2026-05-10*
+*DivineSide Cross-Channel Swipe File · 2026-05-13*

@@ -10,7 +10,7 @@
 >
 > This file does **not** restate persona — that lives in `pang.md`. If you find yourself describing personality or content pillars here, move it to `pang.md` instead.
 
-Last updated: 2026-05-03
+Last updated: 2026-05-12
 
 ---
 
@@ -42,6 +42,21 @@ Last updated: 2026-05-03
 - "Hot take:" (just *make* the take)
 - "Have you ever wondered..." / "What if I told you..."
 - "Thoughts?" as a closer
+
+### Differentiation Requirement
+
+**Every LinkedIn post must make at least one explicit distinction between what DivineSide builds and what generic "AI automation agencies" build.** Without it, the post reads like every other AI-automation flex on the feed and the brand gets sorted into the same bucket as them.
+
+**Why:** Posts that show *what was built* without naming *what makes our approach structurally different* don't move the brand forward. The LinkedIn audience already has ten of those in their feed every day. We need to look like a different category, not a better version of the same one. This is the rule that protects against the "this just sounds like every other automation post" failure mode.
+
+**How to apply.** Pick at least one of these per post — not all four, but at least one, surfaced clearly enough that a skimmer catches it:
+
+- **The context layer.** We don't run AI on a one-off prompt. We build a context folder *with* the founder — markdown files covering their customers, business, strategy, voice, competitors, team, SOPs, lead channels. Every workflow reads from this folder before it makes a decision. The AI knows the business; it isn't guessing. (Source: [`offer.md`](offer.md) §02 Phase 1)
+- **Embedded expertise.** We feed each workflow the public frameworks of domain experts — media buyers, copywriters, retention strategists, whoever owns the discipline that workflow lives in — so the AI makes decisions the way an expert would, not the way a generic chatbot would. (Source: [`../../CLAUDE.md`](../../CLAUDE.md) §5)
+- **Operating system, not standalone workflow.** We build a layer that wraps the entire business. Each new workflow compounds on the brain we built for the previous one — workflow #2 starts smarter than workflow #1, workflow #3 starts smarter than #2. Standalone automations don't compound. (Source: [`offer.md`](offer.md) §07)
+- **Skin-in-the-game guarantee.** 8+ hours a week back by week 4, or you don't pay the second half. Most "AI agencies" charge upfront with no risk on either side. (Source: [`offer.md`](offer.md) §04)
+
+**Naming discipline still applies.** Per [`offer.md`](offer.md) §01, default to leading with the outcome (*"your business, running on AI"*) rather than the category noun (*"AI Operating System"*). Exception: foundational/announcement posts where the category itself is the subject — those earn the term by being the introduction (e.g. the 2026-05-11 pivot post).
 
 ---
 
@@ -336,12 +351,13 @@ Run through this before every post goes live:
 - [ ] Does it pass the 'so what?' test — is there a real insight here?
 - [ ] Is every sentence necessary? Cut anything that's filler.
 - [ ] Does it reinforce at least one of: **age / DivineSide / e-comm beauty ICP / building in public**? (See Constant Reinforcement in [`pang.md`](pang.md))
+- [ ] Does it draw at least one explicit distinction between DivineSide and generic "AI automation agencies" — context layer, embedded expertise, operating-system framing, or the guarantee? (See §01 Differentiation Requirement)
 - [ ] Is the closing strong — not a generic question?
 - [ ] No corporate buzzwords. No emojis (unless intentional). No exclamation marks.
 - [ ] Would a smart, busy beauty brand operator stop scrolling for this?
 
-If yes to all 7 — post it.
+If yes to all 8 — post it.
 
 ---
 
-*Pang · DivineSide LinkedIn Content Playbook · 2026-05-03*
+*Pang · DivineSide LinkedIn Content Playbook · 2026-05-12*

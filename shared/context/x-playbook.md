@@ -15,7 +15,7 @@
 >
 > v0 — strategic frame only. Hooks / CTAs / closings / post-type frameworks land here once Pang has a feel for what works on X (mirror the structure of [`linkedin-playbook.md`](linkedin-playbook.md) when adding them).
 
-Last updated: 2026-05-10
+Last updated: 2026-05-12
 
 Adapted from Matt Gray's X Growth Blueprint, pruned to the parts we use.
 
@@ -137,6 +137,21 @@ Every thread should serve at least two of these:
 **Sourcing**
 
 - Lean on the founders' own work — meeting transcripts (Fathom), build screenshots, in-flight client wins. Cult following comes from authenticity, not curation.
+
+**Differentiation Requirement**
+
+Every X thread (and most single-tweet posts about the build) must make at least one explicit distinction between what DivineSide builds and what generic "AI automation" or "AI agency" players build. Without it, the thread gets bucketed with the rest of the automation timeline and the brand forfeits the category-ownership goal in §05.
+
+**Why:** The X audience surfaces build detail naturally — peer founders care about how things are built. But *"I shipped a workflow that does X"* reads the same whether it's from us or from someone selling Zapier zaps. The difference has to be visible inside the thread, not just inferred from the bio. This is also the rule that protects against the "this just sounds like every other AI automation thread" failure mode.
+
+**How to apply.** Pick at least one of these per thread — not all four, but at least one, surfaced clearly enough that a skimmer catches it:
+
+- **The context layer.** We don't run AI on a one-off prompt. We build a context folder *with* the founder — markdown files covering their customers, business, strategy, voice, competitors, team, SOPs, lead channels. Every workflow reads from this folder before it makes a decision. The AI knows the business; it isn't guessing. (Source: [`offer.md`](offer.md) §02 Phase 1)
+- **Embedded expertise.** We feed each workflow the public frameworks of domain experts — media buyers, copywriters, retention strategists, whoever owns the discipline that workflow lives in — so the AI makes decisions the way an expert would, not the way a generic chatbot would. (Source: [`../../CLAUDE.md`](../../CLAUDE.md) §5)
+- **Operating system, not standalone workflow.** We build a layer that wraps the entire business. Each new workflow compounds on the brain we built for the previous one — workflow #2 starts smarter than workflow #1, #3 starts smarter than #2. Standalone automations don't compound. (Source: [`offer.md`](offer.md) §07)
+- **Skin-in-the-game guarantee.** 8+ hours a week back by week 4, or you don't pay the second half. Less load-bearing on X than on LinkedIn (the pilot offer is sold elsewhere per §07 below) but valid when a thread overlaps with the buyer narrative. (Source: [`offer.md`](offer.md) §04)
+
+**Naming discipline still applies.** See §08 below and [`offer.md`](offer.md) §01: default to leading with the outcome (*"your business, running on AI"*) rather than the category noun (*"AI Operating System"*). Exception: foundational/announcement threads where the category itself is the subject — those earn the term by being the introduction.
 
 ## 07 · X Growth Strategy
 
@@ -282,4 +297,4 @@ Drafted 2026-05-10 — see §11 below for the full thread copy. Update §11 in p
 
 ---
 
-*Pang · DivineSide X Content Playbook · 2026-05-10*
+*Pang · DivineSide X Content Playbook · 2026-05-12*
