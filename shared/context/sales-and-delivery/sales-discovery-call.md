@@ -7,10 +7,10 @@
 > **Loading discipline** — any agent or human running a discovery call should load:
 > 1. [`offer.md`](offer.md) — **what we sell** (locked headline, pricing, guarantee). Critical — the call's offer-framing pulls from here.
 > 2. [`delivery.md`](delivery.md) — what happens after the deal closes (so the call doesn't promise things delivery can't ship)
-> 3. [`business-info.md`](business-info.md) — what we do as a company
-> 4. [`audience.md`](audience.md) — who's on the other side of the call
-> 5. [`voice.md`](voice.md) — brand tone
-> 6. The relevant persona — [`mayank.md`](mayank.md) or [`pang.md`](pang.md) — for whoever's running the call
+> 3. [`business-info.md`](../identity/business-info.md) — what we do as a company
+> 4. [`audience.md`](../identity/audience.md) — who's on the other side of the call
+> 5. [`voice.md`](../identity/voice.md) — brand tone
+> 6. The relevant persona — [`mayank.md`](../identity/mayank.md) or [`pang.md`](../identity/pang.md) — for whoever's running the call
 > 7. [`sales-playbook.md`](sales-playbook.md) — broader sales SOP (qualification, audit doc, follow-up)
 > 8. **This file** — the call itself
 
@@ -43,7 +43,7 @@ Last updated: 2026-05-04
 
 ## 0–5 · Rapport + meeting-notes offer
 
-Brief small talk — load the relevant persona file ([`mayank.md`](mayank.md) or [`pang.md`](pang.md)) for the actual content; this isn't a script. Keep it light, get them laughing if you can, humanize early. *"You're not the only one anxious on this call by the way"* lands well.
+Brief small talk — load the relevant persona file ([`mayank.md`](../identity/mayank.md) or [`pang.md`](../identity/pang.md)) for the actual content; this isn't a script. Keep it light, get them laughing if you can, humanize early. *"You're not the only one anxious on this call by the way"* lands well.
 
 Once they're warmed up, transition out:
 

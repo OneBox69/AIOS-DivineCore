@@ -1,4 +1,4 @@
-"""LLM prompt templates for the Upwork pipeline. Voice rules sourced from shared/context/voice.md + pang.md.
+"""LLM prompt templates for the Upwork pipeline. Voice rules sourced from shared/context/identity/voice.md + pang.md.
 
 The Upwork-facing voice intentionally does NOT use 'agency' or 'co-founder' framing —
 buyers on Upwork can be averse to agencies. Pang is positioned as a single builder.

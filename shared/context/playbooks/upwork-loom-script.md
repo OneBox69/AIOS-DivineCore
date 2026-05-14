@@ -2,7 +2,7 @@
 
 > The standardized Loom video Pang records and attaches to every Upwork application. Replaces per-job sales-script generation — same shape, different specifics, every time.
 >
-> Pairs with [guarantee.md](guarantee.md) (the guarantee terms referenced in §05 below) and [pang.md](pang.md) (persona / voice).
+> Pairs with [guarantee.md](../sales-and-delivery/guarantee.md) (the guarantee terms referenced in §05 below) and [pang.md](../identity/pang.md) (persona / voice).
 
 Target length: **~5:30–6:00** (the safety/governance Layer-3 beat is worth the extra time vs. the old 2:30 target).
 
@@ -154,4 +154,4 @@ Pang's preferred order: lead with #1 or #2 (these match the metaphor section ver
 
 **It isn't:**
 - A script to read off word-for-word. It's a structure. Improvise within the beats.
-- The canonical offer doc — see [offer.md](offer.md) for UK skincare cold-email pilots, [guarantee.md](guarantee.md) for the Upwork-channel guarantee.
+- The canonical offer doc — see [offer.md](../sales-and-delivery/offer.md) for UK skincare cold-email pilots, [guarantee.md](../sales-and-delivery/guarantee.md) for the Upwork-channel guarantee.

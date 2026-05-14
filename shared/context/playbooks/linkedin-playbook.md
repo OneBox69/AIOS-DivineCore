@@ -3,10 +3,10 @@
 > **LinkedIn-specific tactical playbook for Pang's content posts.** Hooks, CTAs, closings, frameworks, writing system, growth strategy, profile copy.
 >
 > **Loading discipline**: any agent generating a Pang LinkedIn post should load:
-> 1. [`pang.md`](pang.md) — *who* is writing (persona, personality, content pillars, hot takes, what he never does)
-> 2. [`voice.md`](voice.md) — brand-level banned phrases and general formatting rules
+> 1. [`pang.md`](../identity/pang.md) — *who* is writing (persona, personality, content pillars, hot takes, what he never does)
+> 2. [`voice.md`](../identity/voice.md) — brand-level banned phrases and general formatting rules
 > 3. **This file** — LinkedIn-specific tactics (the *how* of the platform)
-> 4. (Optional) [`audience.md`](audience.md) — broader DivineSide audience for cross-channel context
+> 4. (Optional) [`audience.md`](../identity/audience.md) — broader DivineSide audience for cross-channel context
 >
 > This file does **not** restate persona — that lives in `pang.md`. If you find yourself describing personality or content pillars here, move it to `pang.md` instead.
 
@@ -16,7 +16,7 @@ Last updated: 2026-05-12
 
 ## 01 · LinkedIn-Specific Writing Rules
 
-(Persona-level writing rules — short sentences, no emojis, numbers everywhere, no corporate language — live in [`pang.md`](pang.md). The rules below are LinkedIn-platform-specific extensions on top.)
+(Persona-level writing rules — short sentences, no emojis, numbers everywhere, no corporate language — live in [`pang.md`](../identity/pang.md). The rules below are LinkedIn-platform-specific extensions on top.)
 
 ### Hook Principles (from LinkedIn course / Chris Walker)
 
@@ -35,7 +35,7 @@ Last updated: 2026-05-12
 
 ### LinkedIn-specific banned phrases
 
-(Canonical brand-level banned-words list lives in [`voice.md`](voice.md). LinkedIn-specific additions on top.)
+(Canonical brand-level banned-words list lives in [`voice.md`](../identity/voice.md). LinkedIn-specific additions on top.)
 
 - "Let's connect" / "Let's chat"
 - "Drop a 🚀 if you agree"
@@ -51,12 +51,12 @@ Last updated: 2026-05-12
 
 **How to apply.** Pick at least one of these per post — not all four, but at least one, surfaced clearly enough that a skimmer catches it:
 
-- **The context layer.** We don't run AI on a one-off prompt. We build a context folder *with* the founder — markdown files covering their customers, business, strategy, voice, competitors, team, SOPs, lead channels. Every workflow reads from this folder before it makes a decision. The AI knows the business; it isn't guessing. (Source: [`offer.md`](offer.md) §02 Phase 1)
-- **Embedded expertise.** We feed each workflow the public frameworks of domain experts — media buyers, copywriters, retention strategists, whoever owns the discipline that workflow lives in — so the AI makes decisions the way an expert would, not the way a generic chatbot would. (Source: [`../../CLAUDE.md`](../../CLAUDE.md) §5)
-- **Operating system, not standalone workflow.** We build a layer that wraps the entire business. Each new workflow compounds on the brain we built for the previous one — workflow #2 starts smarter than workflow #1, workflow #3 starts smarter than #2. Standalone automations don't compound. (Source: [`offer.md`](offer.md) §07)
-- **Skin-in-the-game guarantee.** 8+ hours a week back by week 4, or you don't pay the second half. Most "AI agencies" charge upfront with no risk on either side. (Source: [`offer.md`](offer.md) §04)
+- **The context layer.** We don't run AI on a one-off prompt. We build a context folder *with* the founder — markdown files covering their customers, business, strategy, voice, competitors, team, SOPs, lead channels. Every workflow reads from this folder before it makes a decision. The AI knows the business; it isn't guessing. (Source: [`offer.md`](../sales-and-delivery/offer.md) §02 Phase 1)
+- **Embedded expertise.** We feed each workflow the public frameworks of domain experts — media buyers, copywriters, retention strategists, whoever owns the discipline that workflow lives in — so the AI makes decisions the way an expert would, not the way a generic chatbot would. (Source: [`../../CLAUDE.md`](../../../CLAUDE.md) §5)
+- **Operating system, not standalone workflow.** We build a layer that wraps the entire business. Each new workflow compounds on the brain we built for the previous one — workflow #2 starts smarter than workflow #1, workflow #3 starts smarter than #2. Standalone automations don't compound. (Source: [`offer.md`](../sales-and-delivery/offer.md) §07)
+- **Skin-in-the-game guarantee.** 8+ hours a week back by week 4, or you don't pay the second half. Most "AI agencies" charge upfront with no risk on either side. (Source: [`offer.md`](../sales-and-delivery/offer.md) §04)
 
-**Naming discipline still applies.** Per [`offer.md`](offer.md) §01, default to leading with the outcome (*"your business, running on AI"*) rather than the category noun (*"AI Operating System"*). Exception: foundational/announcement posts where the category itself is the subject — those earn the term by being the introduction (e.g. the 2026-05-11 pivot post).
+**Naming discipline still applies.** Per [`offer.md`](../sales-and-delivery/offer.md) §01, default to leading with the outcome (*"your business, running on AI"*) rather than the category noun (*"AI Operating System"*). Exception: foundational/announcement posts where the category itself is the subject — those earn the term by being the introduction (e.g. the 2026-05-11 pivot post).
 
 ---
 
@@ -250,7 +250,7 @@ These are the telltale signs:
 - "It's not X, it's Y" sentence structure
 - Corporate jargon and overly formal language
 - Vague statements that sound smart but don't actually mean anything
-- Banned words (canonical list in [`voice.md`](voice.md)): "game changer," "changed everything," "leverage" (verb), "unlock," "empower," "synergy," "robust," "scalable," "transform your business"
+- Banned words (canonical list in [`voice.md`](../identity/voice.md)): "game changer," "changed everything," "leverage" (verb), "unlock," "empower," "synergy," "robust," "scalable," "transform your business"
 
 **The fix**: read every post out loud. If a sentence sounds like a press release, cut it or rewrite it in one plain sentence.
 
@@ -262,7 +262,7 @@ These are the telltale signs:
 
 - **Be Consistent** — post frequently, same voice every time
 - **Be Clear** — your ICP and offer should be obvious from every post
-- **Constantly Reinforce Who You Are** — same identity signals in every post (see Constant Reinforcement rule in [`pang.md`](pang.md))
+- **Constantly Reinforce Who You Are** — same identity signals in every post (see Constant Reinforcement rule in [`pang.md`](../identity/pang.md))
 
 ### Content Strategy
 
@@ -323,7 +323,7 @@ Magnet-broad on the niche (*e-commerce brands*, not *beauty brands*). The About 
 >
 > 19. CS student at Wuhan University. Malaysian. Building DivineSide in public — every system, every number, every week. Follow along.
 
-> ⚠️ **Guarantee wording divergence — pending decision (2026-05-10):** the line *"If we don't deliver, you don't pay"* reads as a full refund. The locked offer in [`offer.md`](offer.md) §04 says only the second half is at risk (£1.25k for founding pilots, £2.5k for standard) — the first 50% is non-refundable. Either tighten this About line to *"you don't pay the second half"*, OR strengthen offer.md to match this stronger promise. Resolve before any prospect compares the two.
+> ⚠️ **Guarantee wording divergence — pending decision (2026-05-10):** the line *"If we don't deliver, you don't pay"* reads as a full refund. The locked offer in [`offer.md`](../sales-and-delivery/offer.md) §04 says only the second half is at risk (£1.25k for founding pilots, £2.5k for standard) — the first 50% is non-refundable. Either tighten this About line to *"you don't pay the second half"*, OR strengthen offer.md to match this stronger promise. Resolve before any prospect compares the two.
 
 ### Banner
 
@@ -350,7 +350,7 @@ Run through this before every post goes live:
 - [ ] Does the hook have a number or a specific claim?
 - [ ] Does it pass the 'so what?' test — is there a real insight here?
 - [ ] Is every sentence necessary? Cut anything that's filler.
-- [ ] Does it reinforce at least one of: **age / DivineSide / e-comm beauty ICP / building in public**? (See Constant Reinforcement in [`pang.md`](pang.md))
+- [ ] Does it reinforce at least one of: **age / DivineSide / e-comm beauty ICP / building in public**? (See Constant Reinforcement in [`pang.md`](../identity/pang.md))
 - [ ] Does it draw at least one explicit distinction between DivineSide and generic "AI automation agencies" — context layer, embedded expertise, operating-system framing, or the guarantee? (See §01 Differentiation Requirement)
 - [ ] Is the closing strong — not a generic question?
 - [ ] No corporate buzzwords. No emojis (unless intentional). No exclamation marks.

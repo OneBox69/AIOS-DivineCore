@@ -59,7 +59,7 @@ The shape we're aiming for:
 - Hashtags: 0–3, not 15. Or none.
 - No emoji bullet points (✅ ❌). Use words.
 
-> **For Pang's LinkedIn specifically**: the full operating manual lives in [`linkedin-playbook.md`](linkedin-playbook.md) — hooks, CTAs, closings swipe files; the 3 frameworks (PAS, SLA, Case Study); writing system flow; profile copy; ICP-narrowed audience (e-comm beauty brands, 10–50 employees, $500k+ revenue). Any agent generating a Pang LinkedIn post should load that file in addition to this one.
+> **For Pang's LinkedIn specifically**: the full operating manual lives in [`linkedin-playbook.md`](../playbooks/linkedin-playbook.md) — hooks, CTAs, closings swipe files; the 3 frameworks (PAS, SLA, Case Study); writing system flow; profile copy; ICP-narrowed audience (e-comm beauty brands, 10–50 employees, $500k+ revenue). Any agent generating a Pang LinkedIn post should load that file in addition to this one.
 
 ### YouTube (long-form)
 - First 30 seconds = the hook. Tell them what they're getting and why.

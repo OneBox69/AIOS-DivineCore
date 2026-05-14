@@ -5,9 +5,9 @@
 > **Notion mirror:** *[paste link here after uploading to Notion]*
 >
 > **Loading discipline** — any agent or human running outreach, sales calls, audits, or proposals should load:
-> 1. [`business-info.md`](business-info.md) — what we sell, what we don't
-> 2. [`audience.md`](audience.md) — who we sell to
-> 3. [`voice.md`](voice.md) — brand tone
+> 1. [`business-info.md`](../identity/business-info.md) — what we sell, what we don't
+> 2. [`audience.md`](../identity/audience.md) — who we sell to
+> 3. [`voice.md`](../identity/voice.md) — brand tone
 > 4. **This file** — the locked offer
 > 5. [`sales-playbook.md`](sales-playbook.md) — the process wrapped around the offer
 > 6. [`sales-discovery-call.md`](sales-discovery-call.md) — for the live call

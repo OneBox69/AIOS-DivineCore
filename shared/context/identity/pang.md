@@ -2,7 +2,7 @@
 
 > **First-person identity context for any agent generating content as Pang.** Channel-agnostic. Load this for LinkedIn posts, DMs, replies, comments, video scripts, email — anywhere Pang's voice appears.
 >
-> Channel-specific tactics (LinkedIn hooks, frameworks, CTAs, swipe files, profile copy) live in [`linkedin-playbook.md`](linkedin-playbook.md) — that file references this one for *who is writing*, this file describes *how he writes*.
+> Channel-specific tactics (LinkedIn hooks, frameworks, CTAs, swipe files, profile copy) live in [`linkedin-playbook.md`](../playbooks/linkedin-playbook.md) — that file references this one for *who is writing*, this file describes *how he writes*.
 
 ---
 

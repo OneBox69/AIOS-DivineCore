@@ -6,8 +6,8 @@
 >
 > **Loading discipline** — any agent or human delivering a pilot should load:
 > 1. [`offer.md`](offer.md) — what we promised the client
-> 2. [`business-info.md`](business-info.md) — who we are
-> 3. [`voice.md`](voice.md) — brand tone (for client-facing docs)
+> 2. [`business-info.md`](../identity/business-info.md) — who we are
+> 3. [`voice.md`](../identity/voice.md) — brand tone (for client-facing docs)
 > 4. **This file** — the delivery process
 
 Last updated: 2026-05-04

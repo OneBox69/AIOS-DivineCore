@@ -2,14 +2,14 @@
 
 > **X-specific tactical playbook for Pang's content.** Flywheel, breakpoint diagnosis, audience filter, writing rules, naughty word list, dream-week anchor.
 >
-> Pang owns DivineSide's X presence. The case studies, ICP, "I'm 19 / building in public" framing, and Reliable Medicare / Cracked.ai credibility carry across from [`linkedin-playbook.md`](linkedin-playbook.md) — they live in [`pang.md`](pang.md), not duplicated here.
+> Pang owns DivineSide's X presence. The case studies, ICP, "I'm 19 / building in public" framing, and Reliable Medicare / Cracked.ai credibility carry across from [`linkedin-playbook.md`](linkedin-playbook.md) — they live in [`pang.md`](../identity/pang.md), not duplicated here.
 >
 > **Loading discipline**: any agent generating a Pang X post or thread should load:
-> 1. [`pang.md`](pang.md) — *who* is writing (persona, personality, content pillars, hot takes, what he never does)
-> 2. [`voice.md`](voice.md) — brand-level banned phrases and general formatting rules
+> 1. [`pang.md`](../identity/pang.md) — *who* is writing (persona, personality, content pillars, hot takes, what he never does)
+> 2. [`voice.md`](../identity/voice.md) — brand-level banned phrases and general formatting rules
 > 3. **This file** — X-specific strategy and tactics
-> 4. (Optional) [`audience.md`](audience.md) — broader DivineSide reader for cross-channel context
-> 5. (Optional) [`offer.md`](offer.md) — naming discipline, what we actually sell (so public framing leads with the outcome, not internal "AI OS" language)
+> 4. (Optional) [`audience.md`](../identity/audience.md) — broader DivineSide reader for cross-channel context
+> 5. (Optional) [`offer.md`](../sales-and-delivery/offer.md) — naming discipline, what we actually sell (so public framing leads with the outcome, not internal "AI OS" language)
 >
 > This file does **not** restate persona — that lives in `pang.md`. If you find yourself describing personality or content pillars here, move it to `pang.md` instead.
 >
@@ -35,7 +35,7 @@ Every stage has to convert to the next, or the stage upstream is wasted. Audit t
 
 | Stage | What should happen | What actually happens (2026-05-10) |
 |-------|-------------------|------------------------------------|
-| **X Content** | Posts attract operators / founders who already know AI is infrastructure (per [`audience.md`](audience.md)) | Not started — no posts yet |
+| **X Content** | Posts attract operators / founders who already know AI is infrastructure (per [`audience.md`](../identity/audience.md)) | Not started — no posts yet |
 | **Profile** | A first-time visitor immediately understands what DivineSide does and wants to subscribe | Not started — bio not finalised (see §10) |
 | **Email** | The newsletter converts X attention into a longer relationship — one defined next action per send | Not started — newsletter doesn't exist |
 | **Offer** | The custom AI OS pilot is tied directly to themes posted about that week | Not connected — no link from X to the offer |
@@ -98,15 +98,15 @@ X doesn't change anything. Systems attached to X do.
 
 Every thread should serve at least two of these:
 
-- **Drive ideal-fit founders to a DivineSide pilot conversation.** ICP in [`audience.md`](audience.md). Not chatbot buyers — operators who already know AI is infrastructure.
-- **Establish category ownership.** Build language around the outcome we sell — *"your business, running on AI"* (per [`offer.md`](offer.md)). Internally we call it AI OS; externally we lead with the outcome, then earn the term.
+- **Drive ideal-fit founders to a DivineSide pilot conversation.** ICP in [`audience.md`](../identity/audience.md). Not chatbot buyers — operators who already know AI is infrastructure.
+- **Establish category ownership.** Build language around the outcome we sell — *"your business, running on AI"* (per [`offer.md`](../sales-and-delivery/offer.md)). Internally we call it AI OS; externally we lead with the outcome, then earn the term.
 - **High authority + likability.** Position the founders as people the reader wants to learn from. Aspirational without ego. Specific wins, not generic flexes.
 - **Journey kick-off.** Leave the reader feeling they have to subscribe to follow what we're building.
 - **Highly referenced.** Threads that get screenshotted, quoted, and shared inside founder circles. Build language other founders adopt.
 
 ## 06 · X Writing Guidelines
 
-(Persona-level writing rules — Pang's tone, sentence length, content pillars, what he never writes — live in [`pang.md`](pang.md). The rules below are X-platform-specific extensions on top.)
+(Persona-level writing rules — Pang's tone, sentence length, content pillars, what he never writes — live in [`pang.md`](../identity/pang.md). The rules below are X-platform-specific extensions on top.)
 
 **Structure**
 
@@ -146,12 +146,12 @@ Every X thread (and most single-tweet posts about the build) must make at least 
 
 **How to apply.** Pick at least one of these per thread — not all four, but at least one, surfaced clearly enough that a skimmer catches it:
 
-- **The context layer.** We don't run AI on a one-off prompt. We build a context folder *with* the founder — markdown files covering their customers, business, strategy, voice, competitors, team, SOPs, lead channels. Every workflow reads from this folder before it makes a decision. The AI knows the business; it isn't guessing. (Source: [`offer.md`](offer.md) §02 Phase 1)
-- **Embedded expertise.** We feed each workflow the public frameworks of domain experts — media buyers, copywriters, retention strategists, whoever owns the discipline that workflow lives in — so the AI makes decisions the way an expert would, not the way a generic chatbot would. (Source: [`../../CLAUDE.md`](../../CLAUDE.md) §5)
-- **Operating system, not standalone workflow.** We build a layer that wraps the entire business. Each new workflow compounds on the brain we built for the previous one — workflow #2 starts smarter than workflow #1, #3 starts smarter than #2. Standalone automations don't compound. (Source: [`offer.md`](offer.md) §07)
-- **Skin-in-the-game guarantee.** 8+ hours a week back by week 4, or you don't pay the second half. Less load-bearing on X than on LinkedIn (the pilot offer is sold elsewhere per §07 below) but valid when a thread overlaps with the buyer narrative. (Source: [`offer.md`](offer.md) §04)
+- **The context layer.** We don't run AI on a one-off prompt. We build a context folder *with* the founder — markdown files covering their customers, business, strategy, voice, competitors, team, SOPs, lead channels. Every workflow reads from this folder before it makes a decision. The AI knows the business; it isn't guessing. (Source: [`offer.md`](../sales-and-delivery/offer.md) §02 Phase 1)
+- **Embedded expertise.** We feed each workflow the public frameworks of domain experts — media buyers, copywriters, retention strategists, whoever owns the discipline that workflow lives in — so the AI makes decisions the way an expert would, not the way a generic chatbot would. (Source: [`../../CLAUDE.md`](../../../CLAUDE.md) §5)
+- **Operating system, not standalone workflow.** We build a layer that wraps the entire business. Each new workflow compounds on the brain we built for the previous one — workflow #2 starts smarter than workflow #1, #3 starts smarter than #2. Standalone automations don't compound. (Source: [`offer.md`](../sales-and-delivery/offer.md) §07)
+- **Skin-in-the-game guarantee.** 8+ hours a week back by week 4, or you don't pay the second half. Less load-bearing on X than on LinkedIn (the pilot offer is sold elsewhere per §07 below) but valid when a thread overlaps with the buyer narrative. (Source: [`offer.md`](../sales-and-delivery/offer.md) §04)
 
-**Naming discipline still applies.** See §08 below and [`offer.md`](offer.md) §01: default to leading with the outcome (*"your business, running on AI"*) rather than the category noun (*"AI Operating System"*). Exception: foundational/announcement threads where the category itself is the subject — those earn the term by being the introduction.
+**Naming discipline still applies.** See §08 below and [`offer.md`](../sales-and-delivery/offer.md) §01: default to leading with the outcome (*"your business, running on AI"*) rather than the category noun (*"AI Operating System"*). Exception: foundational/announcement threads where the category itself is the subject — those earn the term by being the introduction.
 
 ## 07 · X Growth Strategy
 
@@ -176,7 +176,7 @@ Every X thread (and most single-tweet posts about the build) must make at least 
 
 1. **Keep giving them what they followed for.** If they followed for AIOS build threads, don't pivot to lifestyle takes.
 2. **Show positive results from following your advice.** Receipts. Wins, before/after, screenshots, build moments.
-3. **Personality is the secret sauce.** Lean into the quirks, interests, and unexpected angles. (See [`pang.md`](pang.md) — the 19yo Malaysian CS-student-building-in-public framing is the differentiator. Use it.)
+3. **Personality is the secret sauce.** Lean into the quirks, interests, and unexpected angles. (See [`pang.md`](../identity/pang.md) — the 19yo Malaysian CS-student-building-in-public framing is the differentiator. Use it.)
 
 ### Outbound DMs
 
@@ -213,7 +213,7 @@ The four parts of the script — keep all four, in this order:
 
 ## 08 · Naughty Word List
 
-(Canonical brand-level banned-phrases list lives in [`voice.md`](voice.md). X-specific additions on top.)
+(Canonical brand-level banned-phrases list lives in [`voice.md`](../identity/voice.md). X-specific additions on top.)
 
 **Never**
 
@@ -226,14 +226,14 @@ The four parts of the script — keep all four, in this order:
 
 **Spelling and casing (DivineSide-specific)**
 
-- **"AI Operating System"** or **"AI OS"** — never "ai operating system" or "AIOS" outside informal / internal contexts. **Public framing leads with the outcome** (*"your business, running on AI"*) per [`offer.md`](offer.md), not the category name.
+- **"AI Operating System"** or **"AI OS"** — never "ai operating system" or "AIOS" outside informal / internal contexts. **Public framing leads with the outcome** (*"your business, running on AI"*) per [`offer.md`](../sales-and-delivery/offer.md), not the category name.
 - **"DivineSide"** — one word, two capitals. Never "Divine Side" or "divineside".
 - **"founders"** or **"operators"** — not "entrepreneurs" (too broad), not "CEOs" (too corporate).
 - **"A-players"** — not "A-Players".
 
 ## 09 · Ideal Audience Member — Dream Week
 
-Anchor every thread to who you're writing for. Reference [`audience.md`](audience.md) for the full ICP definition. The X-specific lens:
+Anchor every thread to who you're writing for. Reference [`audience.md`](../identity/audience.md) for the full ICP definition. The X-specific lens:
 
 The reader we want is a founder/operator who:
 
@@ -290,8 +290,8 @@ Drafted 2026-05-10 — see §11 below for the full thread copy. Update §11 in p
 
 ## What this file is NOT
 
-- **Not voice or persona** — those live in [`voice.md`](voice.md) and [`pang.md`](pang.md).
-- **Not the offer / sales playbook** — those live in [`offer.md`](offer.md), [`sales-playbook.md`](sales-playbook.md).
+- **Not voice or persona** — those live in [`voice.md`](../identity/voice.md) and [`pang.md`](../identity/pang.md).
+- **Not the offer / sales playbook** — those live in [`offer.md`](../sales-and-delivery/offer.md), [`sales-playbook.md`](../sales-and-delivery/sales-playbook.md).
 - **Not a list of post ideas or a content calendar** — that's `branding_os/`'s job.
 - **Not the swipe files (yet)** — hooks / CTAs / closings / post-type frameworks land here when we have a feel for what works on X. Mirror the structure of [`linkedin-playbook.md`](linkedin-playbook.md) when adding them.
 

@@ -8,10 +8,10 @@
 >
 > **Loading discipline** — any agent or human running outreach, sales calls, audits, or proposals on behalf of DivineSide should load:
 > 1. [`offer.md`](offer.md) — **what we sell** (locked headline, pricing, guarantee, scope envelope)
-> 2. [`business-info.md`](business-info.md) — what we do as a company, what we don't
-> 3. [`voice.md`](voice.md) — brand tone
-> 4. [`audience.md`](audience.md) — who we sell to
-> 5. The relevant persona — [`mayank.md`](mayank.md) or [`pang.md`](pang.md) — for whoever is voicing the call/email
+> 2. [`business-info.md`](../identity/business-info.md) — what we do as a company, what we don't
+> 3. [`voice.md`](../identity/voice.md) — brand tone
+> 4. [`audience.md`](../identity/audience.md) — who we sell to
+> 5. The relevant persona — [`mayank.md`](../identity/mayank.md) or [`pang.md`](../identity/pang.md) — for whoever is voicing the call/email
 > 6. **This file** — process, audit doc template, follow-up cadence
 > 7. [`sales-discovery-call.md`](sales-discovery-call.md) — for anything happening on a live call
 > 8. [`delivery.md`](delivery.md) — for what happens after the deal closes (so the call doesn't promise things delivery can't do)
@@ -277,9 +277,9 @@ Then offer one of three (let them pick):
 - A living doc — evolves with every pilot
 
 **It is not:**
-- A script to read off verbatim — load the relevant persona file ([`mayank.md`](mayank.md) or [`pang.md`](pang.md)) so the language sounds like the human running the call
+- A script to read off verbatim — load the relevant persona file ([`mayank.md`](../identity/mayank.md) or [`pang.md`](../identity/pang.md)) so the language sounds like the human running the call
 - Final on pricing — first 3-5 pilots will tell us if £5k / £2k is too low or too high
-- Independent of brand voice — load [`voice.md`](voice.md) before any outreach or written proposal
+- Independent of brand voice — load [`voice.md`](../identity/voice.md) before any outreach or written proposal
 
 **Update cadence:** after every pilot, append a one-line note to a `## 10 · Lessons` section at the bottom — what worked, what didn't, what we'd say differently next time. After 5 pilots, do a full revision pass.
 

@@ -1,7 +1,7 @@
 """
 Pang's About Me content fed into the Upwork pipeline LLM prompts.
 
-Loosely derived from shared/context/pang.md but intentionally stripped of agency
+Loosely derived from shared/context/identity/pang.md but intentionally stripped of agency
 framing — Upwork buyers can be averse to agencies, so the Upwork-facing version
 positions Pang as a single builder. Update this file directly; do not auto-mirror
 pang.md.

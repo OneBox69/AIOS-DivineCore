@@ -33,7 +33,7 @@ Any writing agent (LinkedIn / X / YouTube / sales email) can load this file as o
 
 > **Source / author:** *(unattributed; fill in when re-encountered)*
 > **Posted / logged:** 2026-05-13
-> **Topic intent:** Pang wants to write his own version of this topic. Highly relevant to DivineSide because we ship autonomous agents for clients. Angles: permissions audits, decision logs, the human-in-loop tradeoff (our "humans supervise" framing per [`../../CLAUDE.md`](../../CLAUDE.md) §1), and how client trust scales with audit-ability as AI OS deployments expand.
+> **Topic intent:** Pang wants to write his own version of this topic. Highly relevant to DivineSide because we ship autonomous agents for clients. Angles: permissions audits, decision logs, the human-in-loop tradeoff (our "humans supervise" framing per [`../../CLAUDE.md`](../../../CLAUDE.md) §1), and how client trust scales with audit-ability as AI OS deployments expand.
 >
 > ---
 >
@@ -142,7 +142,7 @@ For *moves* that aren't tied to one platform — abstract patterns you can name.
 
 - **Not a content calendar** — that's `branding_os/`'s job.
 - **Not template patterns** — those live in the per-channel playbook ([`linkedin-playbook.md`](linkedin-playbook.md) §02–04 for LinkedIn hooks/CTAs/closings).
-- **Not strategy or voice** — those live in [`voice.md`](voice.md), [`pang.md`](pang.md), [`mayank.md`](mayank.md), [`audience.md`](audience.md).
+- **Not strategy or voice** — those live in [`voice.md`](../identity/voice.md), [`pang.md`](../identity/pang.md), [`mayank.md`](../identity/mayank.md), [`audience.md`](../identity/audience.md).
 - **Not knowledge bases or frameworks** — Kallaway's framework lessons live in `branding_os/knowledge-base/`. This file is for *raw examples* you've seen and admired, not the theory behind them.
 
 ---
