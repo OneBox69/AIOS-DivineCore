@@ -1,119 +1,140 @@
-# Guarantee — Pang / DivineSide
+# Guarantee — Pang / DivineSide (Upwork channel)
 
-> The standardized guarantee Pang offers on Upwork and other open channels (LinkedIn, inbound). Attached as a terms section to every proposal Google Doc, referenced verbally in the Loom, and formalized inside the Upwork SOW.
+> The standardized guarantee Pang offers on Upwork and other open channels (LinkedIn, inbound). Attached as a section in every proposal Google Doc, referenced verbally in the Loom, and formalized inside the Upwork SOW.
 >
-> **Loading discipline** — any agent or human generating proposals, Loom scripts, or discovery calls where this guarantee is offered should load this file.
+> **Two variants** — TYPE A (hours-saved) and TYPE B (functions-delivered, **default**). Choose based on the JD; the live classification logic lives in [sales_os/integrations/upwork/prompts.py](../../../sales_os/integrations/upwork/prompts.py). See §02 for what triggers each.
 >
-> **Distinct from [offer.md](offer.md)**, which is the canonical offer for the UK skincare cold-email pilot (8 hrs/week by week 4, £2.5k-£5k, no penalty payment). This file is the Upwork-channel guarantee with a different shape.
+> **Loading discipline** — any agent or human generating Upwork proposals, Loom scripts, or discovery calls where this guarantee is offered should load this file.
+>
+> **Distinct from [offer.md](offer.md)**, which is the canonical offer for the UK skincare cold-email pilot (8 hrs/week by week 4, £2.5k-£5k pilot, no penalty payment). This file is the Upwork-channel guarantee with a different shape.
 
-Last updated: 2026-05-13
+Last updated: 2026-05-17
 
 ---
 
-## 01 · The promise
+## 01 · The headline
 
-By the end of **week 8** (two months from kickoff), the system I deliver will perform the functions detailed in the kickoff spec we both signed off on.
+**You don't pay me anything upfront. You only pay when the system is delivered and we've verified it does what we agreed at kickoff. If we miss the target by the end of month two, you don't pay me anything, and I pay you $500 out of my own pocket for the time you committed.**
 
-The spec includes a jointly-agreed estimate of hours per week the team gets back when the system runs. **That number has to be at least 10 hours per week.** If the scope we agree on can't get there, I tell the buyer at kickoff and we don't start the project.
+The "target" depends on which variant applies — see §02.
 
-### Monetary value framing
+### Monetary value framing (TYPE A only)
+
+When the variant is TYPE A, the application body and proposal Doc both frame the value in money:
 
 > *"10 hours per week back at a conservative operator rate of $25 per hour is around $1,000 per month — roughly $12,000 per year of your team's capacity redirected from running the business to growing it."*
 
-This is not a literal cash-savings number unless the buyer fires someone. It's the **equivalent value of the time freed up** — capacity their team can now spend on growth-driving work instead of operations. If their team's effective hourly rate is higher (senior ops staff often $40-60/hour), the equivalent value scales accordingly. Use $25 as the floor anchor — conservative, defensible, no one argues it's too high.
+This is not a literal cash-savings number unless the buyer fires someone. It's the **equivalent value of the time freed up** — capacity the team can spend on growth-driving work. Use $25 as a defensible floor anchor; if the buyer's effective hourly rate is higher (senior ops staff often $40-60/hour), the equivalent value scales.
 
 ---
 
-## 02 · What triggers the guarantee — and what does NOT
+## 02 · The two variants
 
-The guarantee triggers on **one condition only**: a function listed in the signed kickoff spec doesn't work, works incorrectly, or is missing at the week 8 delivery test.
+### TYPE B (functions-delivered, DEFAULT)
 
-Nothing else qualifies.
+Use for the vast majority of JDs. The buyer wants a system with specific features. The deliverable is the value. Also use TYPE B for contractor-for-agency JDs.
 
-### Explicit non-triggers
+**The trigger:** A function listed in the signed kickoff spec doesn't work, works incorrectly, or is missing at the week 8 delivery test.
 
-These are the disputes buyers tend to raise. Each one is named here so it can be pointed at in writing if it comes up:
+**Verbatim paragraph** (also baked into [prompts.py](../../../sales_os/integrations/upwork/prompts.py) — `HERE'S MY OFFER` is ALL CAPS, no markdown bold, since Upwork renders plain text):
 
-- **"It works, but I didn't save the hours I expected."** Doesn't qualify. The hours estimate is what we agreed at kickoff. If the system performs the functions in the spec, the buyer has the system that produces those hours. Whether the team uses it as designed is their side of the equation.
-- **"It works, but I don't like how it's set up."** Doesn't qualify. Aesthetic or preference disagreements are not delivery failures. They get raised during the build, not after.
-- **"It works, but my team isn't using it."** Doesn't qualify. Adoption is the buyer's responsibility; delivery is mine.
+> HERE'S MY OFFER: if the system you want me to build doesn't perform the functions we agreed at kickoff by the end of week eight, you don't pay me anything, and I pay you $500 out of my own pocket for wasting your time.
+
+### TYPE A (hours-saved)
+
+Use **only** when ALL four signals are present:
+1. The JD explicitly mentions saving the buyer's team's hours, freeing up time, or reducing manual work they currently do.
+2. The buyer is the operator whose hours would be saved (not a contractor-hire JD).
+3. The "hours saved per week" can plausibly be measured against a current baseline.
+4. The pain in the JD reads as "I or my team is drowning in this repetitive work."
+
+If any of those four are not clearly true, default to TYPE B.
+
+**The trigger:** The system fails to save the buyer's team at least 10 hours per week by the end of month two.
+
+**Verbatim paragraph** (also baked into [prompts.py](../../../sales_os/integrations/upwork/prompts.py)):
+
+> HERE'S MY OFFER: if the system I build for you doesn't save more than 10 hours per week, either of your time as the founder or your employees' time, by the end of month two, you don't pay me anything, and I pay you $500 out of my own pocket for wasting your time.
+
+---
+
+## 03 · What does NOT trigger the guarantee (both variants)
+
+Regardless of variant, these don't qualify as a delivery failure:
+
+- **"It works, but I don't like how it's set up."** Aesthetic or preference disagreements are not delivery failures. Raise them during the build, not after.
+- **"It works, but my team isn't using it."** Adoption is the buyer's responsibility; delivery is mine.
 - **"It works, but I want to change what it does."** That's a scope change, not a delivery failure. We can rescope under a new agreement.
 
+**Variant-specific:**
+- TYPE B: *"I didn't save the hours I expected"* doesn't qualify. TYPE B's contract is the function spec, not an hours metric.
+- TYPE A: subjective dissatisfaction with how time was redirected doesn't qualify. The trigger is the hours-saved number, measured against the baseline agreed at kickoff.
+
 ---
 
-## 03 · The two phases
+## 04 · The two phases
 
 ### Step 1 · Kickoff agreement (week 1)
 
-We jointly write a 1-page spec of the workflow. It includes:
+We jointly write a 1-page spec of the workflow:
 
 - What the workflow does — functions, inputs, outputs
 - The manual function(s) it replaces
-- The estimated hours per week the team gets back (must be ≥ 10)
+- **TYPE A only:** the estimated hours per week the team gets back (must be ≥ 10), plus a baseline log of how long the function currently takes
 - Tools and integrations required
-- Access I need from the buyer to build (API keys, tool access, accounts)
+- Access I need from the buyer to build (API keys, accounts, tool access)
 
 Both parties sign off on the spec before I write a single line of code.
 
-### Step 2 · Delivery test (week 8)
+### Step 2 · Delivery test
 
-I demonstrate the system end-to-end against the spec, **function by function.**
+Timing depends on the variant:
+- **TYPE B — week 8.** I demonstrate the system end-to-end against the spec, function by function.
+- **TYPE A — end of month two.** We measure hours saved per week against the kickoff estimate and the pre-build baseline.
 
-- **Every function works as specced** → buyer releases the rest of the fee.
-- **One or more functions don't work, work incorrectly, or are missing** → full refund through Upwork, plus **$500 out of my pocket** as a make-good for the time the buyer committed.
+If the variant's target is met → buyer pays the agreed fee. If not → no payment + $500 paid from my pocket as a make-good.
 
 ---
 
-## 04 · Buyer obligations
+## 05 · Buyer obligations
 
 For the guarantee to remain in effect, the buyer commits to:
 
 - Provide access to the tools agreed on (Shopify, Klaviyo, Meta Ads, GoHighLevel, etc.) by end of week 1.
 - Respond to my questions about their business and workflow within 2 business days during the build.
 - Sign off on the week 1 spec before building begins.
+- (TYPE A only) Establish the pre-build hours baseline by end of week 1 — typically a log of how long the function currently takes and how often it runs.
 
 ---
 
-## 05 · What voids the guarantee on the buyer's side
+## 06 · What voids the guarantee
 
-- **Scope changes mid-build.** We can rescope, but the guarantee timeline resets from the rescope date.
-- **Tool access not provided by end of week 1.** The week 8 deadline shifts by however many days access was delayed.
+- **Scope changes mid-build.** We can rescope, but the timeline resets from the rescope date.
+- **Tool access not provided by end of week 1.** The deadline shifts by however many days access was delayed.
 - **Spec not signed off.** No signed spec = no guarantee in effect.
+- (TYPE A only) **Baseline not established.** Without a pre-build hours baseline, the hours-saved target can't be verified.
 
 ---
 
-## 06 · Claim mechanic
+## 07 · Claim mechanic
 
-If at the week 8 delivery test one or more functions fail against the spec:
+If the variant's target is missed at the delivery test:
 
-1. Buyer notifies me within **7 days** of the week 8 review.
-2. We jointly walk through the failed function(s) to confirm the failure against the spec (no judgment call — it's a checklist).
-3. I issue the full refund through Upwork within 7 days of the claim.
+1. Buyer notifies me within **7 days** of the delivery test.
+2. We jointly walk through the failed target — for TYPE B, the function checklist; for TYPE A, the baseline log vs. post-build measurement.
+3. Since no payment was made upfront, there's nothing to refund — the unpaid fee is written off.
 4. $500 paid separately within 7 days of the claim.
 
-Past the 7-day claim window with no notification, the guarantee is closed and the full fee stands.
+Past the 7-day claim window with no notification, the guarantee is closed and the fee becomes due as normal.
 
 ---
 
-## 07 · Where this guarantee gets referenced
+## 08 · Where this gets referenced
 
-- **Loom video** — one-sentence summary, points to this doc for full terms (verbatim line in §08).
-- **Proposal Google Doc** — full terms appended as a "Guarantee" section at the bottom of every proposal.
-- **Upwork SOW** — referenced in the contract scope description, linked to the proposal Doc.
-
----
-
-## 08 · Standard phrasing
-
-### One-line Loom version (~22 sec spoken)
-
-> "If by the end of two months the system I deliver doesn't perform the functions we agreed on at kickoff, you get a full refund through Upwork, plus $500 out of my pocket for the time you committed. Full guarantee terms are in the proposal Doc."
-
-### Application-body version (~1 sentence, optional)
-
-> "Backed by a written guarantee — full refund plus $500 if the system doesn't perform the functions we agreed at kickoff."
-
-### Proposal Doc version (full §01-§06 of this file, appended as the last section of every proposal Doc)
+- **Loom video** — verbal mention of the guarantee in the offer section, ~30 sec. Phrasing locked in [../playbooks/upwork-loom-script.md](../playbooks/upwork-loom-script.md) §1:30–2:15.
+- **Application body** — verbatim TYPE A or TYPE B paragraph (from `prompts.py`) appears between the hook line and the "I'm the person you're looking for" paragraph.
+- **Proposal Google Doc** — the `{{offer}}` placeholder is filled by `proposal_fields` with the same verbatim paragraph (the TYPE A version includes the dollar math at the top).
+- **Upwork SOW** — referenced in the contract scope description when a deal closes.
 
 ---
 
@@ -122,10 +143,10 @@ Past the 7-day claim window with no notification, the guarantee is closed and th
 **It is:**
 - The standardized guarantee for Upwork-channel and other open-channel projects.
 - A reference doc agents (Upwork pipeline, future Sales OS module) load when drafting proposals.
-- A living doc — revisit after first 3 projects using this guarantee.
+- The source of truth for the *meaning* of the guarantee and the conditions around it. The verbatim phrasing lives in [prompts.py](../../../sales_os/integrations/upwork/prompts.py); this doc explains what the words actually commit Pang to.
 
 **It isn't:**
-- The canonical offer for the UK skincare cold-email pilot. That's [offer.md](offer.md). The two differ deliberately: offer.md targets 8 hrs/week by week 4 with no cash penalty; this doc targets 10 hrs/week by week 8 with a $500 cash penalty.
+- The canonical offer for the UK skincare cold-email pilot. That's [offer.md](offer.md). The two differ deliberately: `offer.md` targets 8 hrs/week by week 4 with no cash penalty; this doc targets either 10 hrs/week (TYPE A) or functions-delivered (TYPE B) by month 2 / week 8, with a $500 cash penalty if missed.
 - A legal contract on its own. The terms here get formalized inside the Upwork SOW when a deal closes.
 
 ---
