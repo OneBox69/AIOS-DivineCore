@@ -1,12 +1,12 @@
-# Guarantee — Pang / DivineSide (Upwork channel)
+# Guarantee — DivineSide
 
-> The standardized guarantee Pang offers on Upwork and other open channels (LinkedIn, inbound). Attached as a section in every proposal Google Doc, referenced verbally in the Loom, and formalized inside the Upwork SOW.
+> The standardized guarantee that applies to **every channel** Pang/DivineSide sells through: cold email, Upwork, LinkedIn, inbound, warm intro. Attached as a section in every proposal Google Doc, referenced verbally in the Loom and on discovery calls, and formalized inside the SOW.
 >
-> **Two variants** — TYPE A (hours-saved) and TYPE B (functions-delivered, **default**). Choose based on the JD; the live classification logic lives in [sales_os/integrations/upwork/prompts.py](../../../sales_os/integrations/upwork/prompts.py). See §02 for what triggers each.
+> **Two variants** — TYPE A (hours-saved) and TYPE B (functions-delivered, **default**). Choose based on the JD or prospect; the live classification logic for Upwork specifically lives in [sales_os/integrations/upwork/prompts.py](../../../sales_os/integrations/upwork/prompts.py) and applies the same way for other channels. See §02 for what triggers each.
 >
-> **Loading discipline** — any agent or human generating Upwork proposals, Loom scripts, or discovery calls where this guarantee is offered should load this file.
+> **Loading discipline** — any agent or human generating proposals, Loom scripts, or discovery calls where this guarantee is offered should load this file.
 >
-> **Distinct from [offer.md](offer.md)**, which is the canonical offer for the UK skincare cold-email pilot (8 hrs/week by week 4, £2.5k-£5k pilot, no penalty payment). This file is the Upwork-channel guarantee with a different shape.
+> **Pairs with [offer.md](offer.md)**: `offer.md` is the strategic offer doc (what we sell, pricing anchors, channel audiences, expansion path). This file is the legal-mechanic deep-dive (verbatim guarantee paragraphs, what triggers each variant, what voids the guarantee, claim mechanic). Load both for any agent that drafts proposals or runs sales conversations.
 
 Last updated: 2026-05-17
 
@@ -131,23 +131,24 @@ Past the 7-day claim window with no notification, the guarantee is closed and th
 
 ## 08 · Where this gets referenced
 
-- **Loom video** — verbal mention of the guarantee in the offer section, ~30 sec. Phrasing locked in [../playbooks/upwork-loom-script.md](../playbooks/upwork-loom-script.md) §1:30–2:15.
-- **Application body** — verbatim TYPE A or TYPE B paragraph (from `prompts.py`) appears between the hook line and the "I'm the person you're looking for" paragraph.
-- **Proposal Google Doc** — the `{{offer}}` placeholder is filled by `proposal_fields` with the same verbatim paragraph (the TYPE A version includes the dollar math at the top).
-- **Upwork SOW** — referenced in the contract scope description when a deal closes.
+- **Loom video (Upwork)** — verbal mention of the guarantee in the offer section, ~30 sec. Phrasing locked in [`../playbooks/upwork-loom-script.md`](../playbooks/upwork-loom-script.md) §1:30–2:15.
+- **Upwork application body** — verbatim TYPE A or TYPE B paragraph (from [`prompts.py`](../../../sales_os/integrations/upwork/prompts.py)) appears between the hook line and the "I'm the person you're looking for" paragraph.
+- **Proposal Google Doc (Upwork)** — the `{{offer}}` placeholder is filled by `proposal_fields` with the same verbatim paragraph (the TYPE A version includes the dollar math at the top).
+- **Cold email / LinkedIn DMs / discovery calls** — the guarantee is delivered verbally on the call or as a closing line in the 24h audit doc. Same wording; pick TYPE A or TYPE B by the four-signal test in §02.
+- **SOW / contract** — referenced in the scope description on the platform the deal closes through (Upwork escrow, Stripe invoice, signed contract, etc.).
 
 ---
 
 ## 09 · What this doc is, what it isn't
 
 **It is:**
-- The standardized guarantee for Upwork-channel and other open-channel projects.
+- The standardized guarantee mechanic for **every channel** DivineSide sells through.
 - A reference doc agents (Upwork pipeline, future Sales OS module) load when drafting proposals.
 - The source of truth for the *meaning* of the guarantee and the conditions around it. The verbatim phrasing lives in [prompts.py](../../../sales_os/integrations/upwork/prompts.py); this doc explains what the words actually commit Pang to.
 
 **It isn't:**
-- The canonical offer for the UK skincare cold-email pilot. That's [offer.md](offer.md). The two differ deliberately: `offer.md` targets 8 hrs/week by week 4 with no cash penalty; this doc targets either 10 hrs/week (TYPE A) or functions-delivered (TYPE B) by month 2 / week 8, with a $500 cash penalty if missed.
-- A legal contract on its own. The terms here get formalized inside the Upwork SOW when a deal closes.
+- The strategic offer doc. That's [`offer.md`](offer.md). It covers pricing anchors, payment model, channel audiences, scope envelope, expansion path — the *what* and the *how much*. This file covers *how the guarantee actually works as a legal mechanic*.
+- A legal contract on its own. The terms here get formalized inside the SOW (Upwork escrow, Stripe invoice, signed contract) when a deal closes.
 
 ---
 
