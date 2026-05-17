@@ -179,19 +179,21 @@ Pause. Let them say yes. Then:
 >
 > *(temp check: "Does that make sense so far?")*
 >
-> ***Weeks 3-4: Data.*** *We connect the brain to your numbers — [Shopify / Klaviyo / Gorgias / whatever they actually use]. Now it sees what's happening in real time.*
+> ***Weeks 3-4: Data.*** *We connect the brain to your numbers (Shopify, Klaviyo, Gorgias, whatever you actually use). Now it sees what's happening in real time.*
 >
-> ***Weeks 5-6: Automate.*** *We ship one specific workflow tied to [their pain]. Live, monitored, your team uses it daily.*
+> ***Weeks 5-7: Build.*** *We ship one specific workflow tied to [their pain]. Live, monitored, your team uses it daily.*
 >
-> *By week 6 you have a brain that's learned your business and a workflow taking real work off the team. From there, every new workflow we add runs cheaper and faster — because the brain is already trained.*
+> ***Week 8: Verify.*** *Delivery test against what we agreed at kickoff. That's when payment happens.*
+>
+> *By week 8 you have a brain that's learned your business and a workflow taking real work off the team. From there, every new workflow we add runs cheaper and faster because the brain is already trained.*
 >
 > *(temp check: "Is this the kind of thing you were imagining? Anything I'm missing?")*
 >
-> *On pricing — we're running this as a founding partner programme for the first 5 UK skincare brands. **Pilot is £2.5k for founding partners, £5k afterwards**. Either way, fixed."*
+> *On pricing, **pilot is around £2.5k**, fixed at kickoff. Per project, so it can flex up or down a bit depending on scope. That's it for the pilot."*
 
 Then transition straight into the retainer (don't pause, don't let them ask):
 
-> *"After the pilot, you transition into our **Foundation retainer at £2k/month**. That covers maintaining your context layer as the business changes — new products, new SOPs, voice changes — plus monitoring on the live workflows and a weekly 30-min check-in. Up to 2 active workflows included.*
+> *"After the pilot, you transition into our **Foundation retainer at around £2.5k/month**. That covers maintaining your context layer as the business changes (new products, new SOPs, voice changes), plus monitoring on the live workflows and a weekly 30-min check-in. Up to 2 active workflows included.*
 >
 > *Each new workflow we ship after that adds £500/month. So a brand running 5 active workflows is at £3.5k/month.*
 >
@@ -213,15 +215,21 @@ If they say *"how would you actually build it?"* — don't improvise the technic
 
 ## 37–42 · Risk reversal + objections
 
-The guarantee is locked — same line every call:
+The guarantee is locked. Two variants — pick one before the call based on the prospect (TYPE B is the default; only use TYPE A when all 4 signals from [`guarantee.md`](guarantee.md) §02 are present).
 
-> *"We're confident enough in this that we put skin in the game. The deal: at least **8 hours per week back** for your team by week 4. We log the baseline before we start, log the post-launch state at week 4, and if hours saved isn't 8+/week, you don't pay the second half. Real measurement, not vibes."*
+**TYPE B (functions delivered, default):**
+
+> *"We're confident enough in this that we put skin in the game. The deal: by the end of week 8, the system performs the functions we agree on at kickoff. You don't pay me anything upfront — you only pay when it's delivered and we've verified it works. If a function in the spec is missing or doesn't work, you don't pay anything, and I pay you $500 out of my own pocket for the time you committed. Real measurement, not vibes."*
+
+**TYPE A (hours saved):**
+
+> *"We're confident enough in this that we put skin in the game. The deal: at least **10 hours per week back** for your team by the end of month 2. We log the baseline before we start, log the post-launch state at month 2, and if hours saved isn't 10+/week, you don't pay anything, and I pay you $500 out of my own pocket for the time you committed. Real measurement, not vibes."*
 
 If they push: *"why hours and not, say, response time or revenue?"*
 
-> *"Hours is the cleanest signal across any workflow. Response time matters for CS but doesn't apply to content; revenue impact takes 6 months to attribute cleanly. Hours saved hits within weeks, applies everywhere, and compounds visibly as we add workflows. Other metrics — response time, throughput, conversion — we still track and report, but the guarantee is hours."*
+> *"Hours is the cleanest signal across any workflow. Response time matters for CS but doesn't apply to content; revenue impact takes 6 months to attribute cleanly. Hours saved hits within weeks, applies everywhere, and compounds visibly as we add workflows. Other metrics (response time, throughput, conversion) we still track and report, but the guarantee is hours."*
 
-You can commit to the guarantee on the call. The metric is universal.
+You can commit to the guarantee on the call. The metric is universal within each variant.
 
 ### Common objections to be ready for
 

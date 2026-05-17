@@ -17,7 +17,7 @@ Last updated: 2026-05-04
 ## Form metadata
 
 - **Title:** `[Brand name] × DivineSide — Pre-Kickoff Intake`
-- **Welcome screen copy:** *"Welcome to the founding partner programme. This 10-question intake takes ~30 min and gets us 80% of the way to a productive kickoff call. The juicy stuff — voice, strategy, why-decisions — we'll cover live."*
+- **Welcome screen copy:** *"Welcome to your DivineSide pilot. This 10-question intake takes ~30 min and gets us 80% of the way to a productive kickoff call. The juicy stuff (voice, strategy, why-decisions) we'll cover live."*
 - **End screen copy:** *"Thanks. We'll review this before our kickoff call on [date] and follow up with anything unclear."*
 
 ---

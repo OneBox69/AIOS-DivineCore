@@ -163,16 +163,17 @@ The full locked offer (headline promise, naming discipline, pilot phases, pricin
 
 | | |
 |---|---|
-| **Headline promise** | *"Your business, running on AI."* — at least 8 hrs/week back by week 4 or no second-half payment. |
-| **Pilot — founding partner** | £2.5k, first 5 UK skincare brands |
-| **Pilot — standard** | £5k, after the first 5 |
-| **Pilot duration** | 6 weeks (context → data → automate) |
+| **Headline promise** | *"Your business, running on AI."* In 8 weeks, you don't pay anything upfront and only pay on delivery. If we miss the target, you don't pay anything and I pay you $500. |
+| **Pilot pricing** | Per-project, anchored at ~£2.5k (provisional, currently testing). No tiered pricing or founding-partner discount. |
+| **Pilot duration** | 8 weeks (context → data → build → verify) |
 | **Pilot scope** | One workflow, ≤2 weeks of build, API-accessible, measurable |
-| **Retainer — Foundation** | £2k/month, includes context maintenance + 2 active workflows |
+| **Retainer (Foundation)** | ~£2.5k/month (provisional). Includes context maintenance + monitoring + weekly check-in + up to 2 active workflows |
 | **Retainer expansion** | +£500/month per additional active workflow |
-| **Naming externally** | "Your business, running on AI." Never lead with "AI Operating System" with prospects. |
+| **Guarantee variant** | TYPE B (functions delivered, default) or TYPE A (hours saved, only when 4 explicit signals are present). See [`guarantee.md`](guarantee.md) §02. |
+| **Payment** | 0% upfront, 100% on delivery, conditional on guarantee |
+| **Naming externally** | "Your business, running on AI." Lead with the outcome. Upwork channel exception: lead with AIOS framing (see [`offer.md`](offer.md) §01). |
 
-For full guarantee mechanics, what's outside the scope envelope, expansion path, and update cadence — see [`offer.md`](offer.md).
+For the full strategic offer (pricing, channels, scope envelope, expansion path) see [`offer.md`](offer.md). For the guarantee mechanic (verbatim paragraphs, what triggers, voids, claim) see [`guarantee.md`](guarantee.md).
 
 ---
 
@@ -195,24 +196,31 @@ Top 3 opportunities (ranked by hours saved per week):
 
 We recommend starting with #1.
 
-Pilot — founding partner (£2.5k, 6 weeks)
-[or: Pilot — standard (£5k, 6 weeks) if past the first 5 brands]
+Pilot (~£2.5k, 8 weeks)
 
-- Weeks 1-2: Context. We learn your business — products, voice, SOPs,
-  decisions. This becomes your AI brain.
+- Weeks 1-2: Context. We learn your business (products, voice, SOPs,
+  decisions). This becomes your AI brain.
 - Weeks 3-4: Data. We connect the brain to [specific tools they use].
-- Weeks 5-6: Automate. We ship the [specific workflow] live.
+- Weeks 5-7: Build. We ship the [specific workflow] live.
+- Week 8: Verify. Delivery test against the kickoff spec or the
+  hours-saved baseline.
 
-Guarantee: at least 8 hours per week back for your team by week 4.
-- We log the baseline (week 1) and the post-launch state (week 4).
-- If hours saved < 8/week, the second half (£1.25k / £2.5k) is not charged.
+Guarantee (TYPE A or TYPE B depending on what fits this build best):
+- TYPE B (default): the system performs the functions we agree on
+  at kickoff by week 8. If a function is missing or doesn't work, you
+  don't pay anything and I pay you $500.
+- TYPE A (hours-saved, only when 4 explicit signals present): the
+  system saves at least 10 hrs/week by month 2, measured against the
+  baseline we agree on at kickoff. If we miss, you don't pay and I
+  pay you $500.
 
-After week 6:
-Foundation retainer at £2k/month — context maintained as the business
-changes + monitoring + weekly check-in + up to 2 active workflows.
-Each additional workflow adds £500/month. Month-to-month, 30-day notice.
+After week 8:
+Foundation retainer at ~£2.5k/month, default-on. Context maintained
+as the business changes + monitoring + weekly check-in + up to 2
+active workflows. Each additional workflow adds £500/month.
+Month-to-month, 30-day notice.
 
-Payment: 50% upfront, 50% at week 4 (subject to the guarantee).
+Payment: 0% upfront, 100% on delivery (conditional on the guarantee).
 
 Next step:
 Reply to confirm and we kick off [specific week].
@@ -243,29 +251,28 @@ The retainer is sold *as part of the pilot offer* (default-on, opt-out). Don't t
 
 The full delivery process (Phase 0 → Phase 4 handoff) lives in **[`delivery.md`](delivery.md)**. This section covers only the *sales-side* of the handoff — the conversation, not the operational checklist.
 
-### Week 5-6 transition call
+### Week 7-8 transition call
 
 - Review what was shipped
-- Confirm the success metric was hit (or address it honestly if not)
+- Confirm the guarantee target was hit (or address it honestly if not)
 - Discuss the 2-3 highest-priority next workflows for the coming quarter
-- Confirm Foundation retainer kicks in at week 7 — *unless they explicitly opt out*
+- Confirm Foundation retainer kicks in at week 9 *unless they explicitly opt out*
 
 ### If they opt out
 
-Respect it. Leave the door open. Deliver clean handoff docs — their context layer is theirs, in their format, ready for them to maintain (or hand to another agency).
+Respect it. Leave the door open. Deliver clean handoff docs (their context layer is theirs, in their format, ready for them to maintain or hand to another agency).
 
-### If the success metric wasn't hit
+### If the guarantee target wasn't hit
 
 **Own it before they bring it up.** That's non-negotiable.
 
 > *"We didn't hit [metric]. Here's what we learned, here's what we'd do differently, here's how we make it right."*
 
-Then offer one of three (let them pick):
-1. Refund the second half per the guarantee
-2. Extend to week 8 free until we hit the metric
-3. Ship one extra workflow free as a make-good
+Per [`guarantee.md`](guarantee.md): they don't pay anything for the pilot and I pay them $500 out of pocket. That's the contracted outcome. Beyond that, optionally offer (let them pick):
+1. Build one additional workflow free as a make-good (only do this if the relationship is worth saving and the failure was on our side)
+2. Extend the build period free until we hit the metric (only if they're willing and the gap is small)
 
-**The first 3-5 pilots, eat the cost when this happens.** The case study and the relationship are worth more than £2.5k. The lesson goes into the next iteration of this doc.
+**The first 3-5 pilots where this happens, eat the cost.** The case study and the relationship are worth more than the lost fee. The lesson goes into the next iteration of this doc.
 
 ---
 

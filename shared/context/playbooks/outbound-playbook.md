@@ -821,10 +821,10 @@ Translating the framework to our actual offer:
 
 - **Default voice** is Pang on most channels (LinkedIn, Upwork, IG, X, cold email). Mayank's voice is reserved for video and founder-led email. Load the persona file accordingly.
 - **Default offer reference** is *"your business, running on AI"* (outcome-led). The category noun *AIOS* is for posts/messages where the differentiation is the subject. See [`../sales-and-delivery/offer.md`](../sales-and-delivery/offer.md) §01.
-- **Authority anchors that work**: shipped builds (Upwork pipeline, Fathom, Instantly integration), the 8-hours-back-by-week-4 guarantee, named clients we are allowed to reference.
+- **Authority anchors that work**: shipped builds (Upwork pipeline, Fathom, Instantly integration), the 0%-upfront + $500-penalty guarantee, named clients we are allowed to reference.
 - **Differentiation requirement** (carried over from [`linkedin-playbook.md`](linkedin-playbook.md)): every cold message should imply or state at least one of the four DivineSide differentiators (context layer, embedded expertise, operating-system framing, skin-in-the-game guarantee). Otherwise the reader sorts us into the "another AI automation agency" bucket.
 - **Upwork is the exception** to "never lead with AIOS externally" per [`../../CLAUDE.md`](../../../CLAUDE.md) §13. On Upwork the AIOS framing is the differentiator that justifies the price floor. Other channels: outcome-first.
-- **DivineSide-specific offer template:** *"I'd save you 8+ hours a week back by week 4, or you don't pay the second half. We'd only need ~15 min on a call to scope it. The rest I run in the background with weekly check-ins."*
+- **DivineSide-specific offer template:** *"You don't pay anything upfront. If I deliver what we agree on at kickoff by week 8, you pay then. If not, you don't pay anything and I pay you $500 out of pocket. We'd only need ~15 min on a call to scope it."*
 
 ---
 

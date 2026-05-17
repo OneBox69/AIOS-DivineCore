@@ -54,7 +54,7 @@ Last updated: 2026-05-12
 - **The context layer.** We don't run AI on a one-off prompt. We build a context folder *with* the founder — markdown files covering their customers, business, strategy, voice, competitors, team, SOPs, lead channels. Every workflow reads from this folder before it makes a decision. The AI knows the business; it isn't guessing. (Source: [`offer.md`](../sales-and-delivery/offer.md) §02 Phase 1)
 - **Embedded expertise.** We feed each workflow the public frameworks of domain experts — media buyers, copywriters, retention strategists, whoever owns the discipline that workflow lives in — so the AI makes decisions the way an expert would, not the way a generic chatbot would. (Source: [`../../CLAUDE.md`](../../../CLAUDE.md) §5)
 - **Operating system, not standalone workflow.** We build a layer that wraps the entire business. Each new workflow compounds on the brain we built for the previous one — workflow #2 starts smarter than workflow #1, workflow #3 starts smarter than #2. Standalone automations don't compound. (Source: [`offer.md`](../sales-and-delivery/offer.md) §07)
-- **Skin-in-the-game guarantee.** 8+ hours a week back by week 4, or you don't pay the second half. Most "AI agencies" charge upfront with no risk on either side. (Source: [`offer.md`](../sales-and-delivery/offer.md) §04)
+- **Skin-in-the-game guarantee.** 0% upfront, 100% on delivery. If we miss the target (functions delivered by week 8, or 10 hrs/week saved by month 2 when applicable), you don't pay anything and I pay you $500 out of pocket. Most "AI agencies" charge upfront with no risk on either side. (Source: [`offer.md`](../sales-and-delivery/offer.md) §04 and [`guarantee.md`](../sales-and-delivery/guarantee.md))
 
 **Naming discipline still applies.** Per [`offer.md`](../sales-and-delivery/offer.md) §01, default to leading with the outcome (*"your business, running on AI"*) rather than the category noun (*"AI Operating System"*). Exception: foundational/announcement posts where the category itself is the subject — those earn the term by being the introduction (e.g. the 2026-05-11 pivot post).
 
@@ -317,13 +317,13 @@ Magnet-broad on the niche (*e-commerce brands*, not *beauty brands*). The About 
 >
 > Our focus: e-commerce beauty brands. 10–50 employees. $500k+ in revenue.
 >
-> The promise: at least 8 hours a week back by week 4. If we don't deliver, you don't pay.
+> The promise: in 8 weeks, you don't pay anything upfront, and you only pay if we deliver. If we miss, you don't pay anything, and I pay you $500 out of pocket.
 >
 > ====
 >
-> 19. CS student at Wuhan University. Malaysian. Building DivineSide in public — every system, every number, every week. Follow along.
+> 19. CS student at Wuhan University. Malaysian. Building DivineSide in public, every system, every number, every week. Follow along.
 
-> ⚠️ **Guarantee wording divergence — pending decision (2026-05-10):** the line *"If we don't deliver, you don't pay"* reads as a full refund. The locked offer in [`offer.md`](../sales-and-delivery/offer.md) §04 says only the second half is at risk (£1.25k for founding pilots, £2.5k for standard) — the first 50% is non-refundable. Either tighten this About line to *"you don't pay the second half"*, OR strengthen offer.md to match this stronger promise. Resolve before any prospect compares the two.
+> **Guarantee wording — resolved 2026-05-17.** The About line now matches the unified offer in [`offer.md`](../sales-and-delivery/offer.md) §04 and the verbatim guarantee paragraphs in [`guarantee.md`](../sales-and-delivery/guarantee.md): 0% upfront, 100% on delivery, $500 penalty from Pang's pocket if missed.
 
 ### Banner
 

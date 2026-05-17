@@ -1,16 +1,17 @@
 # Delivery — DivineSide
 
-> **The 6-week pilot delivery process** — what gets built, by whom, in what order, with what hand-offs. Same shape for every client; only the workflow varies.
+> **The 8-week pilot delivery process.** What gets built, by whom, in what order, with what hand-offs. Same shape for every client; only the workflow varies.
 >
 > **Notion mirror:** *[paste link here after uploading to Notion]*
 >
 > **Loading discipline** — any agent or human delivering a pilot should load:
 > 1. [`offer.md`](offer.md) — what we promised the client
-> 2. [`business-info.md`](../identity/business-info.md) — who we are
-> 3. [`voice.md`](../identity/voice.md) — brand tone (for client-facing docs)
-> 4. **This file** — the delivery process
+> 2. [`guarantee.md`](guarantee.md) — the guarantee mechanic (TYPE A vs TYPE B, what triggers, what voids)
+> 3. [`../identity/business-info.md`](../identity/business-info.md) — who we are
+> 4. [`../identity/voice.md`](../identity/voice.md) — brand tone (for client-facing docs)
+> 5. **This file** — the delivery process
 
-Last updated: 2026-05-04
+Last updated: 2026-05-17
 
 ---
 
@@ -19,12 +20,11 @@ Last updated: 2026-05-04
 | Week | Phase | Goal |
 |------|-------|------|
 | 0 | Pre-onboarding | Tech access in progress, kickoff scheduled, brain repo created |
-| 1 | Context — kickoff + synthesis | Kickoff call run, 8-category brain drafted |
-| 2 | Context — validation | Validation call run, brain client-approved |
-| 3-4 | Data | APIs live, **baseline log started**, workflow scoped |
-| 5 | Workflow build | Built + internally tested |
-| 6 | Workflow live | Shipped, team trained, hours measured against the 8-hr/week guarantee |
-| End of 6 | Handoff | Retainer kicks in week 7 |
+| 1 | Context: kickoff + synthesis | Kickoff call run, 8-category brain drafted, signed spec (TYPE A baseline log started if applicable) |
+| 2 | Context: validation | Validation call run, brain client-approved |
+| 3-4 | Data | APIs live, workflow scoped |
+| 5-7 | Workflow build | Built, internally tested, shipped, team trained |
+| 8 | Verify + handoff | Delivery test against the kickoff spec (TYPE B) or hours-saved baseline (TYPE A); payment released on success, retainer kicks in week 9 |
 
 ---
 
@@ -154,21 +154,22 @@ The full build SOP lives in **[`workflow-build.md`](workflow-build.md)** (prereq
 - [ ] Monitor for the rest of week 6, fix issues fast
 - [ ] **Measure hours saved** — same log as the baseline. Compare. Report.
 
-**Guarantee outcome:**
-- Hours saved ≥ 8/week → second-half invoice goes out
-- Hours saved < 8/week → second-half not charged. Own it (per [`sales-playbook.md`](sales-playbook.md) §08), then figure out the make-good (refund, extend, or extra workflow free)
+**Guarantee outcome** (per [`guarantee.md`](guarantee.md), variant agreed at kickoff):
+- TYPE B target met (all functions work as specced at week 8) → invoice goes out, buyer pays
+- TYPE A target met (≥ 10 hrs/week saved vs. baseline by end of month 2) → invoice goes out, buyer pays
+- Target not met → no payment + $500 paid from Pang's pocket per the guarantee. Own it (per [`sales-playbook.md`](sales-playbook.md) §08), then optionally make a make-good offer (build a second workflow free, or extend the build period until target hits).
 
 ---
 
-## 08 · Phase 4 — Handoff + retainer transition (end of week 6)
+## 08 · Phase 4 — Handoff + retainer transition (week 8 → week 9)
 
-**Goal:** clean transition into the £2k/month Foundation retainer.
+**Goal:** clean transition into the ~£2.5k/month Foundation retainer.
 
 - [ ] Handoff doc in the brain repo — what we built, how it runs, how to escalate, what to watch for
 - [ ] Retainer kickoff call (30 min) — confirms the weekly cadence, sets the next workflow priority
-- [ ] First weekly check-in booked for week 7
+- [ ] First weekly check-in booked for week 9
 
-The retainer is **default-on** per [`offer.md`](offer.md). Default behavior: brain repo stays in client ownership, we keep commit access, weekly check-in starts week 7.
+The retainer is **default-on** per [`offer.md`](offer.md). Default behavior: brain repo stays in client ownership, we keep commit access, weekly check-in starts week 9.
 
 If they opt out: clean handoff. They keep their brain repo (it's theirs), we revoke our commit access, deliver final docs, leave the door open.
 
@@ -197,7 +198,7 @@ Subject: Tech access — getting [Brand] set up
 
 Hey [Founder],
 
-Welcome to the founding partner programme — kickoff is [date].
+Welcome to your DivineSide pilot. Kickoff is [date].
 
 Before we meet, we need access to a handful of tools so we can move
 fast in week 3. Here's the checklist:
